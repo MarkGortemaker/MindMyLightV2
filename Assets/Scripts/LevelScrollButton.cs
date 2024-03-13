@@ -1,28 +1,79 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LevelScrollButton : MonoBehaviour
 {
-    Vector2 position;
-    public void Slide(bool forward) //probably best to make this into three separate predetermined sections instead of adding to the x value each time
+    Vector2 targetPosition; //target position used for Lerping
+    float[] buttonAxises = { -680, -1130, -1580, -2030, -2480}; //axises of each level button except 1 and 7, which are at the end points
+    int axisIndex = 0; //current index used for the buttonAxises array
+
+    public bool CanLerp = false; //determines whether the linear interpolation can be used or not
+
+    public UnityEngine.UI.Button forwardButton; //forward button in the menu
+    public UnityEngine.UI.Button backButton; //back button in the menu
+
+    private void Update()
     {
-        position = transform.localPosition; //copy current position of the scroll
-        if (forward) //adjust the intended position to the next or previous section depending on the button 
-        {
-            position.x -= 900; 
+        CheckScrollViewEdge();
+        if (!DragDetect.IsDrag && CanLerp)
+        { //set the local position of the scroll view to the intended position when not dragging
+            transform.localPosition = new Vector2(Mathf.Lerp(transform.localPosition.x, targetPosition.x, 5 * Time.deltaTime), transform.localPosition.y); //Linearly interpolate between current position and target position
+            if (Mathf.Approximately(transform.localPosition.x, targetPosition.x))
+            {
+                CanLerp = false; //disable Lerping when target position is reached
+            }
         }
-        else 
+        else if (DragDetect.IsDrag && CanLerp) 
         {
-            position.x += 900;
+            CanLerp = false; //disable Lerping when dragging
         }
-        transform.localPosition = position; //set the local position of the scroll to the intended position
+
+        //check where the current position is and change the axisIndex accordingly
+        if (transform.localPosition.x < buttonAxises[axisIndex] - 300)
+        {
+            axisIndex = Mathf.Clamp(axisIndex + 1, 0, buttonAxises.Length - 1);   
+        }
+        else if (transform.localPosition.x > buttonAxises[axisIndex] + 300)
+        {
+            axisIndex = Mathf.Clamp(axisIndex - 1, 0, buttonAxises.Length - 1);
+        }
+    }
+    public void SlideChapters(bool forward) //function used by forward and back buttons to move between chapter buttons
+    {
+        CanLerp = true; //allow Lerping
+        targetPosition = transform.localPosition; //copy current position of the scroll
+        if (forward) //change to the index that contains the next or previous button's x coordinates depending on the button 
+        {
+            axisIndex = Mathf.Clamp(axisIndex + 1, 0, buttonAxises.Length-1);
+        }
+        else
+        {
+            axisIndex = Mathf.Clamp(axisIndex - 1, 0, buttonAxises.Length-1);
+        }
+        targetPosition.x = buttonAxises[axisIndex]; //set target position for Lerping
+        CheckScrollViewEdge();
     }
 
-   /* I tried to use Lerp here for a smooth transition but since it is constantly active in Update it messes with the swipe scroll controls, and I couldn't get any loops to work either, going to look into this
-    * private void Update()
+    void CheckScrollViewEdge() //set the forward or back button to be uninteractable when on the edges of the menu
     {
-        transform.localPosition = new Vector2(Mathf.Lerp(transform.localPosition.x, position.x, 5 * Time.deltaTime), position.y);
-    } */
+        if (transform.localPosition.x >= buttonAxises[0] - 200)
+        {
+            backButton.interactable = false;
+        }
+        else if (transform.localPosition.x <= buttonAxises[buttonAxises.Length-1] +200)
+        {
+            forwardButton.interactable = false;
+        }
+        else
+        {
+            forwardButton.interactable = true;
+            backButton.interactable = true;
+        }
+    }
 
 }
