@@ -10,6 +10,7 @@ public class GraphicsMenu : MonoBehaviour
 {
     public UnityEngine.UI.Toggle fullscreenToggle, vSyncToggle;
     public TMP_Dropdown resolutionDropdown;
+    public TMP_Dropdown qualityDropdown;
 
     List<string> resolutionTexts = new();
     List<int[]> resolutions = new();
@@ -18,11 +19,12 @@ public class GraphicsMenu : MonoBehaviour
 
     void Start()
     {
-        resWidth = Display.main.systemWidth;
+        resWidth = Display.main.systemWidth; //get native width and height values
         resHeight = Display.main.systemHeight;
 
-        fullscreenToggle.isOn = Screen.fullScreen;
+        fullscreenToggle.isOn = Screen.fullScreen; 
         vSyncToggle.isOn = QualitySettings.vSyncCount != 0;
+        qualityDropdown.value = QualitySettings.GetQualityLevel();
 
         foreach (Resolution r in Screen.resolutions)
         {
@@ -44,10 +46,11 @@ public class GraphicsMenu : MonoBehaviour
         resWidth = resolutions.ToArray()[resolutionDropdown.value][0];
         resHeight = resolutions.ToArray()[resolutionDropdown.value][1];
     }
-    
+
     public void ApplyChanges()
     {
         Screen.SetResolution(resWidth, resHeight, fullscreenToggle.isOn);
         QualitySettings.vSyncCount = vSyncToggle.isOn ? 1 : 0;
+        QualitySettings.SetQualityLevel(qualityDropdown.value);
     }
 }
