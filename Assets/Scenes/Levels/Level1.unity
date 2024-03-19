@@ -300,8 +300,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1544668085}
         m_TargetAssemblyTypeName: GeneralControls, Assembly-CSharp
-        m_MethodName: PauseResumeGame
-        m_Mode: 6
+        m_MethodName: ResumeGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 1285826873}
   - component: {fileID: 1285826872}
   m_Layer: 0
-  m_Name: Pause Test Cube (delete later)
+  m_Name: Pause Test Cube Part 2! (delete later)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1209,8 +1209,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1544668085}
         m_TargetAssemblyTypeName: GeneralControls, Assembly-CSharp
-        m_MethodName: PauseResumeGame
-        m_Mode: 6
+        m_MethodName: TogglePause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1652,8 +1652,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1544668085}
         m_TargetAssemblyTypeName: GeneralControls, Assembly-CSharp
-        m_MethodName: PauseResumeGame
-        m_Mode: 6
+        m_MethodName: ResumeGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

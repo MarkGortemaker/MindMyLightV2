@@ -11,20 +11,30 @@ public class GeneralControls : MonoBehaviour
     {
         if (Input.GetKeyDown(escape)) 
         {
-            PauseResumeGame(pauseMenu.activeSelf); 
+            TogglePause();
             pauseMenu.SetActive(!pauseMenu.activeSelf); //open the pause menu if it's closed, close it if it's open
         }
     }
-    public void PauseResumeGame(bool IsPaused) //pause the game if it is active, resume it if it is paused
+    public void TogglePause() //pause the game if it is active, resume it if it is paused
     {
-        if (IsPaused == false)
+        if (Time.timeScale == 1)
         {
-            Time.timeScale = 0;
+            PauseGame();
         }
 
         else
         {
-            Time.timeScale = 1;
+            ResumeGame();
         }
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }
