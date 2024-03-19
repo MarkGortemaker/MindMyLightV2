@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class LevelMenu : MonoBehaviour
 {
-
     public Button[] buttons = new Button[7];
     private void Awake()
     {
@@ -23,10 +22,5 @@ public class LevelMenu : MonoBehaviour
         {
             buttons[i].interactable = true;
         }
-    }
-    
-    public void LoadLevel(string level)
-    {
-        SceneManager.LoadScene(level);
     }
 }

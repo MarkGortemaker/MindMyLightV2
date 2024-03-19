@@ -366,8 +366,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &67231371
 MonoBehaviour:
@@ -391,8 +391,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 2
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -665,15 +665,15 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286530050
-  m_fontColor: {r: 0.007843138, g: 0.25882354, b: 0.49803925, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
+    rgba: 4290417257
+  m_fontColor: {r: 0.41066405, g: 0.5739386, b: 0.72955966, a: 1}
+  m_enableVertexGradient: 1
+  m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 0.29224584, g: 0.17295581, b: 1, a: 1}
+    topRight: {r: 0.29224584, g: 0.17295581, b: 1, a: 1}
+    bottomLeft: {r: 0.27987415, g: 1, b: 0.9685436, a: 1}
+    bottomRight: {r: 0.27987415, g: 1, b: 0.9685436, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -1379,6 +1379,7 @@ GameObject:
   - component: {fileID: 551729506}
   - component: {fileID: 551729507}
   - component: {fileID: 551729508}
+  - component: {fileID: 551729509}
   m_Layer: 5
   m_Name: Chapter Buttons
   m_TagString: Untagged
@@ -1456,6 +1457,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &551729509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551729505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deac9b96dcd389a4fa5f2fea982f83c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &664043367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1755,8 +1768,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721149185
 MonoBehaviour:
@@ -1780,8 +1793,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1889,8 +1902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753622396
 MonoBehaviour:
@@ -1914,8 +1927,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2099,8 +2112,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791137533
 MonoBehaviour:
@@ -2124,8 +2137,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 7
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2233,8 +2246,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &796321236
 MonoBehaviour:
@@ -2258,8 +2271,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 6
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2551,8 +2564,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &944977129
 MonoBehaviour:
@@ -2576,8 +2589,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 4
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2826,8 +2839,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 551729509}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -2925,7 +2938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7df9599dce4854db97d1270b62d217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsScrolling: 0
+  CanLerp: 0
   forwardButton: {fileID: 237065202}
   backButton: {fileID: 1530603705}
 --- !u!1 &1105878446
@@ -3959,8 +3972,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -138.706}
-  m_SizeDelta: {x: 125, y: 222.588}
+  m_AnchoredPosition: {x: 0, y: -145}
+  m_SizeDelta: {x: 125, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662438502
 MonoBehaviour:
@@ -3984,8 +3997,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Chapter 5
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
-  m_sharedMaterial: {fileID: 2604477048208938413, guid: 81e976a2ec5c7c449b57962d4ee928f7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
+  m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4612,8 +4625,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 551729509}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:

@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void GameStart()
-    {
-        SceneManager.LoadScene("LevelSelect");
-    }
-
     public void Quit()
     {
         Application.Quit();
