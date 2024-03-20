@@ -4757,7 +4757,6 @@ GameObject:
   - component: {fileID: 1045312837}
   - component: {fileID: 1045312836}
   - component: {fileID: 1045312838}
-  - component: {fileID: 1045312839}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -4812,18 +4811,6 @@ MonoBehaviour:
   vSyncToggle: {fileID: 1093090822}
   resolutionDropdown: {fileID: 63839350}
   qualityDropdown: {fileID: 678484035}
---- !u!114 &1045312839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045312835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deac9b96dcd389a4fa5f2fea982f83c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1070192863
 GameObject:
   m_ObjectHideFlags: 0
@@ -8698,7 +8685,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1045312839}
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
