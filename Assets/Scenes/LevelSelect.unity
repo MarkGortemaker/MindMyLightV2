@@ -282,8 +282,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -549,8 +549,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -816,8 +816,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -1379,7 +1379,6 @@ GameObject:
   - component: {fileID: 551729506}
   - component: {fileID: 551729507}
   - component: {fileID: 551729508}
-  - component: {fileID: 551729509}
   m_Layer: 5
   m_Name: Chapter Buttons
   m_TagString: Untagged
@@ -1457,18 +1456,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &551729509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551729505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deac9b96dcd389a4fa5f2fea982f83c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &664043367
 GameObject:
   m_ObjectHideFlags: 0
@@ -2839,7 +2826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729509}
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
@@ -3776,8 +3763,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -4192,8 +4179,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
@@ -4625,7 +4612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729509}
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
         m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
@@ -4758,8 +4745,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 551729508}
-        m_TargetAssemblyTypeName: LevelMenu, Assembly-CSharp
+      - m_Target: {fileID: 9066618408331081328, guid: c5bfeb3958dbd6840aa8ff72da1f3a0f, type: 3}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
         m_MethodName: LoadLevel
         m_Mode: 5
         m_Arguments:
