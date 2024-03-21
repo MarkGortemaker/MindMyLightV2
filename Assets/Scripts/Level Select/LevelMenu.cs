@@ -9,7 +9,7 @@ public class LevelMenu : MonoBehaviour
     public Button[] buttons = new Button[7];
     private void Awake()
     {
-        int currentLevel = PlayerPrefs.GetInt("currentLevel", 1); //current level will be manually increased and updated in playerprefs after each level completion
+        int currentLevel = PlayerPrefs.GetInt("currentLevel", 2); //current level will be manually increased and updated in playerprefs after each level completion
 
         buttons = gameObject.GetComponentsInChildren<Button>();
 
