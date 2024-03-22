@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class FlyMovement : MonoBehaviour
 {
-    public float speed = 5.0f;
+    public float speed = 6f;
     public int rotationMultiplier = 5; 
-    public float limitX = 50f;
-    public float limitZ = 30f;
+    public float limitX = 60f;
+    public float limitZ = 60f;
+
+    public ParticleSystem burstParticle;
 
     private void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Balloon")
         {
-            UpdateUI.balloonCount++;
+            UpdateHUD.balloonCount++;
             col.gameObject.SetActive(false);
+            burstParticle.gameObject.SetActive(true);
+            burstParticle.transform.position = col.gameObject.transform.position;
+            burstParticle.Play();
         }
 
         if (col.tag == "Hazard") 
@@ -22,6 +27,8 @@ public class FlyMovement : MonoBehaviour
             //HP loss and game over
         }
     }
+
+    
 
     void FixedUpdate()
     {

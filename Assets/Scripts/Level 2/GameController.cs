@@ -12,9 +12,11 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Balloon"))
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Balloon")) //set balloon positions and add them to a list
         {
             balloons.Add(i);
+            i.transform.position = new Vector3(Random.Range(-borderX, borderX), Random.Range(-borderY, borderY), Random.Range(-borderZ, borderZ));
+            i.SetActive(true);
         }
     }
 
