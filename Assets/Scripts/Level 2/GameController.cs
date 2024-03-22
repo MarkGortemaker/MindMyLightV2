@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     public static float borderZ = 50;
 
     public static List<GameObject> balloons = new List<GameObject>();
+    public static List<GameObject> birds = new List<GameObject>();
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class GameController : MonoBehaviour
             i.transform.position = new Vector3(Random.Range(-borderX, borderX), Random.Range(-borderY, borderY), Random.Range(-borderZ, borderZ));
             i.SetActive(true);
         }
+
     }
 
     private void OnDrawGizmos() //draw cube to visualize stage borders

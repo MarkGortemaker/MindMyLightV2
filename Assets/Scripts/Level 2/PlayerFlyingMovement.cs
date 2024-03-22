@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyMovement : MonoBehaviour
+public class PlayerFlyingMovement : MonoBehaviour
 {
     public float speed = 6f;
     public int rotationMultiplier = 5; 
@@ -22,7 +22,7 @@ public class FlyMovement : MonoBehaviour
             burstParticle.Play();
         }
 
-        if (col.tag == "Hazard") 
+        if (col.tag == "Bird" || col.tag == "Thunder")
         {
             //HP loss and game over
         }
