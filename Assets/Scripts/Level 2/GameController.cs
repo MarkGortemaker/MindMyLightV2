@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -16,16 +18,53 @@ public class GameController : MonoBehaviour
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("Balloon")) //set balloon positions and add them to a list
         {
             balloons.Add(i);
-            i.transform.position = new Vector3(Random.Range(-borderX, borderX), Random.Range(-borderY, borderY), Random.Range(-borderZ, borderZ));
-            i.SetActive(true);
+            Spawn(i, borderX, -borderX, borderY, -borderY, borderZ, -borderZ);
         }
 
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Bird"))
+        {
+            birds.Add(i);
+            if (birds.Count % 2 == 0) //even numbered birds and odd numbered birds go cross 
+            {
+                Spawn(i, borderX, -borderX, borderY, -borderY, borderZ, borderZ);
+            }
+            else
+            {
+                Spawn(i, borderX, borderX, borderY, -borderY, borderZ, -borderZ);
+                i.transform.Rotate(new Vector3(0, 0, 90)); //axis must be changed after models are fixed
+            }
+        }
+    }
+
+    private void Update()
+    {
+        for (int i = 0; i < birds.Count; i++) 
+        {
+            GameObject bird = birds[i];
+            if (Mathf.Abs(bird.transform.position.x) > borderX + 10 || Mathf.Abs(bird.transform.position.z) > borderZ + 10) //re"spawn" when hitting a border
+            {
+                if (i % 2 != 0)  
+                {
+                    Spawn(bird, borderX, -borderX, borderY, -borderY, borderZ, borderZ);
+                }
+                else
+                {
+                    Spawn(bird, borderX, borderX, borderY, -borderY, borderZ, -borderZ);
+                }
+            }
+        }
     }
 
     private void OnDrawGizmos() //draw cube to visualize stage borders
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawCube(Vector3.zero, 2 * new Vector3(borderX, borderY, borderZ));
+    }
+
+    public static void Spawn(GameObject obj, float Xmax, float Xmin, float Ymax, float Ymin, float Zmax, float Zmin)
+    {
+        obj.transform.position = new Vector3(Random.Range(Xmin, Xmax), Random.Range(Ymin, Ymax), Random.Range(Zmin, Zmax));
+        obj.SetActive(true);
     }
 
     public static void EnforceBorder(Transform t) //limit the transform passed in to stay in the stage borders

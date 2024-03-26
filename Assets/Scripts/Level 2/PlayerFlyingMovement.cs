@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class PlayerFlyingMovement : MonoBehaviour
 {
-    public float speed = 6f;
+    public float speed = 8f;
     public int rotationMultiplier = 5; 
     public float limitX = 60f;
     public float limitZ = 60f;
 
-    public ParticleSystem burstParticle;
+    public bool IsInvincible = false;
+    public int hitPoints = 3;
 
+    public ParticleSystem burstParticle;
+    Material material;
+    public Color hurtColor;
+    public Color initialColor;
+
+    private void Start()
+    {
+        material = GetComponent<Renderer>().material;
+        initialColor = material.color;
+    }
     private void OnTriggerEnter(Collider col)
     {
         if (col.tag == "Balloon")
@@ -24,34 +35,57 @@ public class PlayerFlyingMovement : MonoBehaviour
 
         if (col.tag == "Bird" || col.tag == "Thunder")
         {
-            //HP loss and game over
+            material.color = hurtColor;
+
+            if (!IsInvincible) 
+            { 
+                hitPoints--;
+                IsInvincible = true;
+            }
+
+            StartCoroutine(EndInvincibility());
         }
     }
 
-    
-
-    void FixedUpdate()
+    IEnumerator EndInvincibility()
     {
+        yield return new WaitForSeconds(2f);
 
+        material.color = initialColor;
+
+        IsInvincible = false;
+    }
+    void Move()
+    {
         transform.Translate(Vector3.forward * speed * Time.deltaTime); //constantly go forward with no input
 
-        transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * speed * rotationMultiplier * Time.deltaTime); //rotate right or left via input
+        transform.Rotate(Vector3.up * Input.GetAxis("Horizontal") * speed * rotationMultiplier * Time.deltaTime); 
 
-        transform.Rotate(Vector3.right * -Input.GetAxis("Vertical") * speed * rotationMultiplier * Time.deltaTime); //rotate up or down via input
+        transform.Rotate(Vector3.right * -Input.GetAxis("Vertical") * speed * rotationMultiplier * Time.deltaTime); 
+    }
 
-        Vector3 rotate = transform.localEulerAngles; //assign current rotation to this variable
+    void ClampRotation() //limits the rotation of the x and z axis by the limit variables on the script
+    {
+        Vector3 rotate = transform.localEulerAngles; 
 
         if (rotate.x > 180) { rotate.x -= 360; } //adjust the rotation to ensure it doesn't cut off
-        rotate.x = Mathf.Clamp(rotate.x, -limitX, limitX); //limit the x axis...
+        rotate.x = Mathf.Clamp(rotate.x, -limitX, limitX); 
 
-        if (rotate.z > 180) { rotate.z -= 360; } 
-        rotate.z = Mathf.Clamp(rotate.z, -limitZ, limitZ); //...and the z axis (the limits should be smoother, like snapping back after rotating too much)
+        if (rotate.z > 180) { rotate.z -= 360; }
+        rotate.z = Mathf.Clamp(rotate.z, -limitZ, limitZ); //the limits should be smoother, like snapping back after rotating too much
 
-        transform.localEulerAngles = rotate; //set the transform's rotation to limited values
+        transform.localEulerAngles = rotate; 
 
         rotate.z = Mathf.Lerp(rotate.z, 0, 0.01f); //linearly interpolate the z axis rotation to reset to 0
 
-        transform.localEulerAngles = rotate; 
+        transform.localEulerAngles = rotate;
+    }
+
+    void FixedUpdate()
+    {
+        Move();
+
+        ClampRotation();
 
         GameController.EnforceBorder(transform); //limit the player's movement to stay within stage borders
     }
