@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.mathewhdyt.audiomanager": "https://github.com/MathewHDYT/Unity-Audio-Manager.git?path=/com.mathewhdyt.audiomanager#package",
     "com.unity.feature.development": "1.0.1",
     "com.unity.textmeshpro": "3.0.8",
     "com.unity.timeline": "1.7.6",

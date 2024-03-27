@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.mathewhdyt.audiomanager": {
+      "version": "https://github.com/MathewHDYT/Unity-Audio-Manager.git?path=/com.mathewhdyt.audiomanager#package",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4994b06df07f0467794417d9dc2abf8fa8f07ba6"
+    },
     "com.unity.editorcoroutines": {
       "version": "1.0.0",
       "depth": 1,
