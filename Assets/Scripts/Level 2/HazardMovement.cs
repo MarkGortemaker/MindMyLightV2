@@ -5,10 +5,11 @@ using UnityEngine;
 public class HazardMovement : MonoBehaviour
 {
     public float speed = 30f;
+    public float variation = 10f;
 
     private void Start()
     {
-        speed = Random.Range(speed - 10, speed + 10);
+        speed = Random.Range(speed - variation, speed + variation);
     }
     void Update()
     {

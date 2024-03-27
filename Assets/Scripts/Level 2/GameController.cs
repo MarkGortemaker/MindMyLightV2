@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("Balloon")) //set balloon positions and add them to a list
         {
             balloons.Add(i);
-            Spawn(i, borderX, -borderX, borderY, -borderY, borderZ, -borderZ);
+            Spawn(i, borderX, -borderX, borderY, -borderY/2, borderZ, -borderZ);
         }
 
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("Bird"))
@@ -26,7 +26,7 @@ public class GameController : MonoBehaviour
             birds.Add(i);
             if (birds.Count % 2 == 0) //even numbered birds and odd numbered birds go cross 
             {
-                Spawn(i, borderX, -borderX, borderY, -borderY, borderZ, borderZ);
+                Spawn(i, borderX, -borderX, borderY, borderY/2, borderZ, borderZ);
             }
             else
             {
