@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 
     public static List<GameObject> balloons = new List<GameObject>();
     public static List<GameObject> birds = new List<GameObject>();
+    public GameObject thunderCloud; //turn into List later
 
     void Start()
     {
@@ -52,6 +53,11 @@ public class GameController : MonoBehaviour
                     Spawn(bird, borderX, borderX, borderY, -borderY, borderZ, -borderZ);
                 }
             }
+        }
+
+        if (Mathf.Abs(thunderCloud.transform.position.z) > borderZ + 50)
+        {
+            Spawn(thunderCloud, borderX, -borderX, borderY + 10, borderY + 10, borderZ + 50, borderZ + 50);
         }
     }
 
