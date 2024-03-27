@@ -14,15 +14,7 @@ public class AudioMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MasterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
-        MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-        SfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 0.75f);
 
-        if (PlayerPrefs.HasKey("MasterVolume"))
-        {
-
-        }
-        //Mixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("MasterVolume", 0.75f));
     }
 
     public AudioMixer Mixer;
