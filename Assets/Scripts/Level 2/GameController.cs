@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static float borderX = 50; //values for the stage borders
-    public static float borderY = 50;
-    public static float borderZ = 50;
+    public static float borderX = 100; //values for the stage borders
+    public static float borderY = 100;
+    public static float borderZ = 100;
 
     public static List<GameObject> balloons = new List<GameObject>();
     public static List<GameObject> birds = new List<GameObject>();

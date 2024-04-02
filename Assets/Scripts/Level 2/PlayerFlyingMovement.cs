@@ -13,6 +13,7 @@ public class PlayerFlyingMovement : MonoBehaviour
     public int hitPoints = 3;
 
     public ParticleSystem burstParticle;
+    public ParticleSystem hurtParticle;
     Material material;
     public Color hurtColor;
     public Color initialColor;
@@ -40,6 +41,8 @@ public class PlayerFlyingMovement : MonoBehaviour
             if (!IsInvincible) 
             { 
                 hitPoints--;
+                hurtParticle.gameObject.SetActive(true);
+                hurtParticle.Play();
                 IsInvincible = true;
             }
 

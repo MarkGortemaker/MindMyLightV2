@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ThunderStrike : MonoBehaviour
 {
     RaycastHit hit;
-    public bool IsWarned = false;
+    public static bool IsWarned = false;
     public GameObject thunder;
     public Image hudWarning;
 
@@ -15,12 +15,12 @@ public class ThunderStrike : MonoBehaviour
     {
         if (!IsWarned)
         {
-            Debug.DrawRay(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z - 5), Vector3.down * 200f, Color.red); //debug lines
-            Debug.DrawRay(new Vector3(transform.position.x + 5, transform.position.y, transform.position.z + 5), Vector3.down * 200f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x - 5, transform.position.y, transform.position.z + 5), Vector3.down * 200f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x + 5, transform.position.y, transform.position.z - 5), Vector3.down * 200f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x - 20, transform.position.y, transform.position.z - 20), Vector3.down * 300f, Color.red); //debug lines
+            Debug.DrawRay(new Vector3(transform.position.x + 20, transform.position.y, transform.position.z + 20), Vector3.down * 300f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x - 20, transform.position.y, transform.position.z + 20), Vector3.down * 300f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + 20, transform.position.y, transform.position.z - 20), Vector3.down * 300f, Color.red);
 
-            if (Physics.BoxCast(transform.position, new Vector3(5f, 5f, 5f), Vector3.down * 500f, out hit) && hit.collider.tag == "Player")
+            if (Physics.BoxCast(transform.position, new Vector3(20f, 20f, 20f), Vector3.down * 500f, out hit) && hit.collider.tag == "Player")
             {
                 Debug.Log("Warning...");
                 hudWarning.gameObject.SetActive(true); //just slapping on a dark screen for now, improve this when it's time to do the HUD (maybe with a fade-in)
@@ -34,7 +34,7 @@ public class ThunderStrike : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("Strike!");
-        thunder.transform.position = transform.position;
+        thunder.transform.position = transform.position; //maybe we can use multiple thunders per cloud?
         thunder.SetActive(true);
         yield return new WaitForSeconds(2f);
         IsWarned = false;
