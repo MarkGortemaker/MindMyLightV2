@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFlyingMovement : MonoBehaviour
 {
     public float speed = 8f;
-    public int rotationMultiplier = 5; 
+    public float rotationMultiplier = 5f; 
     public float limitX = 60f;
     public float limitZ = 60f;
 
@@ -13,6 +13,7 @@ public class PlayerFlyingMovement : MonoBehaviour
     public int hitPoints = 3;
 
     public ParticleSystem burstParticle;
+    public ParticleSystem hurtParticle;
     Material material;
     public Color hurtColor;
     public Color initialColor;
@@ -40,6 +41,8 @@ public class PlayerFlyingMovement : MonoBehaviour
             if (!IsInvincible) 
             { 
                 hitPoints--;
+                hurtParticle.gameObject.SetActive(true);
+                hurtParticle.Play();
                 IsInvincible = true;
             }
 
