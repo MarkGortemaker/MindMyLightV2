@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static float borderX = 100; //values for the stage borders
+    public static float borderX = 150; //values for the stage borders
     public static float borderY = 100;
-    public static float borderZ = 100;
+    public static float borderZ = 150;
 
     public static List<GameObject> balloons = new List<GameObject>();
     public static List<GameObject> birds = new List<GameObject>();
@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("Cloud")) //set balloon positions and add them to a list
         {
             clouds.Add(i);
-            Spawn(i, borderX, -borderX, borderY + 10, borderY + 10, borderZ + 50, -borderZ - 50);
+            Spawn(i, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 50, -borderZ - 50);
         }
     }
 
@@ -68,11 +68,11 @@ public class GameController : MonoBehaviour
             GameObject cloud = clouds[i];
             if (Mathf.Abs(cloud.transform.position.z) > borderZ + 50)
             {
-                Spawn(cloud, borderX, -borderX, borderY + 10, borderY + 10, borderZ + 50, borderZ + 50);
+                Spawn(cloud, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 50, borderZ + 50);
             }
         }
 
-        if (thunder.transform.position.y < -borderY - 50)
+        if (thunder.transform.position.y < -borderY - 300)
         {
             thunder.SetActive(false);
         }
@@ -81,7 +81,7 @@ public class GameController : MonoBehaviour
     private void OnDrawGizmos() //draw cube to visualize stage borders
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawCube(Vector3.zero, 2 * new Vector3(borderX, borderY, borderZ));
+        Gizmos.DrawWireCube(Vector3.zero, 2 * new Vector3(borderX, borderY, borderZ));
     }
 
     public static void Spawn(GameObject obj, float Xmax, float Xmin, float Ymax, float Ymin, float Zmax, float Zmin)

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerFlyingMovement : MonoBehaviour
 {
     public float speed = 8f;
-    public int rotationMultiplier = 5; 
+    public float rotationMultiplier = 5f; 
     public float limitX = 60f;
     public float limitZ = 60f;
 

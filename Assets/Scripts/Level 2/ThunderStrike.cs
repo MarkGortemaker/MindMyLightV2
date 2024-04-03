@@ -15,12 +15,7 @@ public class ThunderStrike : MonoBehaviour
     {
         if (!IsWarned)
         {
-            Debug.DrawRay(new Vector3(transform.position.x - 20, transform.position.y, transform.position.z - 20), Vector3.down * 300f, Color.red); //debug lines
-            Debug.DrawRay(new Vector3(transform.position.x + 20, transform.position.y, transform.position.z + 20), Vector3.down * 300f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x - 20, transform.position.y, transform.position.z + 20), Vector3.down * 300f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x + 20, transform.position.y, transform.position.z - 20), Vector3.down * 300f, Color.red);
-
-            if (Physics.BoxCast(transform.position, new Vector3(20f, 20f, 20f), Vector3.down * 500f, out hit) && hit.collider.tag == "Player")
+            if (Physics.BoxCast(transform.position, new Vector3(30f, 30f, 50f), Vector3.down * 500f, out hit) && hit.collider.tag == "Player")
             {
                 Debug.Log("Warning...");
                 hudWarning.gameObject.SetActive(true); //just slapping on a dark screen for now, improve this when it's time to do the HUD (maybe with a fade-in)
@@ -29,15 +24,23 @@ public class ThunderStrike : MonoBehaviour
             }
         }
     }
-
+    private void OnDrawGizmos() //draw cube to visualize stage borders
+    {
+        if (!IsWarned)
+        {
+            Gizmos.color = new Color (Color.red.r, Color.red.g, Color.red.b, 0.5f);
+            Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y - 150, transform.position.z), new Vector3(30, 300, 50));
+        }
+    }
     IEnumerator ThunderHit()
     {
         yield return new WaitForSeconds(2f);
         Debug.Log("Strike!");
-        thunder.transform.position = transform.position; //maybe we can use multiple thunders per cloud?
+        thunder.transform.position = new Vector3(transform.position.x, transform.position.y, 
+            Random.Range(transform.position.z - 8, transform.position.z + 8)); 
         thunder.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        IsWarned = false;
         hudWarning.gameObject.SetActive(false);
+        yield return new WaitForSeconds(4f);
+        IsWarned = false;
     }
 }
