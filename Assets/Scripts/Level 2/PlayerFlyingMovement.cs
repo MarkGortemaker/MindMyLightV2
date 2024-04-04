@@ -32,6 +32,12 @@ public class PlayerFlyingMovement : MonoBehaviour
             burstParticle.gameObject.SetActive(true);
             burstParticle.transform.position = col.gameObject.transform.position;
             burstParticle.Play();
+
+            if (UpdateHUD.balloonCount == 5)
+            {
+                GeneralControls.PauseGame();
+                GameController.WinGame();
+            }
         }
 
         if (col.tag == "Bird" || col.tag == "Thunder")
@@ -39,11 +45,22 @@ public class PlayerFlyingMovement : MonoBehaviour
             material.color = hurtColor;
 
             if (!IsInvincible) 
-            { 
+            {
                 hitPoints--;
-                hurtParticle.gameObject.SetActive(true);
-                hurtParticle.Play();
-                IsInvincible = true;
+                UpdateHUD.lifeBar = UpdateHUD.lifeBar.Remove(UpdateHUD.lifeBar.Length - 2);
+
+                if (hitPoints <= 0)
+                {
+                    GeneralControls.PauseGame();
+                    GameController.LoseGame();
+                }
+
+                else
+                {
+                    hurtParticle.gameObject.SetActive(true);
+                    hurtParticle.Play();
+                    IsInvincible = true;
+                }
             }
 
             StartCoroutine(EndInvincibility());

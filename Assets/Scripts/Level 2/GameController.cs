@@ -37,10 +37,10 @@ public class GameController : MonoBehaviour
             }
         }
 
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Cloud")) //set balloon positions and add them to a list
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Cloud")) 
         {
             clouds.Add(i);
-            Spawn(i, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 50, -borderZ - 50);
+            Spawn(i, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 100, -borderZ - 100);
         }
     }
 
@@ -126,5 +126,14 @@ public class GameController : MonoBehaviour
                 t.position = new Vector3(t.position.x, t.position.y, -borderZ);
             }
         }
+    }
+
+    public static void WinGame() //display win screen
+    {
+        Debug.Log("YOU ARE AWESOOME :)");
+    }
+    public static void LoseGame() //display game over screen
+    {
+        Debug.Log("GAME OVER-- THAT HORSE IS DEAD");
     }
 }

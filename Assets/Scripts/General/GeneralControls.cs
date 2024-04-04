@@ -15,7 +15,7 @@ public class GeneralControls : MonoBehaviour
             pauseMenu.SetActive(!pauseMenu.activeSelf); //open the pause menu if it's closed, close it if it's open
         }
     }
-    public void TogglePause() //pause the game if it is active, resume it if it is paused
+    public static void TogglePause() //pause the game if it is active, resume it if it is paused
     {
         if (Time.timeScale == 1)
         {
@@ -28,12 +28,12 @@ public class GeneralControls : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+    public static void PauseGame()
     {
         Time.timeScale = 0;
     }
 
-    public void ResumeGame()
+    public static void ResumeGame()
     {
         Time.timeScale = 1;
     }
