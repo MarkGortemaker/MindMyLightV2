@@ -12,11 +12,11 @@ public class GameController : MonoBehaviour
     public static List<GameObject> balloons = new List<GameObject>();
     public static List<GameObject> birds = new List<GameObject>();
     public static List<GameObject> clouds = new List<GameObject>();
-    public GameObject thunderCloud; //turn into List later
     public GameObject thunder;
 
     void Start()
     {
+
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("Balloon")) //set balloon positions and add them to a list
         {
             balloons.Add(i);
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < birds.Count; i++)
         {
             GameObject bird = birds[i];
-            if (Mathf.Abs(bird.transform.position.x) > borderX + 10 || Mathf.Abs(bird.transform.position.z) > borderZ + 10) //re"spawn" when hitting a border
+            if (bird != null && (Mathf.Abs(bird.transform.position.x) > borderX + 10 || Mathf.Abs(bird.transform.position.z) > borderZ + 10)) //re"spawn" when hitting a border
             {
                 if (i % 2 != 0)
                 {
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < clouds.Count; i++)
         {
             GameObject cloud = clouds[i];
-            if (Mathf.Abs(cloud.transform.position.z) > borderZ + 50)
+            if (cloud != null && (Mathf.Abs(cloud.transform.position.z) > borderZ + 50))
             {
                 Spawn(cloud, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 50, borderZ + 50);
             }
@@ -128,12 +128,9 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public static void WinGame() //display win screen
+    public static void EndGame(GameObject screen)
     {
-        Debug.Log("YOU ARE AWESOOME :)");
-    }
-    public static void LoseGame() //display game over screen
-    {
-        Debug.Log("GAME OVER-- THAT HORSE IS DEAD");
+        GeneralControls.canPause = false;
+        screen.SetActive(true);
     }
 }

@@ -6,10 +6,15 @@ public class GeneralControls : MonoBehaviour
 {
     public GameObject pauseMenu;
     KeyCode escape = KeyCode.Escape; //Using an assigned variable for the keycode so that it's still usable when keybinds are written in the game
+    public static bool canPause = true;
 
+    private void Start()
+    {
+        ResumeGame();
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(escape)) 
+        if (canPause && Input.GetKeyDown(escape)) 
         {
             TogglePause();
             pauseMenu.SetActive(!pauseMenu.activeSelf); //open the pause menu if it's closed, close it if it's open

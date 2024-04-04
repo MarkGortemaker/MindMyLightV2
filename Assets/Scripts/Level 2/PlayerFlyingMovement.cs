@@ -9,8 +9,11 @@ public class PlayerFlyingMovement : MonoBehaviour
     public float limitX = 60f;
     public float limitZ = 60f;
 
-    public bool IsInvincible = false;
+    public bool IsInvincible;
     public int hitPoints;
+
+    public GameObject winScreen;
+    public GameObject loseScreen;
 
     public ParticleSystem burstParticle;
     public ParticleSystem hurtParticle;
@@ -22,7 +25,9 @@ public class PlayerFlyingMovement : MonoBehaviour
     {
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
+
         hitPoints = 3;
+        IsInvincible = false;
     }
     private void OnTriggerEnter(Collider col)
     {
@@ -37,7 +42,7 @@ public class PlayerFlyingMovement : MonoBehaviour
             if (UpdateHUD.balloonCount == 5)
             {
                 GeneralControls.PauseGame();
-                GameController.WinGame();
+                GameController.EndGame(winScreen);
             }
         }
 
@@ -53,7 +58,7 @@ public class PlayerFlyingMovement : MonoBehaviour
                 if (hitPoints <= 0)
                 {
                     GeneralControls.PauseGame();
-                    GameController.LoseGame();
+                    GameController.EndGame(loseScreen);
                 }
 
                 else
