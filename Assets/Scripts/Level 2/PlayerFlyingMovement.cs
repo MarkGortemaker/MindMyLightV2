@@ -10,7 +10,7 @@ public class PlayerFlyingMovement : MonoBehaviour
     public float limitZ = 60f;
 
     public bool IsInvincible = false;
-    public int hitPoints = 3;
+    public int hitPoints;
 
     public ParticleSystem burstParticle;
     public ParticleSystem hurtParticle;
@@ -22,6 +22,7 @@ public class PlayerFlyingMovement : MonoBehaviour
     {
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
+        hitPoints = 3;
     }
     private void OnTriggerEnter(Collider col)
     {
