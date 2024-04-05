@@ -40,4 +40,17 @@ public class UpdateHUD : MonoBehaviour
             }
         }
     }
+
+    public static IEnumerator Tint(UnityEngine.UI.Image tint, float alpha, float speed)
+    {
+        Color color = tint.color;
+
+        for (int i = 0; i < 60; i++)
+        {
+            color.a = Mathf.Lerp(color.a, alpha, Time.deltaTime * speed);
+            tint.color = color;
+            yield return new WaitForEndOfFrame();
+        }
+        
+    }
 }

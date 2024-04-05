@@ -9,7 +9,7 @@ public class ThunderStrike : MonoBehaviour
     RaycastHit hit;
     public static bool IsWarned = false;
     public GameObject thunder;
-    public Image hudWarning;
+    public Image darkTint;
 
     void Update()
     {
@@ -18,7 +18,7 @@ public class ThunderStrike : MonoBehaviour
             if (Physics.BoxCast(transform.position, new Vector3(30f, 30f, 50f), Vector3.down * 500f, out hit) && hit.collider.tag == "Player")
             {
                 Debug.Log("Warning...");
-                hudWarning.gameObject.SetActive(true); //just slapping on a dark screen for now, improve this when it's time to do the HUD (maybe with a fade-in)
+                StartCoroutine(UpdateHUD.Tint(darkTint, 0.8f, 2f)); //just slapping on a dark screen for now, improve this when it's time to do the HUD (maybe with a fade-in)
                 IsWarned = true;
                 StartCoroutine(ThunderHit());
             }
@@ -32,6 +32,7 @@ public class ThunderStrike : MonoBehaviour
             Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y - 150, transform.position.z), new Vector3(30, 300, 50));
         }
     }
+
     IEnumerator ThunderHit()
     {
         yield return new WaitForSeconds(2f);
@@ -39,7 +40,7 @@ public class ThunderStrike : MonoBehaviour
         thunder.transform.position = new Vector3(transform.position.x, transform.position.y, 
             Random.Range(transform.position.z - 8, transform.position.z + 8)); 
         thunder.SetActive(true);
-        hudWarning.gameObject.SetActive(false);
+        StartCoroutine(UpdateHUD.Tint(darkTint, 0f, 8f));
         yield return new WaitForSeconds(4f);
         IsWarned = false;
     }
