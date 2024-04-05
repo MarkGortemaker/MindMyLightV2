@@ -10,13 +10,16 @@ public class PlayerFlyingMovement : MonoBehaviour
     public float limitZ = 60f;
 
     public bool IsInvincible;
-    public int hitPoints;
 
     public GameObject winScreen;
     public GameObject loseScreen;
 
+    public GameObject lilguy;
+    public GameObject lilguyDizzy;
+
     public ParticleSystem burstParticle;
     public ParticleSystem hurtParticle;
+
     Material material;
     public Color hurtColor;
     public Color initialColor;
@@ -26,7 +29,6 @@ public class PlayerFlyingMovement : MonoBehaviour
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
 
-        hitPoints = 3;
         IsInvincible = false;
     }
     private void OnTriggerEnter(Collider col)
@@ -41,6 +43,8 @@ public class PlayerFlyingMovement : MonoBehaviour
 
             if (UpdateHUD.balloonCount == 5)
             {
+                IsInvincible = true;
+                //for now the winscreen is instant, but we can insert a small animation or at least a waitforseconds coroutine here
                 GeneralControls.PauseGame();
                 GameController.EndGame(winScreen);
             }
@@ -52,11 +56,13 @@ public class PlayerFlyingMovement : MonoBehaviour
 
             if (!IsInvincible) 
             {
-                hitPoints--;
-                UpdateHUD.lifeBar = UpdateHUD.lifeBar.Remove(UpdateHUD.lifeBar.Length - 2);
+                UpdateHUD.lives--;
+                UpdateHUD.SetActiveHearts();
+                StartCoroutine("DisplayDizzyLilguy");
 
-                if (hitPoints <= 0)
+                if (UpdateHUD.lives <= 0)
                 {
+                    //animation can go here
                     GeneralControls.PauseGame();
                     GameController.EndGame(loseScreen);
                 }
@@ -80,6 +86,14 @@ public class PlayerFlyingMovement : MonoBehaviour
         material.color = initialColor;
 
         IsInvincible = false;
+    }
+    IEnumerator DisplayDizzyLilguy()
+    {
+        lilguy.SetActive(false);
+        lilguyDizzy.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        lilguy.SetActive(true);
+        lilguyDizzy.SetActive(false);
     }
     void Move()
     {
