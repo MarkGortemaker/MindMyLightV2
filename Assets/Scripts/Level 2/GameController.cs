@@ -12,11 +12,11 @@ public class GameController : MonoBehaviour
     public static List<GameObject> balloons = new List<GameObject>();
     public static List<GameObject> birds = new List<GameObject>();
     public static List<GameObject> clouds = new List<GameObject>();
-    public GameObject thunderCloud; //turn into List later
     public GameObject thunder;
 
     void Start()
     {
+
         foreach (GameObject i in GameObject.FindGameObjectsWithTag("Balloon")) //set balloon positions and add them to a list
         {
             balloons.Add(i);
@@ -37,10 +37,10 @@ public class GameController : MonoBehaviour
             }
         }
 
-        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Cloud")) //set balloon positions and add them to a list
+        foreach (GameObject i in GameObject.FindGameObjectsWithTag("Cloud")) 
         {
             clouds.Add(i);
-            Spawn(i, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 50, -borderZ - 50);
+            Spawn(i, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 100, -borderZ - 100);
         }
     }
 
@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < birds.Count; i++)
         {
             GameObject bird = birds[i];
-            if (Mathf.Abs(bird.transform.position.x) > borderX + 10 || Mathf.Abs(bird.transform.position.z) > borderZ + 10) //re"spawn" when hitting a border
+            if (bird != null && (Mathf.Abs(bird.transform.position.x) > borderX + 10 || Mathf.Abs(bird.transform.position.z) > borderZ + 10)) //re"spawn" when hitting a border
             {
                 if (i % 2 != 0)
                 {
@@ -65,7 +65,7 @@ public class GameController : MonoBehaviour
         for (int i = 0; i < clouds.Count; i++)
         {
             GameObject cloud = clouds[i];
-            if (Mathf.Abs(cloud.transform.position.z) > borderZ + 50)
+            if (cloud != null && (Mathf.Abs(cloud.transform.position.z) > borderZ + 50))
             {
                 Spawn(cloud, borderX, -borderX, borderY + 50, borderY + 50, borderZ + 50, borderZ + 50);
             }
@@ -126,5 +126,11 @@ public class GameController : MonoBehaviour
                 t.position = new Vector3(t.position.x, t.position.y, -borderZ);
             }
         }
+    }
+
+    public static void EndGame(GameObject screen)
+    {
+        GeneralControls.canPause = false;
+        screen.SetActive(true);
     }
 }

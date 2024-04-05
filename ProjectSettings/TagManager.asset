@@ -8,6 +8,7 @@ TagManager:
   - Bird
   - Thunder
   - Cloud
+  - Heart
   layers:
   - Default
   - TransparentFX

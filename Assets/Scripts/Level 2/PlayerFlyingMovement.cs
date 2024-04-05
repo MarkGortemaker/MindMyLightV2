@@ -9,11 +9,18 @@ public class PlayerFlyingMovement : MonoBehaviour
     public float limitX = 60f;
     public float limitZ = 60f;
 
-    public bool IsInvincible = false;
-    public int hitPoints = 3;
+    public bool IsInvincible;
+
+    public GameObject winScreen;
+    public GameObject loseScreen;
+
+    public GameObject lilguy;
+    public GameObject lilguyDizzy;
+    public GameObject lilguyText;
 
     public ParticleSystem burstParticle;
     public ParticleSystem hurtParticle;
+
     Material material;
     public Color hurtColor;
     public Color initialColor;
@@ -22,6 +29,8 @@ public class PlayerFlyingMovement : MonoBehaviour
     {
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
+
+        IsInvincible = false;
     }
     private void OnTriggerEnter(Collider col)
     {
@@ -29,9 +38,20 @@ public class PlayerFlyingMovement : MonoBehaviour
         {
             UpdateHUD.balloonCount++;
             col.gameObject.SetActive(false);
+
+            StartCoroutine(DisplayBalloonGetMessage());
+
             burstParticle.gameObject.SetActive(true);
             burstParticle.transform.position = col.gameObject.transform.position;
             burstParticle.Play();
+
+            if (UpdateHUD.balloonCount == 5)
+            {
+                IsInvincible = true;
+                //for now the winscreen is instant, but we can insert a small animation or at least a waitforseconds coroutine here
+                GeneralControls.PauseGame();
+                GameController.EndGame(winScreen);
+            }
         }
 
         if (col.tag == "Bird" || col.tag == "Thunder")
@@ -39,11 +59,24 @@ public class PlayerFlyingMovement : MonoBehaviour
             material.color = hurtColor;
 
             if (!IsInvincible) 
-            { 
-                hitPoints--;
-                hurtParticle.gameObject.SetActive(true);
-                hurtParticle.Play();
-                IsInvincible = true;
+            {
+                UpdateHUD.lives--;
+                UpdateHUD.SetActiveHearts();
+                StartCoroutine(DisplayDizzyLilguy());
+
+                if (UpdateHUD.lives <= 0)
+                {
+                    //animation can go here
+                    GeneralControls.PauseGame();
+                    GameController.EndGame(loseScreen);
+                }
+
+                else
+                {
+                    hurtParticle.gameObject.SetActive(true);
+                    hurtParticle.Play();
+                    IsInvincible = true;
+                }
             }
 
             StartCoroutine(EndInvincibility());
@@ -52,11 +85,26 @@ public class PlayerFlyingMovement : MonoBehaviour
 
     IEnumerator EndInvincibility()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         material.color = initialColor;
 
         IsInvincible = false;
+    }
+
+    IEnumerator DisplayBalloonGetMessage()
+    {
+        lilguyText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        lilguyText.SetActive(false);
+    }
+    IEnumerator DisplayDizzyLilguy()
+    {
+        lilguy.SetActive(false);
+        lilguyDizzy.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        lilguy.SetActive(true);
+        lilguyDizzy.SetActive(false);
     }
     void Move()
     {
