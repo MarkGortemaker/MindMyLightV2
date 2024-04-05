@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.836478, g: 0.836478, b: 0.836478, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -13946,6 +13946,7 @@ MonoBehaviour:
   loseScreen: {fileID: 6949109313622445464}
   lilguy: {fileID: 2055384236}
   lilguyDizzy: {fileID: 1052881069}
+  lilguyText: {fileID: 1650268493}
   burstParticle: {fileID: 280379238}
   hurtParticle: {fileID: 2132711641}
   hurtColor: {r: 0, g: 0, b: 0, a: 0}

@@ -16,6 +16,7 @@ public class PlayerFlyingMovement : MonoBehaviour
 
     public GameObject lilguy;
     public GameObject lilguyDizzy;
+    public GameObject lilguyText;
 
     public ParticleSystem burstParticle;
     public ParticleSystem hurtParticle;
@@ -37,6 +38,9 @@ public class PlayerFlyingMovement : MonoBehaviour
         {
             UpdateHUD.balloonCount++;
             col.gameObject.SetActive(false);
+
+            StartCoroutine(DisplayBalloonGetMessage());
+
             burstParticle.gameObject.SetActive(true);
             burstParticle.transform.position = col.gameObject.transform.position;
             burstParticle.Play();
@@ -58,7 +62,7 @@ public class PlayerFlyingMovement : MonoBehaviour
             {
                 UpdateHUD.lives--;
                 UpdateHUD.SetActiveHearts();
-                StartCoroutine("DisplayDizzyLilguy");
+                StartCoroutine(DisplayDizzyLilguy());
 
                 if (UpdateHUD.lives <= 0)
                 {
@@ -81,17 +85,24 @@ public class PlayerFlyingMovement : MonoBehaviour
 
     IEnumerator EndInvincibility()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         material.color = initialColor;
 
         IsInvincible = false;
     }
+
+    IEnumerator DisplayBalloonGetMessage()
+    {
+        lilguyText.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        lilguyText.SetActive(false);
+    }
     IEnumerator DisplayDizzyLilguy()
     {
         lilguy.SetActive(false);
         lilguyDizzy.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         lilguy.SetActive(true);
         lilguyDizzy.SetActive(false);
     }
