@@ -138,7 +138,7 @@ public class PlayerFlyingMovement : MonoBehaviour
     void TintBorder()
     {
         if (Mathf.Abs(transform.position.x) > GameController.borderX - 10 ||
-            Mathf.Abs(transform.position.y) > GameController.borderY - 10 ||
+            Mathf.Abs(transform.position.y) > GameController.borderY ||
             Mathf.Abs(transform.position.z) > GameController.borderZ - 10)
         {
             if (!IsFogTinted)
