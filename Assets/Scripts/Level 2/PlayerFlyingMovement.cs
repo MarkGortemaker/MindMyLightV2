@@ -10,6 +10,7 @@ public class PlayerFlyingMovement : MonoBehaviour
     public float limitZ = 60f;
 
     public bool IsInvincible;
+    public bool IsFogTinted = false;
 
     public GameObject winScreen;
     public GameObject loseScreen;
@@ -17,6 +18,8 @@ public class PlayerFlyingMovement : MonoBehaviour
     public GameObject lilguy;
     public GameObject lilguyDizzy;
     public GameObject lilguyText;
+
+    public UnityEngine.UI.Image fogTint;
 
     public ParticleSystem burstParticle;
     public ParticleSystem hurtParticle;
@@ -132,11 +135,33 @@ public class PlayerFlyingMovement : MonoBehaviour
         transform.localEulerAngles = rotate;
     }
 
+    void TintBorder()
+    {
+        if (Mathf.Abs(transform.position.x) > GameController.borderX - 10 ||
+            Mathf.Abs(transform.position.y) > GameController.borderY ||
+            Mathf.Abs(transform.position.z) > GameController.borderZ - 10)
+        {
+            if (!IsFogTinted)
+            {
+                StartCoroutine(UpdateHUD.Tint(fogTint, 0.5f, 0.5f));
+                IsFogTinted = true;
+            }
+        }
+
+        else if (IsFogTinted)
+        {
+            StartCoroutine(UpdateHUD.Tint(fogTint, 0f, 5f));
+            IsFogTinted = false;
+        }
+    }
+
     void FixedUpdate()
     {
         Move();
 
         ClampRotation();
+
+        TintBorder();
 
         GameController.EnforceBorder(transform); //limit the player's movement to stay within stage borders
     }
