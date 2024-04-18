@@ -28,10 +28,6 @@ public class PlayerSpaceMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Stardust")
-        {
-            //stardust collection
-        }
 
         if (col.tag == "Obstacle")
         {
