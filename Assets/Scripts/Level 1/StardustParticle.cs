@@ -12,28 +12,32 @@ public class StardustParticle : MonoBehaviour
 
         int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
 
-        for (int i = 0; i < numEnter; i++)
+        if (Level1Controller.stardustMeter < Level1Controller.maxStardustMeter)
         {
-            ParticleSystem.Particle p = enter[i];
-
-            p.remainingLifetime = 0;
-            Level1Controller.stardustMeter++;
-            Debug.Log(Level1Controller.stardustMeter);
-
-            var main = ps.main;
-
-            if (ps.main.maxParticles <= 1)
+            for (int i = 0; i < numEnter; i++)
             {
-                ps.Stop();
-                Destroy(ps.gameObject);
-            }
+                ParticleSystem.Particle p = enter[i];
 
-            else
-            {
-                main.maxParticles -= 1;
-            }
+                p.remainingLifetime = 0;
+                Level1Controller.stardustMeter++;
 
-            enter[i] = p;
+                Debug.Log(Level1Controller.stardustMeter);
+
+                var main = ps.main;
+
+                if (ps.main.maxParticles <= 1)
+                {
+                    ps.Stop();
+                    Destroy(ps.gameObject);
+                }
+
+                else
+                {
+                    main.maxParticles -= 1;
+                }
+
+                enter[i] = p;
+            }
         }
 
         if (ps.isEmitting)
