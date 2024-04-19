@@ -13,7 +13,7 @@ public class StardustSetPosition: MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector3 positionOffset = new Vector3(Random.Range(-50f, 50f), 0, Random.Range(-10f, 10f));
+        Vector3 positionOffset = new Vector3(Random.Range(-50f, 50f), 0, Random.Range(-50f, 50f));
 
         for (int i = 0; i < lineRenderer.positionCount; i += 2) //randomly reposition the points when line spawns, then set up each stardust patch in the line
         {

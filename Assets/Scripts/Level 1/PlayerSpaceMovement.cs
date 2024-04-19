@@ -28,6 +28,10 @@ public class PlayerSpaceMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
+        if (col.tag == "Star")
+        {
+            
+        }
 
         if (col.tag == "Obstacle")
         {
