@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7747625249256112197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8965668393256532508}
+  - component: {fileID: 650232145855705084}
+  - component: {fileID: 1488543245078615778}
+  m_Layer: 0
+  m_Name: Zig Zag Line
+  m_TagString: Stardust
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8965668393256532508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747625249256112197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!120 &650232145855705084
+LineRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747625249256112197}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: -3.3662124, y: 0, z: -29.854218}
+  - {x: -3.448262, y: 0, z: -28.459368}
+  - {x: -3.1200635, y: 0, z: -27.474773}
+  - {x: -2.5457165, y: 0, z: -26.654282}
+  - {x: -1.561121, y: 0, z: -25.669685}
+  - {x: -0.65857536, y: 0, z: -24.767136}
+  - {x: 0.16192071, y: 0, z: -24.19279}
+  - {x: 1.1465161, y: 0, z: -23.454342}
+  - {x: 2.0490718, y: 0, z: -22.469746}
+  - {x: 2.7875183, y: 0, z: -21.074903}
+  - {x: 3.3618553, y: 0, z: -20.254408}
+  - {x: 3.854153, y: 0, z: -19.351862}
+  - {x: 3.2798157, y: 0, z: -18.367266}
+  - {x: 2.0490718, y: 0, z: -17.54677}
+  - {x: 0.736268, y: 0, z: -16.644224}
+  - {x: -0.2483273, y: 0, z: -15.82373}
+  - {x: -1.8893194, y: 0, z: -14.839135}
+  - {x: -3.3662124, y: 0, z: -13.85454}
+  - {x: -4.3508077, y: 0, z: -13.198143}
+  - {x: -5.0892544, y: 0, z: -12.213548}
+  - {x: -5.335403, y: 0, z: -11.146902}
+  - {x: -4.514907, y: 0, z: -9.752061}
+  - {x: -3.3662124, y: 0, z: -8.767465}
+  - {x: -2.0534186, y: 0, z: -7.7828693}
+  - {x: -0.1662777, y: 0, z: -6.7982736}
+  - {x: 1.0644665, y: 0, z: -5.9777775}
+  - {x: 2.0490718, y: 0, z: -5.0752325}
+  - {x: 3.0336668, y: 0, z: -4.500885}
+  - {x: 4.0182624, y: 0, z: -4.0085874}
+  - {x: 5.3310456, y: 0, z: -2.8598928}
+  - {x: 5.9874525, y: 0, z: -1.7932483}
+  - {x: 4.6746545, y: 0, z: -0.56250435}
+  - {x: 3.197761, y: 0, z: 0.42209083}
+  - {x: 2.2952204, y: 0, z: 1.1605372}
+  - {x: 1.3106153, y: 0, z: 1.816934}
+  - {x: 0.07987112, y: 0, z: 2.3912811}
+  - {x: -1.2329226, y: 0, z: 3.1297276}
+  - {x: -2.7098155, y: 0, z: 4.2784224}
+  - {x: -3.9405596, y: 0, z: 5.098918}
+  - {x: -4.8431053, y: 0, z: 5.591216}
+  - {x: -5.6636014, y: 0, z: 6.247613}
+  - {x: -4.022609, y: 0, z: 7.4783564}
+  - {x: -3.1200635, y: 0, z: 8.052703}
+  - {x: -1.8072698, y: 0, z: 9.447546}
+  - {x: -0.1662777, y: 0, z: 10.514192}
+  - {x: 1.1465161, y: 0, z: 11.498787}
+  - {x: 2.5413692, y: 0, z: 12.729531}
+  - {x: 3.0336668, y: 0, z: 13.632076}
+  - {x: 2.2952204, y: 0, z: 15.437167}
+  - {x: 1.3106153, y: 0, z: 16.175615}
+  - {x: 0.24397033, y: 0, z: 16.832012}
+  - {x: -1.3970218, y: 0, z: 17.898655}
+  - {x: -2.381617, y: 0, z: 18.637102}
+  - {x: -1.8072698, y: 0, z: 20.113995}
+  - {x: -1.150873, y: 0, z: 21.01654}
+  - {x: -0.4124265, y: 0, z: 22.329334}
+  - {x: 0.16192071, y: 0, z: 23.31393}
+  - {x: 0.8183176, y: 0, z: 24.708773}
+  - {x: 1.3926649, y: 0, z: 25.693369}
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 0.9949188
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 0.53633714, b: 0, a: 0}
+      key1: {r: 1, g: 0.9879483, b: 0.22327036, a: 0}
+      key2: {r: 1, g: 1, b: 1, a: 0}
+      key3: {r: 0.5710206, g: 0, b: 1, a: 0}
+      key4: {r: 0.5710206, g: 0, b: 1, a: 0}
+      key5: {r: 0.5710206, g: 0, b: 1, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 35466
+      ctime2: 65535
+      ctime3: 46517
+      ctime4: 57054
+      ctime5: 57054
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: 0
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    textureScale: {x: 1, y: 1}
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MaskInteraction: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
+  m_ApplyActiveColorSpace: 1
+--- !u!114 &1488543245078615778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747625249256112197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97af50de07cc6eb45a1bd4fd09a4f691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stardust: {fileID: 7386838344244166085, guid: af65ee1efde7e894ebd782385f933b10, type: 3}
+  player: {fileID: 0}
