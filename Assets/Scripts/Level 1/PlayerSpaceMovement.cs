@@ -30,7 +30,26 @@ public class PlayerSpaceMovement : MonoBehaviour
     {
         if (col.tag == "Star")
         {
-            
+            if (Level1Controller.stardustMeter > 500)
+            {
+                col.GetComponentInChildren<ParticleSystem>().Play();
+
+                float stardustGained = Level1Controller.stardustMeter - 500;
+                Level1Controller.collectedStardust += stardustGained;
+                Level1Controller.stardustMeter = 500f;
+                Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
+
+                StartCoroutine(Level1Controller.DecreaseLightRange(20 * Level1Controller.stardustRatio, Level1Controller.stardustRatio));
+                StartCoroutine(Level1Controller.DecreaseSkyboxLightness(Level1Controller.stardustRatio, Level1Controller.stardustRatio / 20));
+
+                Debug.Log("STARDUST RESET");
+                Debug.Log("Total Stardust Collected: " + Level1Controller.collectedStardust); 
+            }
+
+            else
+            {
+                Debug.Log("You need to collect more stardust :(");
+            }
         }
 
         if (col.tag == "Obstacle")
