@@ -29,7 +29,7 @@ public class Level1Controller : MonoBehaviour
         lanternLight = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Light>();
         skyboxMaterial = RenderSettings.skybox;
 
-        stardustMeter = 2000f;
+        stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
 
         for (int i = 0; i < spawnCount; i++)
