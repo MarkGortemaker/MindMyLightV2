@@ -6,7 +6,7 @@ public class LevelMenu : MonoBehaviour
     public Button[] buttons = new Button[7];
     private void Awake()
     {
-        int currentLevel = PlayerPrefs.GetInt("levelProgress", 0); //levelProgress is increased after completed each level
+        int currentLevel = PlayerPrefs.GetInt("levelProgress", 0); //levelProgress is increased after completing each level
 
         buttons = gameObject.GetComponentsInChildren<Button>();
 
