@@ -1,14 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
-using UnityEngine.UIElements;
+
 
 public class Level1Controller : MonoBehaviour
 {
-    public static float borderDistance = 10f;
+    public static float borderDistance = 50f;
+    public static float safeZoneDistance = 20f;
+    public static float dangerZoneDistance = 40f;
+
+    public static Transform starTransform;
 
     public static float stardustMeter;
     public static float maxStardustMeter = 2000f;
@@ -17,8 +18,13 @@ public class Level1Controller : MonoBehaviour
 
     public static float h, s, v = 0f;
 
-    public int spawnCount = 5;
+    public int cometSpawnCount = 0;
+    public int meteorSpawnCount = 10;
+    public int stardustSpawnCount = 10;
+
     public GameObject stardustLine;
+    public GameObject meteor;
+    //public GameObject comet;
     public static Material skyboxMaterial;
     public static Light lanternLight;
 
@@ -28,18 +34,30 @@ public class Level1Controller : MonoBehaviour
     {
         lanternLight = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Light>();
         skyboxMaterial = RenderSettings.skybox;
+        starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
-        stardustMeter = 500f;
+        stardustMeter = 2000f;
         stardustRatio = stardustMeter / maxStardustMeter;
 
-        for (int i = 0; i < spawnCount; i++)
+        for (int i = 0; i < stardustSpawnCount; i++) 
         {
-            Instantiate(stardustLine, Vector3.zero, Quaternion.identity);
+            RadiusSpawn.SpawnInCircleArea(stardustLine, safeZoneDistance, borderDistance, starTransform.position);
         }
+
+        for (int i = 0; i < meteorSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(meteor, safeZoneDistance, borderDistance, starTransform.position);
+        }
+
+        /*for (int i = 0; i < cometSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(stardustLine, A, B, player.position); A and B are offscreen
+        }*/
 
         SetSkyboxLightness(stardustRatio);
         SetLightRange(20 * stardustRatio);
     }
+
 
     public static IEnumerator IncreaseLightRange(float targetValue, float changeValue) 
     {

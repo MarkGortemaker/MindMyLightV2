@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0043234685, g: 0.019833596, b: 0.06997441, a: 1}
+  m_IndirectSpecularColor: {r: 0.024139168, g: 0.1181713, b: 0.310383, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7357,7 +7357,7 @@ Transform:
   m_GameObject: {fileID: 1500551697}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.31, y: 0, z: 0}
+  m_LocalPosition: {x: -3.31, y: 90, z: 0}
   m_LocalScale: {x: 2, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7375,6 +7375,7 @@ GameObject:
   - component: {fileID: 1544668085}
   - component: {fileID: 1544668086}
   - component: {fileID: 1544668087}
+  - component: {fileID: 1544668088}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: Untagged
@@ -7434,8 +7435,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60f32f45cc163b4d954dc423262fa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCount: 25
+  cometSpawnCount: 0
+  meteorSpawnCount: 10
+  stardustSpawnCount: 10
   stardustLine: {fileID: 4943151865929644896, guid: 304f0a6c4e4dea44c84fdcb69ecec3e8, type: 3}
+  meteor: {fileID: 1500551697}
+--- !u!114 &1544668088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544668083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db504626f2cd0b3449ce48d17d5b9675, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1654574929
 GameObject:
   m_ObjectHideFlags: 0
@@ -12746,6 +12762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   IsInvincible: 0
+  starTransform: {fileID: 0}
   hurtColor: {r: 1, g: 0, b: 0.028262138, a: 1}
   initialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &1916456808

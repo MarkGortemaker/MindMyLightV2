@@ -12,6 +12,8 @@ public class PlayerSpaceMovement : MonoBehaviour
     //public GameObject winScreen;
     //public GameObject loseScreen;
 
+    public Transform starTransform;
+
     Material material;
     public Color hurtColor;
     public Color initialColor;
@@ -23,6 +25,8 @@ public class PlayerSpaceMovement : MonoBehaviour
 
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
+
+        starTransform = Level1Controller.starTransform;
 
         IsInvincible = false;
     }
@@ -100,9 +104,22 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     }
 
+    void EnforceBorder()
+    {
+        float borderDistance = Level1Controller.borderDistance;
+
+        if ((transform.position - starTransform.position).magnitude > borderDistance)
+        {
+            Vector3 limitedPosition = (transform.position - starTransform.position).normalized * borderDistance;
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, limitedPosition.x, 0.02f), transform.position.y, 
+                Mathf.Lerp(transform.position.z, limitedPosition.z, 0.02f));
+        }
+    }
+
     void FixedUpdate()
     {
         Move();
+        EnforceBorder();
     }
 
 }
