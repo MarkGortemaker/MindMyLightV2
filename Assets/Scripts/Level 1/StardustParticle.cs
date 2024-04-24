@@ -19,7 +19,15 @@ public class StardustParticle : MonoBehaviour
                 ParticleSystem.Particle p = enter[i];
 
                 p.remainingLifetime = 0;
+
                 Level1Controller.stardustMeter++;
+
+                if (Level1Controller.stardustMeter % 10 == 0)
+                {
+                    Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
+                    StartCoroutine(Level1Controller.IncreaseLightRange(20 * Level1Controller.stardustRatio, Level1Controller.stardustRatio / 20));
+                    StartCoroutine(Level1Controller.IncreaseSkyboxLightness(Level1Controller.stardustRatio, Level1Controller.stardustRatio / 20));
+                }
 
                 Debug.Log(Level1Controller.stardustMeter);
 
