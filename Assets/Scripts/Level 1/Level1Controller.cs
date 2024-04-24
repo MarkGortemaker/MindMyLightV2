@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Level1Controller : MonoBehaviour
 {
-    public static float borderDistance = 50f;
+    public static float borderDistance = 100f;
     public static float safeZoneDistance = 20f;
-    public static float dangerZoneDistance = 40f;
+    public static float dangerZoneDistance = 80f;
 
     public static Transform starTransform;
 
@@ -19,8 +19,8 @@ public class Level1Controller : MonoBehaviour
     public static float h, s, v = 0f;
 
     public int cometSpawnCount = 0;
-    public int meteorSpawnCount = 10;
-    public int stardustSpawnCount = 10;
+    public int meteorSpawnCount = 20;
+    public int stardustSpawnCount = 20;
 
     public GameObject stardustLine;
     public GameObject meteor;
@@ -36,18 +36,30 @@ public class Level1Controller : MonoBehaviour
         skyboxMaterial = RenderSettings.skybox;
         starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
-        stardustMeter = 2000f;
+        stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
 
         for (int i = 0; i < stardustSpawnCount; i++) 
         {
-            RadiusSpawn.SpawnInCircleArea(stardustLine, safeZoneDistance, borderDistance, starTransform.position);
+            RadiusSpawn.SpawnInCircleArea(stardustLine, safeZoneDistance, dangerZoneDistance, starTransform.position);
+        }
+
+        for (int i = 0; i < 2 * stardustSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(stardustLine, dangerZoneDistance, borderDistance, starTransform.position);
         }
 
         for (int i = 0; i < meteorSpawnCount; i++)
         {
-            RadiusSpawn.SpawnInCircleArea(meteor, safeZoneDistance, borderDistance, starTransform.position);
+            RadiusSpawn.SpawnInCircleArea(meteor, safeZoneDistance, dangerZoneDistance, starTransform.position);
         }
+
+        for (int i = 0; i < 2 * meteorSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(meteor, dangerZoneDistance, borderDistance, starTransform.position);
+        }
+
+
 
         /*for (int i = 0; i < cometSpawnCount; i++)
         {

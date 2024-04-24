@@ -10,10 +10,12 @@ public class RadiusSpawn : MonoBehaviour
         Vector3 spawnDirection = new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f,1f));
         Vector3 spawnPosition = center + spawnDirection.normalized * (Random.Range(minRadius, maxRadius));
 
-        if ((spawnPosition - lastPosition).magnitude < 10f)
+        if ((spawnPosition - lastPosition).magnitude < 20f)
         {
-            Instantiate(obj, spawnPosition, Quaternion.Euler(spawnDirection));
+            Debug.Log("Too close!");
         }
+
+        Instantiate(obj, spawnPosition, Quaternion.identity);
 
         lastPosition = spawnPosition;
     }
