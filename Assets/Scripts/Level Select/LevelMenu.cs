@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelMenu : MonoBehaviour
@@ -9,7 +6,7 @@ public class LevelMenu : MonoBehaviour
     public Button[] buttons = new Button[7];
     private void Awake()
     {
-        int currentLevel = PlayerPrefs.GetInt("currentLevel", 2); //current level will be manually increased and updated in playerprefs after each level completion
+        int currentLevel = PlayerPrefs.GetInt("levelProgress", 0); //levelProgress is increased after completing each level
 
         buttons = gameObject.GetComponentsInChildren<Button>();
 
@@ -18,7 +15,7 @@ public class LevelMenu : MonoBehaviour
             b.interactable = false;
         }
 
-        for (int i = 0; i < currentLevel; i++)
+        for (int i = 0; i < currentLevel + 1; i++)
         {
             buttons[i].interactable = true;
         }
