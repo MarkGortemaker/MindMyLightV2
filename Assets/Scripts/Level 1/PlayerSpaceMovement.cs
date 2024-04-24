@@ -39,6 +39,8 @@ public class PlayerSpaceMovement : MonoBehaviour
                 Level1Controller.stardustMeter = 500f;
                 Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
 
+                StopAllCoroutines();
+
                 StartCoroutine(Level1Controller.DecreaseLightRange(20 * Level1Controller.stardustRatio, Level1Controller.stardustRatio));
                 StartCoroutine(Level1Controller.DecreaseSkyboxLightness(Level1Controller.stardustRatio, Level1Controller.stardustRatio / 20));
 

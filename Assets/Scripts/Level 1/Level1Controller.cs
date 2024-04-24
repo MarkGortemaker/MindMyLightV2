@@ -41,7 +41,6 @@ public class Level1Controller : MonoBehaviour
         SetLightRange(20 * stardustRatio);
     }
 
-    //GOTTA ADD A WAY TO STOP THE COROUTINES THAT ARE DONE OTHERWISE IT WILL DROP THE FPS!! Then do the star indicator pls <3
     public static IEnumerator IncreaseLightRange(float targetValue, float changeValue) 
     {
         float range = lanternLight.range;
