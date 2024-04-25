@@ -61,28 +61,51 @@ public class PlayerSpaceMovement : MonoBehaviour
         if (col.tag == "Obstacle")
         {
             material.color = hurtColor;
+            col.attachedRigidbody.AddForce((col.transform.position - transform.position) * speed / 3, ForceMode.Impulse);
+            rb.AddForce((transform.position - col.transform.position) * speed / 2, ForceMode.Impulse);
 
             if (!IsInvincible)
             {
-
-                /* if (game over condition)
-                {
-                    //animation can go here
+                if (Level1Controller.stardustMeter <= 0)
+                { 
                     GeneralControls.PauseGame();
-                    GameController.EndGame(loseScreen);
+                    Debug.Log("GAME OVER");
                 } 
 
                 else
                 {
-                    hurt ouch oof
+                    float tempStardust = Level1Controller.stardustMeter; 
+
+                    if (Level1Controller.stardustMeter > 500)
+                    {
+                        Level1Controller.stardustMeter = 500;
+                        Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
+                        StartCoroutine(Level1Controller.DecreaseLightRange(20 * Level1Controller.stardustRatio, Level1Controller.stardustRatio));
+                        StartCoroutine(Level1Controller.DecreaseSkyboxLightness(Level1Controller.stardustRatio, Level1Controller.stardustRatio / 20));
+                    }
+
+                    else
+                    {
+                        Level1Controller.stardustMeter = 0;
+                        Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
+                        StartCoroutine(Level1Controller.DecreaseLightRange(0, 0.1f));
+                        StartCoroutine(Level1Controller.DecreaseSkyboxLightness(0, 0.1f));
+                    }
+
+                    //drop stardust function here
+
                     IsInvincible = true;
-                } */
+                }
             }
 
             StartCoroutine(EndInvincibility());
         }
     }
 
+    void DropStardust(float stardust)
+    {
+        //drop stardust patches according to amount of stardust lost (make large particles with bigger stardust values)
+    }
     IEnumerator EndInvincibility()
     {
         yield return new WaitForSeconds(1.5f);
@@ -94,7 +117,7 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     void Move()
     {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         rb.AddForce(direction * speed, ForceMode.Force);
 
         if (direction.magnitude != 0)

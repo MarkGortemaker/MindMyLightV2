@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.024139168, g: 0.1181713, b: 0.310383, a: 1}
+  m_IndirectSpecularColor: {r: 0.004562131, g: 0.021092705, b: 0.073893525, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7270,6 +7270,7 @@ GameObject:
   - component: {fileID: 1500551700}
   - component: {fileID: 1500551699}
   - component: {fileID: 1500551698}
+  - component: {fileID: 1500551702}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Obstacle
@@ -7363,6 +7364,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1500551702
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500551697}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &1544668083
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,6 +7468,7 @@ MonoBehaviour:
   stardustSpawnCount: 30
   stardustLine: {fileID: 4943151865929644896, guid: 304f0a6c4e4dea44c84fdcb69ecec3e8, type: 3}
   meteor: {fileID: 1500551697}
+  comet: {fileID: 1297165771060494478, guid: d2d18448d06829d43ad67944f0ecb5bd, type: 3}
 --- !u!114 &1544668088
 MonoBehaviour:
   m_ObjectHideFlags: 0
