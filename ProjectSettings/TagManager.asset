@@ -12,6 +12,7 @@ TagManager:
   - Star
   - Stardust
   - Obstacle
+  - Big Stardust
   layers:
   - Default
   - TransparentFX
