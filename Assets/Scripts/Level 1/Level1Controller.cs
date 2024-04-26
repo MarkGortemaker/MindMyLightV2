@@ -17,7 +17,7 @@ public class Level1Controller : MonoBehaviour
     public static float h, s, v = 0f;
 
     public static int cometCurrentCount = 0;
-    public static int cometSpawnCount = 3;
+    public static int cometSpawnCount = 1;
     public int meteorSpawnCount = 20;
     public int stardustSpawnCount = 20;
 
@@ -34,8 +34,9 @@ public class Level1Controller : MonoBehaviour
     void Start()
     {
         lanternLight = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Light>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         skyboxMaterial = RenderSettings.skybox;
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
         stardustMeter = 500f;
@@ -70,6 +71,18 @@ public class Level1Controller : MonoBehaviour
     private void FixedUpdate()
     {
         SpawnComet();
+
+        int progress = Mathf.FloorToInt(collectedStardust / 1500);
+        if (progress > cometSpawnCount) //every full stardust meters sent to the star
+        {
+            dangerZoneDistance -= 15f;
+            if (progress % 2 == 0)
+            {
+                cometSpawnCount++;
+            }
+
+            //erase then respawn stardust and meteors
+        } 
     }
 
     void SpawnComet()

@@ -14,14 +14,21 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     public Transform starTransform;
 
+    public GameObject lostStardust;
+
     Material material;
     public Color hurtColor;
     public Color initialColor;
+
     Rigidbody rb;
+
+    ParticleSystem ps;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        ps = GetComponentInChildren<ParticleSystem>();
 
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
@@ -32,7 +39,7 @@ public class PlayerSpaceMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider col)
     {
-        if (col.tag == "Star")
+        if (col.CompareTag("Star"))
         {
             if (Level1Controller.stardustMeter > 500)
             {
@@ -58,7 +65,7 @@ public class PlayerSpaceMovement : MonoBehaviour
             }
         }
 
-        if (col.tag == "Obstacle")
+        if (col.CompareTag("Obstacle"))
         {
             material.color = hurtColor;
             col.attachedRigidbody.AddForce((col.transform.position - transform.position) * speed / 3, ForceMode.Impulse);
@@ -74,7 +81,8 @@ public class PlayerSpaceMovement : MonoBehaviour
 
                 else
                 {
-                    float tempStardust = Level1Controller.stardustMeter; 
+                    float tempStardust = Level1Controller.stardustMeter;
+                    ps.Play();
 
                     if (Level1Controller.stardustMeter > 500)
                     {
@@ -92,7 +100,9 @@ public class PlayerSpaceMovement : MonoBehaviour
                         StartCoroutine(Level1Controller.DecreaseSkyboxLightness(0, 0.1f));
                     }
 
-                    //drop stardust function here
+                    tempStardust -= Level1Controller.stardustMeter;
+
+                    DropStardust(tempStardust);
 
                     IsInvincible = true;
                 }
@@ -104,7 +114,16 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     void DropStardust(float stardust)
     {
-        //drop stardust patches according to amount of stardust lost (make large particles with bigger stardust values)
+        int lostStardustCount = Mathf.FloorToInt(stardust / 10);
+
+        while (lostStardustCount > 0)
+        {
+            Vector3 offset = new Vector3(Random.Range(3f, 5f), 0, Random.Range(3f, 5f));
+            GameObject bigStardustPatch = Instantiate(lostStardust, transform.position + offset, Quaternion.Euler(-90, 0, 0));
+            var bigMain = bigStardustPatch.GetComponent<ParticleSystem>().main;
+            bigMain.maxParticles = Mathf.Clamp(lostStardustCount, 0, 50);
+            lostStardustCount -= bigMain.maxParticles;
+        }
     }
     IEnumerator EndInvincibility()
     {
