@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.0056585334, g: 0.02712401, b: 0.091535084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11174,6 +11174,18 @@ MonoBehaviour:
           m_StringArgument: Level2
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2495832265929062030, guid: 23428a29c6f23c0478e71c00a292c321, type: 3}
+        m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
+        m_MethodName: SaveLevelProgress
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &697566957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12106,6 +12118,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: MainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2495832265929062030, guid: 23428a29c6f23c0478e71c00a292c321, type: 3}
+        m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
+        m_MethodName: SaveLevelProgress
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1341768602
@@ -17680,7 +17704,9 @@ MonoBehaviour:
   speed: 8
   IsInvincible: 0
   starTransform: {fileID: 0}
-  lostStardust: {fileID: 2317736503489711094, guid: 833a2efaf85edfc48997b815040dcede, type: 3}
+  lostStardustPatch: {fileID: 2317736503489711094, guid: 833a2efaf85edfc48997b815040dcede, type: 3}
+  winScreen: {fileID: 394723204}
+  loseScreen: {fileID: 1753793534}
   hurtColor: {r: 1, g: 0, b: 0.028262138, a: 1}
   initialColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &1916456808

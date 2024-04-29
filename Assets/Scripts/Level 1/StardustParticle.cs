@@ -14,8 +14,6 @@ public class StardustParticle : MonoBehaviour
     }
     void OnParticleTrigger()
     {
-
-
         List<ParticleSystem.Particle> enter = new List<ParticleSystem.Particle>();
 
         int numEnter = ps.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, enter);
@@ -34,9 +32,8 @@ public class StardustParticle : MonoBehaviour
                 Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
 
                 float changeValue = Mathf.Clamp(Level1Controller.stardustRatio, 0.1f, Level1Controller.stardustRatio);
-                Debug.Log(Level1Controller.stardustRatio + " " + changeValue);
-                StartCoroutine(Level1Controller.IncreaseLightRange(20 * Level1Controller.stardustRatio, changeValue / 20));
-                StartCoroutine(Level1Controller.IncreaseSkyboxLightness(Level1Controller.stardustRatio, changeValue / 20));
+                StartCoroutine(Level1Controller.IncreaseLightRange(20 * Level1Controller.stardustRatio, changeValue / 200));
+                StartCoroutine(Level1Controller.IncreaseSkyboxLightness(Level1Controller.stardustRatio, changeValue / 200));
 
                 Debug.Log(Level1Controller.stardustMeter);
 
