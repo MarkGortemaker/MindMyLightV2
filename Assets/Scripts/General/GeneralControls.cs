@@ -11,6 +11,7 @@ public class GeneralControls : MonoBehaviour
     private void Start()
     {
         ResumeGame();
+        canPause = true;
     }
     private void Update()
     {

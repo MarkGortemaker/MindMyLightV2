@@ -39,28 +39,12 @@ public class Level1Controller : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
+        collectedStardust = 0f;
         stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
 
-        for (int i = 0; i < stardustSpawnCount; i++) 
-        {
-            RadiusSpawn.SpawnInCircleArea(stardustLine, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position);
-        }
-
-        for (int i = 0; i < 2 * stardustSpawnCount; i++)
-        {
-            RadiusSpawn.SpawnInCircleArea(stardustLine, dangerZoneDistance, 0.9f * borderDistance, starTransform.position);
-        }
-
-        for (int i = 0; i < meteorSpawnCount; i++)
-        {
-            RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position);
-        }
-
-        for (int i = 0; i < 2 * meteorSpawnCount; i++)
-        {
-            RadiusSpawn.SpawnInCircleArea(meteor, dangerZoneDistance, 0.9f * borderDistance, starTransform.position);
-        }
+        SpawnMeteor();
+        SpawnStardust();
 
         InvokeRepeating("SpawnComet", 0f, 60f);
 
@@ -73,7 +57,7 @@ public class Level1Controller : MonoBehaviour
         SpawnComet();
 
         int progress = Mathf.FloorToInt(collectedStardust / 1500);
-        if (progress > cometSpawnCount) //every full stardust meters sent to the star
+        if (progress > cometSpawnCount) //every full stardust meter sent to the star
         {
             dangerZoneDistance -= 15f;
             if (progress % 2 == 0)
@@ -81,7 +65,7 @@ public class Level1Controller : MonoBehaviour
                 cometSpawnCount++;
             }
 
-            //erase then respawn stardust and meteors
+            //erase then spawn stardust and meteors
         } 
     }
 
@@ -94,6 +78,32 @@ public class Level1Controller : MonoBehaviour
             Debug.Log("Spawning!!");
             RadiusSpawn.SpawnInCircleArea(comet, 30f, 40f, playerTransform.position);
             cometCurrentCount++;
+        }
+    }
+
+    void SpawnStardust()
+    {
+        for (int i = 0; i < stardustSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(stardustLine, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position);
+        }
+
+        for (int i = 0; i < 2 * stardustSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(stardustLine, dangerZoneDistance, 0.9f * borderDistance, starTransform.position);
+        }
+    }
+
+    void SpawnMeteor()
+    {
+        for (int i = 0; i < meteorSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position);
+        }
+
+        for (int i = 0; i < 2 * meteorSpawnCount; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(meteor, dangerZoneDistance, 0.9f * borderDistance, starTransform.position);
         }
     }
 
@@ -179,5 +189,11 @@ public class Level1Controller : MonoBehaviour
         v = targetValue;
         color = Color.HSVToRGB(h, s, v);
         skyboxMaterial.SetColor(Shader.PropertyToID("_Tint"), color);
+    }
+    public static void EndGame(GameObject screen)
+    {
+        GeneralControls.PauseGame();
+        GeneralControls.canPause = false;
+        screen.SetActive(true);
     }
 }

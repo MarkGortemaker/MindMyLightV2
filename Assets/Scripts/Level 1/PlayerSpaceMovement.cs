@@ -9,12 +9,12 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     public bool IsInvincible;
 
-    //public GameObject winScreen;
-    //public GameObject loseScreen;
-
     public Transform starTransform;
 
-    public GameObject lostStardust;
+    public GameObject lostStardustPatch;
+
+    public GameObject winScreen;
+    public GameObject loseScreen;
 
     Material material;
     public Color hurtColor;
@@ -36,6 +36,14 @@ public class PlayerSpaceMovement : MonoBehaviour
         starTransform = Level1Controller.starTransform;
 
         IsInvincible = false;
+    }
+
+    private void Update()
+    {
+        if (Level1Controller.collectedStardust >= 2000) //testing value, actual goal is 7500 stardust collected
+        {
+            Level1Controller.EndGame(winScreen);
+        }
     }
     private void OnTriggerEnter(Collider col)
     {
@@ -74,9 +82,8 @@ public class PlayerSpaceMovement : MonoBehaviour
             if (!IsInvincible)
             {
                 if (Level1Controller.stardustMeter <= 0)
-                { 
-                    GeneralControls.PauseGame();
-                    Debug.Log("GAME OVER");
+                {
+                    Level1Controller.EndGame(loseScreen);
                 } 
 
                 else
@@ -119,7 +126,7 @@ public class PlayerSpaceMovement : MonoBehaviour
         while (lostStardustCount > 0)
         {
             Vector3 offset = new Vector3(Random.Range(3f, 5f), 0, Random.Range(3f, 5f));
-            GameObject bigStardustPatch = Instantiate(lostStardust, transform.position + offset, Quaternion.Euler(-90, 0, 0));
+            GameObject bigStardustPatch = Instantiate(lostStardustPatch, transform.position + offset, Quaternion.Euler(-90, 0, 0));
             var bigMain = bigStardustPatch.GetComponent<ParticleSystem>().main;
             bigMain.maxParticles = Mathf.Clamp(lostStardustCount, 0, 50);
             lostStardustCount -= bigMain.maxParticles;
