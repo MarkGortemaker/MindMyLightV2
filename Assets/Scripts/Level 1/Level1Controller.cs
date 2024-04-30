@@ -21,7 +21,7 @@ public class Level1Controller : MonoBehaviour
     public int meteorSpawnCount = 20;
     public int stardustSpawnCount = 20;
 
-    public GameObject stardustLine;
+    public GameObject[] stardustLines;
     public GameObject meteor;
     public GameObject comet;
 
@@ -83,14 +83,19 @@ public class Level1Controller : MonoBehaviour
 
     void SpawnStardust()
     {
-        for (int i = 0; i < stardustSpawnCount; i++)
+        for (int i = 0; i < stardustSpawnCount / 3; i++)
         {
-            RadiusSpawn.SpawnInCircleArea(stardustLine, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position);
+            RadiusSpawn.SpawnInCircleArea(stardustLines[Random.Range(0, 2)], safeZoneDistance, dangerZoneDistance / 2, starTransform.position);
         }
 
-        for (int i = 0; i < 2 * stardustSpawnCount; i++)
+        for (int i = 0; i < stardustSpawnCount / 3; i++)
         {
-            RadiusSpawn.SpawnInCircleArea(stardustLine, dangerZoneDistance, 0.9f * borderDistance, starTransform.position);
+            RadiusSpawn.SpawnInCircleArea(stardustLines[Random.Range(1, 4)], dangerZoneDistance / 2, dangerZoneDistance, starTransform.position);
+        }
+
+        for (int i = 0; i < stardustSpawnCount / 3; i++)
+        {
+            RadiusSpawn.SpawnInCircleArea(stardustLines[Random.Range(3, stardustLines.Length)], dangerZoneDistance, borderDistance, starTransform.position);
         }
     }
 
