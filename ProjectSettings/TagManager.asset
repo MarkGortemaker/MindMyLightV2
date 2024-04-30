@@ -13,6 +13,7 @@ TagManager:
   - Stardust
   - Obstacle
   - Big Stardust
+  - UI Balloon
   layers:
   - Default
   - TransparentFX

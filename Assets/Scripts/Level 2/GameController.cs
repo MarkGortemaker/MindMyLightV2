@@ -83,6 +83,16 @@ public class GameController : MonoBehaviour
         Gizmos.DrawWireCube(Vector3.zero, 2 * new Vector3(borderX, borderY, borderZ));
     }
 
+    /// <summary>
+    /// Spawns (sets active) the selected GameObject confined in the given minimum and maximum x, y and z axis values. 
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="Xmax"></param>
+    /// <param name="Xmin"></param>
+    /// <param name="Ymax"></param>
+    /// <param name="Ymin"></param>
+    /// <param name="Zmax"></param>
+    /// <param name="Zmin"></param>
     public static void Spawn(GameObject obj, float Xmax, float Xmin, float Ymax, float Ymin, float Zmax, float Zmin)
     {
         obj.transform.position = new Vector3(Random.Range(Xmin, Xmax), Random.Range(Ymin, Ymax), Random.Range(Zmin, Zmax));

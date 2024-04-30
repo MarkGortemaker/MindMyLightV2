@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerFlyingMovement : MonoBehaviour
 {
-    public float speed = 8f;
+    public float speed = 12f;
     public float rotationMultiplier = 5f; 
     public float limitX = 60f;
     public float limitZ = 60f;
 
     public bool IsInvincible;
     public bool IsFogTinted = false;
+
+    public KeyCode sprintKey = KeyCode.LeftShift;
 
     public GameObject winScreen;
     public GameObject loseScreen;
@@ -40,6 +42,7 @@ public class PlayerFlyingMovement : MonoBehaviour
         if (col.tag == "Balloon")
         {
             UpdateHUD.balloonCount++;
+            UpdateHUD.SetActiveUI(UpdateHUD.balloonCount, UpdateHUD.balloons);
             col.gameObject.SetActive(false);
 
             StartCoroutine(DisplayBalloonGetMessage());
@@ -64,7 +67,7 @@ public class PlayerFlyingMovement : MonoBehaviour
             if (!IsInvincible) 
             {
                 UpdateHUD.lives--;
-                UpdateHUD.SetActiveHearts();
+                UpdateHUD.SetActiveUI(UpdateHUD.lives, UpdateHUD.hearts);
                 StartCoroutine(DisplayDizzyLilguy());
 
                 if (UpdateHUD.lives <= 0)
@@ -157,6 +160,19 @@ public class PlayerFlyingMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetKey(sprintKey))
+        {
+            speed = Mathf.Lerp(speed, 20f, 0.05f);
+
+            GetComponentInChildren<Camera>().fieldOfView = Mathf.Lerp(GetComponentInChildren<Camera>().fieldOfView, 80f, 0.05f);
+        }
+        else
+        {
+            speed = 12f;
+
+            GetComponentInChildren<Camera>().fieldOfView = Mathf.Lerp(GetComponentInChildren<Camera>().fieldOfView, 60f, 0.1f);
+        }
+
         Move();
 
         ClampRotation();
