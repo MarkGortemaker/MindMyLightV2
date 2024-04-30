@@ -107,6 +107,11 @@ public class Level1Controller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Destroys the GameObject if it exceeds a distance of 40 between itself and the player. Also returns a true value if the player is in the safe zone to turn the Comets around. 
+    /// </summary>
+    /// <param name="gameObject"></param>
+    /// <returns></returns>
     public static bool DespawnComet(GameObject gameObject)
     {
         if ((gameObject.transform.position - playerTransform.position).magnitude > 40f)

@@ -6,9 +6,8 @@ using UnityEngine.UIElements;
 
 public class UpdateHUD : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-
     public static GameObject[] hearts = new GameObject[3];
+    public static GameObject[] balloons = new GameObject[5];
 
     public static int balloonCount;
     public static int lives;
@@ -16,27 +15,31 @@ public class UpdateHUD : MonoBehaviour
     private void Start()
     {
         hearts = GameObject.FindGameObjectsWithTag("Heart");
+        balloons = GameObject.FindGameObjectsWithTag("UI Balloon");
         balloonCount = 0;
         lives = 3;
-        SetActiveHearts();
+        SetActiveUI(lives, hearts);
+        SetActiveUI(balloonCount, balloons);
     }
-    void Update()
-    {
-        scoreText.text = balloonCount.ToString() + "/5";
-    }
-    public static void SetActiveHearts()
+
+    /// <summary>
+    /// Sets active/inactive the images in the given array displayed on UI, taking the given integer into account.
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <param name="objects"></param>
+    public static void SetActiveUI(int amount, GameObject[] objects)
     {
         int counter = 0;
-        foreach (GameObject heart in hearts)
+        foreach (GameObject obj in objects)
         {
-            if (counter < lives)
+            if (counter < amount)
             {
-                heart.SetActive(true);
+                obj.SetActive(true);
                 counter++;
             }
             else
             {
-                heart.SetActive(false);
+                obj.SetActive(false);
             }
         }
     }
