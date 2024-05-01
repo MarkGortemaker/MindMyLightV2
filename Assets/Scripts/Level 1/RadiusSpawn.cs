@@ -13,7 +13,7 @@ public class RadiusSpawn : MonoBehaviour
     /// <param name="minRadius"></param>
     /// <param name="maxRadius"></param>
     /// <param name="center"></param>
-    public static void SpawnInCircleArea(GameObject obj, float minRadius, float maxRadius, Vector3 center)
+    public static GameObject SpawnInCircleArea(GameObject obj, float minRadius, float maxRadius, Vector3 center)
     {
         Vector3 spawnDirection = new Vector3(Random.Range(-1f,1f), 0, Random.Range(-1f,1f));
         Vector3 spawnPosition = center + spawnDirection.normalized * (Random.Range(minRadius, maxRadius));
@@ -23,8 +23,8 @@ public class RadiusSpawn : MonoBehaviour
             Debug.Log("Too close!");
         }
 
-        Instantiate(obj, spawnPosition, Quaternion.identity);
-
         lastPosition = spawnPosition;
+
+        return Instantiate(obj, spawnPosition, Quaternion.identity);
     }
 }
