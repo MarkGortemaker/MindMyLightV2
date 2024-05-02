@@ -16,6 +16,7 @@ public class Level1Controller : MonoBehaviour
 
     public static float h, s, v = 0f;
 
+    public static int difficulty = 1;
     public static int cometSpawnCount = 1;
     public int meteorSpawnCount = 20;
     public int stardustSpawnCount = 20;
@@ -47,6 +48,7 @@ public class Level1Controller : MonoBehaviour
         meteors = new List<GameObject>();
         comets = new List<GameObject>();
 
+        difficulty = 0;
         collectedStardust = 0f;
         stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
@@ -64,11 +66,15 @@ public class Level1Controller : MonoBehaviour
     {
         SpawnComet();
 
-        int progress = Mathf.FloorToInt(collectedStardust / 1500); //FIX THIS IT NEEDS TO RUN ONLY ONCE PER MILESTONE
-        /*if (progress > cometSpawnCount) //every full stardust meter sent to the star <-this will loop forever so I commented it out for the time being
+        int progress = Mathf.FloorToInt(collectedStardust / 150); 
+
+        if (progress >= difficulty) //every full stardust meter sent to the star <-this will loop forever so I commented it out for the time being
         {
             dangerZoneDistance -= 15f;
-            if (progress % 2 == 0)
+
+            difficulty++;
+
+            if (difficulty % 2 == 0)
             {
                 cometSpawnCount++;
             }
@@ -84,9 +90,12 @@ public class Level1Controller : MonoBehaviour
                 Destroy(meteor);
             }
 
+            stardustLines = new List<GameObject>();
+            meteors = new List<GameObject>();
+
             SpawnMeteor();
             SpawnStardust();
-        }*/ 
+        }
     }
 
     void SpawnComet()

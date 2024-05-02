@@ -25,7 +25,9 @@ public class StardustSetPosition: MonoBehaviour
 
             if (lineRenderer.GetPosition(i).magnitude <= Level1Controller.borderDistance - 5f)
             {
-                GameObject stardustPatch = Instantiate(stardust, lineRenderer.GetPosition(i), Quaternion.identity);
+                //GameObject stardustPatch = Instantiate(stardust, lineRenderer.GetPosition(i), Quaternion.identity, transform);
+                GameObject stardustPatch = Instantiate(stardust, transform, true);
+                stardustPatch.transform.position = lineRenderer.GetPosition(i);
                 stardustPatch.GetComponent<ParticleSystem>().trigger.AddCollider(player.transform);
             }
         }
