@@ -161,7 +161,7 @@ public class PlayerSpaceMovement : MonoBehaviour
         {
             Vector3 limitedPosition = (transform.position - starTransform.position).normalized * borderDistance;
             transform.position = new Vector3(Mathf.Lerp(transform.position.x, limitedPosition.x, 0.02f), transform.position.y, 
-                Mathf.Lerp(transform.position.z, limitedPosition.z, 0.02f));
+            Mathf.Lerp(transform.position.z, limitedPosition.z, 0.02f));
         }
     }
 

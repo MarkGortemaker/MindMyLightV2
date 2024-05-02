@@ -23,7 +23,7 @@ public class CometBehaviour : MonoBehaviour
         if (col.tag == "Obstacle")
         {
             col.attachedRigidbody.AddForce((col.transform.position - transform.position) * bumpSpeed / 2, ForceMode.Impulse);
-            rb.AddForce((transform.position - col.transform.position) * bumpSpeed / 4, ForceMode.Impulse);
+            rb.AddForce((transform.position - col.transform.position) * bumpSpeed / 2, ForceMode.Impulse);
         }
     }
 

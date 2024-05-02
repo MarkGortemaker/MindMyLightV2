@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3787658920261426607
+--- !u!1 &4513962940184146328
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5683453141194081626}
-  - component: {fileID: 4425101211413615868}
-  - component: {fileID: 8857930457763984259}
+  - component: {fileID: 1120505769068036247}
+  - component: {fileID: 8513056619217024073}
+  - component: {fileID: 8386376844056151149}
+  - component: {fileID: 5788751305815904269}
   m_Layer: 0
-  m_Name: Curve Line
+  m_Name: Small Swirl Line
   m_TagString: Stardust
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5683453141194081626
+--- !u!4 &1120505769068036247
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3787658920261426607}
+  m_GameObject: {fileID: 4513962940184146328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.06}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &4425101211413615868
+--- !u!120 &8513056619217024073
 LineRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3787658920261426607}
+  m_GameObject: {fileID: 4513962940184146328}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 0
@@ -76,43 +77,16 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: -19.612034, y: 0, z: 0.504138}
-  - {x: -18.873589, y: 0, z: 1.816934}
-  - {x: -18.38129, y: 0, z: 2.7194772}
-  - {x: -17.806944, y: 0, z: 3.7040727}
-  - {x: -17.068497, y: 0, z: 4.77072}
-  - {x: -16.4121, y: 0, z: 5.673263}
-  - {x: -15.591604, y: 0, z: 6.247613}
-  - {x: -14.607009, y: 0, z: 6.9860587}
-  - {x: -12.719868, y: 0, z: 7.9706545}
-  - {x: -11.735272, y: 0, z: 8.380901}
-  - {x: -10.422479, y: 0, z: 8.955249}
-  - {x: -8.7814865, y: 0, z: 9.611646}
-  - {x: -7.468693, y: 0, z: 10.103944}
-  - {x: -5.335403, y: 0, z: 10.596241}
-  - {x: -3.6123614, y: 0, z: 10.924439}
-  - {x: -2.0534186, y: 0, z: 11.334687}
-  - {x: -1.0688233, y: 0, z: 11.580836}
-  - {x: 0.07987112, y: 0, z: 11.662886}
-  - {x: 1.802913, y: 0, z: 11.826985}
-  - {x: 2.8695576, y: 0, z: 11.826985}
-  - {x: 4.5925994, y: 0, z: 11.826985}
-  - {x: 5.9874525, y: 0, z: 11.909036}
-  - {x: 7.218197, y: 0, z: 11.580836}
-  - {x: 8.941238, y: 0, z: 11.00649}
-  - {x: 9.761724, y: 0, z: 10.350092}
-  - {x: 11.238617, y: 0, z: 9.529596}
-  - {x: 12.387322, y: 0, z: 8.62705}
-  - {x: 13.453958, y: 0, z: 8.052703}
-  - {x: 14.438552, y: 0, z: 7.314257}
-  - {x: 15.423148, y: 0, z: 6.3296623}
-  - {x: 16.079554, y: 0, z: 5.427114}
-  - {x: 16.653893, y: 0, z: 4.6066203}
-  - {x: 17.310299, y: 0, z: 3.7040727}
-  - {x: 18.048744, y: 0, z: 2.883579}
-  - {x: 18.541042, y: 0, z: 1.9810307}
-  - {x: 19.279488, y: 0, z: 0.9964355}
-  - {x: 20.017937, y: 0, z: 0.2579891}
+  - {x: -20.123064, y: 56.92182, z: 1.7149115}
+  - {x: -21.222061, y: 56.92182, z: 1.4009103}
+  - {x: -21.693058, y: 56.92182, z: 0.4589135}
+  - {x: -21.928558, y: 56.92182, z: -0.56158024}
+  - {x: -21.14356, y: 56.92182, z: -1.2680776}
+  - {x: -20.044563, y: 56.92182, z: -1.5035769}
+  - {x: -19.102568, y: 56.92182, z: -1.1110783}
+  - {x: -18.86707, y: 56.92182, z: -0.012084613}
+  - {x: -19.338066, y: 56.92182, z: 0.929912}
+  - {x: -20.437063, y: 56.92182, z: -0.012084613}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -172,13 +146,13 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &8857930457763984259
+--- !u!114 &8386376844056151149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3787658920261426607}
+  m_GameObject: {fileID: 4513962940184146328}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97af50de07cc6eb45a1bd4fd09a4f691, type: 3}
@@ -186,3 +160,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stardust: {fileID: 7386838344244166085, guid: af65ee1efde7e894ebd782385f933b10, type: 3}
   player: {fileID: 0}
+--- !u!65 &5788751305815904269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513962940184146328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.061489, y: 1, z: 4.218488}
+  m_Center: {x: -20.397814, y: 56.92182, z: 0.10566729}

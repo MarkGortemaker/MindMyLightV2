@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0056585334, g: 0.02712401, b: 0.091535084, a: 1}
+  m_IndirectSpecularColor: {r: 0.004562131, g: 0.021092705, b: 0.073893525, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12375,11 +12375,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60f32f45cc163b4d954dc423262fa77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meteorSpawnCount: 10
-  stardustSpawnCount: 30
-  stardustLine: {fileID: 4943151865929644896, guid: 304f0a6c4e4dea44c84fdcb69ecec3e8, type: 3}
+  meteorSpawnCount: 45
+  stardustSpawnCount: 90
   meteor: {fileID: 1500551697}
   comet: {fileID: 1297165771060494478, guid: d2d18448d06829d43ad67944f0ecb5bd, type: 3}
+  spawnableStardustLines:
+  - {fileID: 4513962940184146328, guid: 71f7ea20a03fd7a4499f5848db711682, type: 3}
+  - {fileID: 4943151865929644896, guid: 304f0a6c4e4dea44c84fdcb69ecec3e8, type: 3}
+  - {fileID: 3787658920261426607, guid: ea88e55b9eab3ec4ea1a2189d320a88c, type: 3}
+  - {fileID: 7747625249256112197, guid: 7b720277f6a4dd6499f184db32f9edc5, type: 3}
+  - {fileID: 2901408533969284519, guid: ed9448bac7b7ee24ca85d9e602d69ec5, type: 3}
+  - {fileID: 3782503371866971588, guid: d73739c738047cc4d95b097e3dd5a5c2, type: 3}
 --- !u!114 &1544668088
 MonoBehaviour:
   m_ObjectHideFlags: 0
