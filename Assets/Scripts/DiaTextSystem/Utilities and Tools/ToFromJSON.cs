@@ -96,6 +96,7 @@ public static class ToFromJSON
             file.Write(JSON);
             file.Close();
         }
+        AssetDatabase.Refresh();
     }
 
     /// <summary>
