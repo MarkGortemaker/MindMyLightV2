@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1120505769068036247}
   - component: {fileID: 8513056619217024073}
   - component: {fileID: 8386376844056151149}
+  - component: {fileID: 5788751305815904269}
   m_Layer: 0
   m_Name: Small Swirl Line
   m_TagString: Stardust
@@ -159,3 +160,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stardust: {fileID: 7386838344244166085, guid: af65ee1efde7e894ebd782385f933b10, type: 3}
   player: {fileID: 0}
+--- !u!65 &5788751305815904269
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4513962940184146328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.061489, y: 1, z: 4.218488}
+  m_Center: {x: -20.397814, y: 56.92182, z: 0.10566729}

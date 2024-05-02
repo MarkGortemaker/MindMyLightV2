@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8965668393256532508}
   - component: {fileID: 650232145855705084}
   - component: {fileID: 1488543245078615778}
+  - component: {fileID: -2527567786566642203}
   m_Layer: 0
   m_Name: Zig Zag Line
   m_TagString: Stardust
@@ -187,3 +188,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stardust: {fileID: 7386838344244166085, guid: af65ee1efde7e894ebd782385f933b10, type: 3}
   player: {fileID: 0}
+--- !u!65 &-2527567786566642203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7747625249256112197}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 12.71, y: 0.99492264, z: 40.846924}
+  m_Center: {x: -13.128686, y: 52.82715, z: -8.161909}

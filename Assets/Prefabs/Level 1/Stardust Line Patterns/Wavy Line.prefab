@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6725787185565188015}
   - component: {fileID: 8520266119501379064}
   - component: {fileID: 6903833584974759296}
+  - component: {fileID: 5406652186501824470}
   m_Layer: 0
   m_Name: Wavy Line
   m_TagString: Stardust
@@ -164,3 +165,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stardust: {fileID: 7386838344244166085, guid: af65ee1efde7e894ebd782385f933b10, type: 3}
   player: {fileID: 0}
+--- !u!65 &5406652186501824470
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4943151865929644896}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 15.057457, y: 1, z: 3.7576828}
+  m_Center: {x: 0.5868528, y: 0, z: 4.531814}

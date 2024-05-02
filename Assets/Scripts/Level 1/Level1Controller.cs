@@ -19,7 +19,7 @@ public class Level1Controller : MonoBehaviour
     public static int difficulty = 1;
     public static int cometSpawnCount = 1;
     public int meteorSpawnCount = 30;
-    public int stardustSpawnCount = 100;
+    public int stardustSpawnCount = 90;
 
     public GameObject meteor;
     public GameObject comet;
@@ -51,14 +51,14 @@ public class Level1Controller : MonoBehaviour
         difficulty = 1;
         cometSpawnCount = 1;
         //meteorSpawnCount = 30;
-        //stardustSpawnCount = 100;
+        //stardustSpawnCount = 90;
 
         collectedStardust = 0f;
         stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
 
-        SpawnMeteor();
         SpawnStardust();
+        SpawnMeteor();
 
         InvokeRepeating("SpawnComet", 0f, 60f);
 
@@ -72,7 +72,7 @@ public class Level1Controller : MonoBehaviour
 
         int progress = Mathf.FloorToInt(collectedStardust / 1500); 
 
-        if (progress >= difficulty) //every full stardust meter sent to the star <-this will loop forever so I commented it out for the time being
+        if (progress >= difficulty) //every full stardust meter sent to the star
         {
             dangerZoneDistance -= 15f;
 
@@ -83,7 +83,6 @@ public class Level1Controller : MonoBehaviour
                 cometSpawnCount++;
             }
 
-            //erase then spawn stardust and meteors
             foreach (GameObject stardust in stardustLines)
             {
                 Destroy(stardust);
@@ -109,7 +108,7 @@ public class Level1Controller : MonoBehaviour
         if (comets.Count < cometSpawnCount && distance > dangerZoneDistance)
         {
             Debug.Log("Spawning!!");
-            comets.Add(RadiusSpawn.SpawnInCircleArea(comet, 30f, 40f, playerTransform.position));
+            comets.Add(RadiusSpawn.SpawnInCircleArea(comet, 30f, 40f, 10f, playerTransform.position));
         }
     }
 
@@ -119,17 +118,18 @@ public class Level1Controller : MonoBehaviour
         {
             for (int i = 0; i < stardustSpawnCount / 3; i++)
             {
-                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(0, 2)], safeZoneDistance, dangerZoneDistance / 2, starTransform.position));
+                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(0, 2)], safeZoneDistance, dangerZoneDistance / 2, 20f, starTransform.position));
             }
 
             for (int i = 0; i < stardustSpawnCount / 3; i++)
             {
-                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(1, 4)], dangerZoneDistance / 2, dangerZoneDistance, starTransform.position));
+                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(1, 4)], dangerZoneDistance / 2, dangerZoneDistance, 30f, starTransform.position));
             }
 
             for (int i = 0; i < stardustSpawnCount / 3; i++)
             {
-                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(3, spawnableStardustLines.Length)], dangerZoneDistance, borderDistance, starTransform.position));
+                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(3, spawnableStardustLines.Length)], dangerZoneDistance, 
+                    0.9f * borderDistance, 50f, starTransform.position));
             }
         }
     }
@@ -140,12 +140,12 @@ public class Level1Controller : MonoBehaviour
         {
             for (int i = 0; i < meteorSpawnCount / 3; i++)
             {
-                meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position));
+                meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, dangerZoneDistance, 20f, starTransform.position));
             }
 
             for (int i = 0; i < 2 * meteorSpawnCount / 3; i++)
             {
-                meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, dangerZoneDistance, 0.9f * borderDistance, starTransform.position));
+                meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, dangerZoneDistance, 0.9f * borderDistance, 20f, starTransform.position));
             }
         }
     }

@@ -12376,7 +12376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meteorSpawnCount: 45
-  stardustSpawnCount: 100
+  stardustSpawnCount: 90
   meteor: {fileID: 1500551697}
   comet: {fileID: 1297165771060494478, guid: d2d18448d06829d43ad67944f0ecb5bd, type: 3}
   spawnableStardustLines:

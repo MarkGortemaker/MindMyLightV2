@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5683453141194081626}
   - component: {fileID: 4425101211413615868}
   - component: {fileID: 8857930457763984259}
+  - component: {fileID: 8270997745525804931}
   m_Layer: 0
   m_Name: Curve Line
   m_TagString: Stardust
@@ -175,3 +176,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stardust: {fileID: 7386838344244166085, guid: af65ee1efde7e894ebd782385f933b10, type: 3}
   player: {fileID: 0}
+--- !u!65 &8270997745525804931
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3787658920261426607}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 25.270374, y: 1, z: 11.759867}
+  m_Center: {x: -17.98361, y: 58.79759, z: -0.12352419}
