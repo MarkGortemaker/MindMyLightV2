@@ -8,6 +8,7 @@ public class StardustSetPosition: MonoBehaviour
     public GameObject player;
     LineRenderer lineRenderer;
 
+    //NOTE: If there is any spare time, use pooling for the particle gameObjects to ease up on CPU usage when mass spawning.
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
@@ -26,7 +27,7 @@ public class StardustSetPosition: MonoBehaviour
             if (lineRenderer.GetPosition(i).magnitude <= Level1Controller.borderDistance - 5f)
             {
                 //GameObject stardustPatch = Instantiate(stardust, lineRenderer.GetPosition(i), Quaternion.identity, transform);
-                GameObject stardustPatch = Instantiate(stardust, transform, true);
+                GameObject stardustPatch = Instantiate(stardust, transform, false);
                 stardustPatch.transform.position = lineRenderer.GetPosition(i);
                 stardustPatch.GetComponent<ParticleSystem>().trigger.AddCollider(player.transform);
             }

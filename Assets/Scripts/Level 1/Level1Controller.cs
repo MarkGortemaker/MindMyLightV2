@@ -18,8 +18,8 @@ public class Level1Controller : MonoBehaviour
 
     public static int difficulty = 1;
     public static int cometSpawnCount = 1;
-    public int meteorSpawnCount = 20;
-    public int stardustSpawnCount = 20;
+    public int meteorSpawnCount = 30;
+    public int stardustSpawnCount = 100;
 
     public GameObject meteor;
     public GameObject comet;
@@ -48,7 +48,11 @@ public class Level1Controller : MonoBehaviour
         meteors = new List<GameObject>();
         comets = new List<GameObject>();
 
-        difficulty = 0;
+        difficulty = 1;
+        cometSpawnCount = 1;
+        //meteorSpawnCount = 30;
+        //stardustSpawnCount = 100;
+
         collectedStardust = 0f;
         stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
@@ -66,7 +70,7 @@ public class Level1Controller : MonoBehaviour
     {
         SpawnComet();
 
-        int progress = Mathf.FloorToInt(collectedStardust / 150); 
+        int progress = Mathf.FloorToInt(collectedStardust / 1500); 
 
         if (progress >= difficulty) //every full stardust meter sent to the star <-this will loop forever so I commented it out for the time being
         {
@@ -134,12 +138,12 @@ public class Level1Controller : MonoBehaviour
     {
         if (meteors.Count < meteorSpawnCount)
         {
-            for (int i = 0; i < meteorSpawnCount; i++)
+            for (int i = 0; i < meteorSpawnCount / 3; i++)
             {
                 meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, dangerZoneDistance, starTransform.position));
             }
 
-            for (int i = 0; i < 2 * meteorSpawnCount; i++)
+            for (int i = 0; i < 2 * meteorSpawnCount / 3; i++)
             {
                 meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, dangerZoneDistance, 0.9f * borderDistance, starTransform.position));
             }
