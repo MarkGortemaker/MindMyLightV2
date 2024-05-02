@@ -1,0 +1,13 @@
+{
+    "entryTitle": "DiaTest",
+    "nextEntryTitle": "DiaTest",
+    "chapter": "1",
+    "characterOrder": [
+        "A",
+        "B"
+    ],
+    "dialogueLines": [
+        "Hello",
+        "World"
+    ]
+}
