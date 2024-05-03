@@ -8,10 +8,15 @@ public class Level1CameraFollow : MonoBehaviour
     public Vector3 offset = new Vector3 (0, 15, -10);
     public Vector3 referencePosition = Vector3.zero;
 
+    public bool IsMain = true;
+
     void Start()
     {
         transform.position = target.position + offset;
-        transform.LookAt(target.position);
+        if (IsMain)
+        {
+            transform.LookAt(target.position);
+        }
     }
 
     void FixedUpdate()
