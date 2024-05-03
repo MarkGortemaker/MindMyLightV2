@@ -34,6 +34,6 @@ public class RadiusSpawn : MonoBehaviour
             }
         }
 
-        return Instantiate(obj, spawnPosition, Quaternion.identity);
+        return Instantiate(obj, spawnPosition, Quaternion.identity, GameObject.Find("Spawned Entities").transform);
     }
 }
