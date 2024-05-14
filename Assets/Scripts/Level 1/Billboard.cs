@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class Billboard : MonoBehaviour
 {
     [SerializeField] private BillboardType billboardType;
@@ -40,4 +41,3 @@ public class Billboard : MonoBehaviour
         transform.rotation = Quaternion.Euler(rotation);
     }
 }
-

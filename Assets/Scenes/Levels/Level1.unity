@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0045275753, g: 0.020909509, b: 0.073328026, a: 1}
+  m_IndirectSpecularColor: {r: 0.005339258, g: 0.025326163, b: 0.086459406, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12414,7 +12414,7 @@ GameObject:
   - component: {fileID: 1740368549}
   - component: {fileID: 1740368547}
   - component: {fileID: 1740368553}
-  - component: {fileID: 1740368548}
+  - component: {fileID: 1740368554}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Obstacle
@@ -12442,7 +12442,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 61ac4145b8595934fb80fbacd84122d3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12474,22 +12474,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1740368548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1740368546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad687e5d708aad84caea4f3a1579989d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  billboardType: 1
-  lockX: 0
-  lockY: 0
-  lockZ: 0
 --- !u!54 &1740368549
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12595,6 +12579,25 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f70f614d8bfaefd4f941e87521d14eb1, type: 3}
   - {fileID: 21300000, guid: 4c7edcc13c4f7a749ab503aa028d3ddb, type: 3}
   - {fileID: 21300000, guid: 280b13c7f82878a449f3b8d9eaa4ca65, type: 3}
+  player: {fileID: 1916456806}
+  gravityStrength: 300
+  attractionRange: 15
+--- !u!114 &1740368554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1740368546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d19c30e0bc3d8424bb978b683c775e95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  billboardType: 1
+  lockX: 0
+  lockY: 0
+  lockZ: 0
 --- !u!1 &1753793534
 GameObject:
   m_ObjectHideFlags: 0
