@@ -15,7 +15,6 @@ public class MinimapDots : MonoBehaviour
 
     public Dictionary<GameObject, GameObject> activeList = new Dictionary<GameObject, GameObject>();
 
-    /* -> Dictionary class implementation here <- */
 
     void Start()
     {
@@ -34,24 +33,35 @@ public class MinimapDots : MonoBehaviour
     /*
      PROBLEMS:
     1- Stardust locations are inaccurate
-    2- Despawning objects do not have their icons removed
 
     SOLUTIONS:
     1- Figure out what exactly is causing the shift in position. Is it a linerenderer issue?
-    2- Write a custom Dictionary class that works both ways, that can check whether its pair is null or not. Then have it destroy the icon if the obj is missing
    */
 
     public void UpdateMap(List<GameObject> list, int iconNumber)
     {
+        if (iconNumber == 0) 
+        { 
+            List<GameObject> newList = new List<GameObject>();
+
+            foreach (GameObject obj in list)
+            {
+                //FIND A WAY TO ADD EACH STARDUST PATCH
+                //for i 
+                //newList.Add(obj.GetComponentsInChildren<Transform>()[i].gameObject);
+            }
+
+            list = newList;
+        }
+
         foreach (GameObject obj in list)
         {
             GameObject icon;
 
             if (!activeList.ContainsKey(obj))
-            {
+            {   
                 icon = Instantiate(icons[iconNumber], transform);
                 activeList.Add(obj, icon);
-                activeList.Add(icon, obj);
             }
 
             else
@@ -61,6 +71,14 @@ public class MinimapDots : MonoBehaviour
 
             RectTransform rect = icon.GetComponent<RectTransform>();
             rect.position = iconNumber == 0 ? obj.transform.position + new Vector3(12, 0, -20) : obj.transform.position;
+        }
+
+        foreach (KeyValuePair<GameObject, GameObject> pair in activeList) 
+        { 
+            if (pair.Key == null)
+            {
+                Destroy(pair.Value.gameObject);
+            }
         }
     }
 

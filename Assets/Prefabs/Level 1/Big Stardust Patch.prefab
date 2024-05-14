@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3107203783986918820}
   - component: {fileID: 6776243840572093035}
   - component: {fileID: 4476365869137825599}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Big Stardust Patch
   m_TagString: Big Stardust
   m_Icon: {fileID: 0}
