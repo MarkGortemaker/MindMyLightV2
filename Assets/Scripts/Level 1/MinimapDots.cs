@@ -30,28 +30,15 @@ public class MinimapDots : MonoBehaviour
         UpdateMap(Level1Controller.comets, 2);
     }
 
-    /*
-     PROBLEMS:
-    1- Stardust locations are inaccurate
-
-    SOLUTIONS:
-    1- Figure out what exactly is causing the shift in position. Is it a linerenderer issue?
-   */
-
     public void UpdateMap(List<GameObject> list, int iconNumber)
     {
-        if (iconNumber == 0) 
-        { 
-            List<GameObject> newList = new List<GameObject>();
 
-            foreach (GameObject obj in list)
+        foreach (KeyValuePair<GameObject, GameObject> pair in activeList)
+        {
+            if (pair.Key == null)
             {
-                //FIND A WAY TO ADD EACH STARDUST PATCH
-                //for i 
-                //newList.Add(obj.GetComponentsInChildren<Transform>()[i].gameObject);
+                Destroy(pair.Value.gameObject);
             }
-
-            list = newList;
         }
 
         foreach (GameObject obj in list)
@@ -70,16 +57,9 @@ public class MinimapDots : MonoBehaviour
             }
 
             RectTransform rect = icon.GetComponent<RectTransform>();
-            rect.position = iconNumber == 0 ? obj.transform.position + new Vector3(12, 0, -20) : obj.transform.position;
+            rect.position = iconNumber == 0 ? obj.GetComponentInChildren<Transform>().position : obj.transform.position;
         }
-
-        foreach (KeyValuePair<GameObject, GameObject> pair in activeList) 
-        { 
-            if (pair.Key == null)
-            {
-                Destroy(pair.Value.gameObject);
-            }
-        }
+        
     }
 
 }
