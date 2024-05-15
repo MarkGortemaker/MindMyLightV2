@@ -40,7 +40,7 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Level1Controller.collectedStardust >= 2000) //testing value, actual goal is 7500 stardust collected
+        if (Level1Controller.collectedStardust >= 7500)
         {
             Level1Controller.EndGame(winScreen);
         }

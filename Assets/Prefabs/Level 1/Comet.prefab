@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 434018352060727893}
   - component: {fileID: 8637291023277677222}
   - component: {fileID: 5297791271398747224}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Comet
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

@@ -18,16 +18,15 @@ public class StardustSetPosition : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         starTransform = GameObject.FindGameObjectWithTag("Star").transform;
 
-        for (int i = 0; i < lineRenderer.positionCount; i++) //set all y axes in the positions to 0
+        for (int i = 0; i < lineRenderer.positionCount; i++) //set all positions on the LineRenderer according to the object's transform and set y axes to 0
         {
-            Vector3 flatPosition = new Vector3(lineRenderer.GetPosition(i).x, 0f, lineRenderer.GetPosition(i).z);
+            Vector3 position = lineRenderer.GetPosition(i) + transform.position;
+            Vector3 flatPosition = new Vector3(position.x, 0f, position.z);
             lineRenderer.SetPosition(i, flatPosition); 
         }
 
-        for (int i = 0; i < lineRenderer.positionCount; i += 2) //reposition the points according to randomized transform position 
+        for (int i = 0; i < lineRenderer.positionCount; i += 2) //Instantiate the stardust patches
         {
-            lineRenderer.SetPosition(i, lineRenderer.GetPosition(i) + transform.position);
-
             if (lineRenderer.GetPosition(i).magnitude <= Level1Controller.borderDistance - 5f)
             {
                 GameObject stardustPatch = Instantiate(stardust, transform, false);
@@ -44,6 +43,15 @@ public class StardustSetPosition : MonoBehaviour
             {
                 Destroy(gameObject.GetComponentsInChildren<Transform>()[i].gameObject);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (transform.childCount <= 0)
+        {
+            Level1Controller.stardustLines.Remove(gameObject);
+            Destroy(gameObject);
         }
     }
 }
