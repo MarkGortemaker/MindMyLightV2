@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2141046920090922384}
   - component: {fileID: 8445237648043029896}
   - component: {fileID: 5689629151588622834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Meteor Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4845,7 +4845,7 @@ GameObject:
   - component: {fileID: 4109248210367024918}
   - component: {fileID: 3399485030370161857}
   - component: {fileID: 4047412546288048872}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Meteor
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -5010,7 +5010,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f70f614d8bfaefd4f941e87521d14eb1, type: 3}
   - {fileID: 21300000, guid: 4c7edcc13c4f7a749ab503aa028d3ddb, type: 3}
   - {fileID: 21300000, guid: 280b13c7f82878a449f3b8d9eaa4ca65, type: 3}
-  player: {fileID: 0}
+  playerTransform: {fileID: 0}
   gravityStrength: 300
   attractionRange: 15
 --- !u!114 &4047412546288048872
