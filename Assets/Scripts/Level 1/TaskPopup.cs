@@ -5,7 +5,7 @@ using Unity.UI;
 
 public class Level1UpdateHUD : MonoBehaviour
 {
-    TMPro.TMP_Text tmp;
+    public TMPro.TMP_Text tmp;
     float stardustNumber;
 
     void Start()
@@ -17,7 +17,10 @@ public class Level1UpdateHUD : MonoBehaviour
 
     void FixedUpdate()
     {
-        stardustNumber = Mathf.Lerp(stardustNumber, Level1Controller.collectedStardust + 1, 0.1f);
-        tmp.text = "GOAL:\nGive Zironko stardust!\n" + Mathf.FloorToInt(stardustNumber) + "/7500";
+        if (tmp != null)
+        {
+            stardustNumber = Mathf.Lerp(stardustNumber, Level1Controller.collectedStardust + 1, 0.1f);
+            tmp.text = Mathf.FloorToInt(stardustNumber) + "/7500";
+        }
     }
 }

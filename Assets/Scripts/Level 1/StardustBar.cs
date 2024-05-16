@@ -18,17 +18,16 @@ public class StardustBar : MonoBehaviour
     private void Start()
     {
         slider = GetComponent<Slider>();
-        image = GetComponent<Image>();
 
         defaultColor = image.color;
 
-        slider.maxValue = Level1Controller.maxStardustMeter - 500;
+        slider.maxValue = Level1Controller.maxStardustMeter - 400;
         slider.value = 0;
     }
 
     private void Update()
     {
-        slider.value = Mathf.Lerp(slider.value, Level1Controller.stardustMeter - 500, 0.4f);
+        slider.value = Mathf.Lerp(slider.value, Level1Controller.stardustMeter - 400, 0.4f);
 
         if (Level1Controller.stardustMeter < 500)
         {
