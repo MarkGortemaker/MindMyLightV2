@@ -10,6 +10,8 @@ public class MinimapDots : MonoBehaviour
     public GameObject starIcon;
     public GameObject playerIcon;
 
+    public GameObject container;
+
     public GameObject[] icons;
     public GameObject[] images;
 
@@ -18,6 +20,7 @@ public class MinimapDots : MonoBehaviour
 
     void Start()
     {
+        container = GameObject.Find("Other Icons");
         starIcon.GetComponent<RectTransform>().position = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>().position;
     }
 
@@ -47,7 +50,7 @@ public class MinimapDots : MonoBehaviour
 
             if (!activeList.ContainsKey(obj))
             {   
-                icon = Instantiate(icons[iconNumber], transform);
+                icon = Instantiate(icons[iconNumber], container.transform);
                 activeList.Add(obj, icon);
             }
 
