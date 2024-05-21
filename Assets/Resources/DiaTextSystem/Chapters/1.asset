@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a24cc1c51f8a434581bc2988218e2c4, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  textJSONList:
-  - {fileID: 4900000, guid: 7a68243c2a634a249b70612dce1bd5e3, type: 3}
-  dialogueJSONList:
-  - {fileID: 4900000, guid: f407f557e9b6be54b90962a534311536, type: 3}
+  textJSONList: []
+  dialogueJSONList: []
