@@ -13,22 +13,18 @@ public class DialogueManager : MonoBehaviour
     private Queue<DialogueText> lines;
 
     public bool IsDialogueActive = false;
+    public bool IsTypingFinished = false;
+    public bool IsContinueButtonClicked = false;
     public bool IsAuto = false;
 
     public float typeSpeed = 50f;
 
     public Animator dialogueAnimator;
     public Animator buttonAnimator;
+    public Animator autoButtonAnimator;
 
     public Dialogue dialogue;
 
-    /*
-     * TODO:
-     * - Auto button should work even when the text has finished displaying
-     * - Auto button should have an animation that shows it is currently on
-     * - The next button should stop blinking or disappear when it is the last line on the dialogue
-     * - Animations
-     */
 
     void Start()
     {
@@ -39,14 +35,20 @@ public class DialogueManager : MonoBehaviour
 
         lines = new Queue<DialogueText>();
 
-        StartDialogue(dialogue);
+        StartCoroutine(StartDialogueWhileWaiting(dialogueAnimator, "DialogueEnter"));
+    }
+
+    private void Update()
+    {
+       if (IsAuto && IsTypingFinished)
+       {
+            StartCoroutine(DisplayNextAuto());
+       }
     }
 
     public void StartDialogue(Dialogue dialogue) 
     {
         IsDialogueActive = true;
-
-        dialogueAnimator.Play("DialogueEnter");
 
         lines.Clear();
 
@@ -79,20 +81,52 @@ public class DialogueManager : MonoBehaviour
     {
         buttonAnimator.Play("Idle");
 
+        IsTypingFinished = false;
+
         dialogueArea.text = "";
         foreach (char letter in dialogue.line)
         {
             dialogueArea.text += letter;
-            yield return new WaitForSeconds(1f / typeSpeed);
+
+            if (!IsContinueButtonClicked)
+            {
+                yield return new WaitForSeconds(1f / typeSpeed);
+            }
         }
 
-        buttonAnimator.Play("ButtonBlink");
+        IsTypingFinished = true;
+        IsContinueButtonClicked = false;
 
-        if (IsAuto)
+        if (lines.Count != 0)
         {
-            yield return new WaitForSeconds(50f / typeSpeed);
-            DisplayNextDialogueLine();
+            buttonAnimator.Play("ButtonBob");
         }
+    }
+
+    IEnumerator DisplayNextAuto()
+    {
+        yield return new WaitForSeconds(50f / typeSpeed);
+        DisplayNextDialogueLine();
+    }
+
+    IEnumerator StartDialogueWhileWaiting(Animator animator, string animationName)
+    {
+        AnimationClip currentClip = null;
+
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+                currentClip = clip;
+                break;
+            }
+        }
+
+        animator.Play(animationName);
+
+        yield return new WaitForSeconds(currentClip.length);
+
+        StartDialogue(dialogue);
     }
 
     public void EndDialogue()
@@ -106,5 +140,27 @@ public class DialogueManager : MonoBehaviour
     public void ToggleAuto()
     {
         IsAuto = !IsAuto;
+
+        if (IsAuto)
+        {
+            autoButtonAnimator.Play("ButtonBlink");
+        }
+
+        else
+        {
+            autoButtonAnimator.Play("Idle");
+        }
+    }
+    public void OnContinueButtonClick()
+    {
+        if (!IsTypingFinished)
+        {
+            IsContinueButtonClicked = true;
+        }
+
+        else
+        {
+            DisplayNextDialogueLine();
+        }
     }
 }

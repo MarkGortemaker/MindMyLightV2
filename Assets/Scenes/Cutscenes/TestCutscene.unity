@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00001812, y: -206.03516}
+  m_AnchoredPosition: {x: 0.000015258789, y: -206.03516}
   m_SizeDelta: {x: 1200, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &285288452
@@ -489,7 +489,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.8607, y: -31.7281}
+  m_AnchoredPosition: {x: -22.8607, y: -31.728027}
   m_SizeDelta: {x: 1068.4785, y: 142.8562}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &846705753
@@ -512,7 +512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dialogue
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -645,10 +645,13 @@ MonoBehaviour:
   characterName: {fileID: 1617446201}
   dialogueArea: {fileID: 846705753}
   IsDialogueActive: 0
+  IsTypingFinished: 0
+  IsContinueButtonClicked: 0
   IsAuto: 0
   typeSpeed: 50
   dialogueAnimator: {fileID: 870487788}
   buttonAnimator: {fileID: 2016112601}
+  autoButtonAnimator: {fileID: 1813911119}
   dialogue:
     dialogueLines:
     - character:
@@ -1158,7 +1161,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -113.80469}
+  m_AnchoredPosition: {x: 0, y: -113.805176}
   m_SizeDelta: {x: 1200, y: 65.5492}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587515358
@@ -1256,7 +1259,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1345,6 +1348,7 @@ GameObject:
   - component: {fileID: 1813911118}
   - component: {fileID: 1813911117}
   - component: {fileID: 1813911116}
+  - component: {fileID: 1813911119}
   m_Layer: 5
   m_Name: Auto Button
   m_TagString: Untagged
@@ -1369,7 +1373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 508.67365, y: -113.8}
+  m_AnchoredPosition: {x: 508.67365, y: -113.80029}
   m_SizeDelta: {x: 162.0527, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1813911116
@@ -1466,6 +1470,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813911114}
   m_CullTransparentMesh: 1
+--- !u!95 &1813911119
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813911114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f158217976c9b0d498c4b29f780f51da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1914950892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,7 +1678,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 870487787}
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: DisplayNextDialogueLine
+        m_MethodName: OnContinueButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
