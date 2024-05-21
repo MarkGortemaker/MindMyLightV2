@@ -1,42 +1,77 @@
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// A Unity Editor Window class for writing text for, or editing text from a JSON file.
+/// </summary>
 public class TextEditor : EditorWindow
 {
-    string titleText;
-    string contentText;
-    string nextUpText;
-    string chapter;
+    public string titleText; //The title of the entry being written or edited.
+    public string contentText; //The content of the entry being written or edited.
+    public string nextUpText; //The entry which will follow the entry being written or edited.
+    public string[] allChapters; //All existing Chapters.
+    public int chapter; // The selected chapter (JSONChapterLibrary Object) to which the entry being written or edited belongs.
 
-    bool saving
+    private bool saving //Button boolean, when true it calls Save();
     {
         get { return saving; }
         set { if (value) { Save(); } }
     }
-    bool clearing
+    private bool clearing //Button boolean, when true it calls Clear();
     {
         get { return clearing; }
         set { if (value) { Clear(); } }
     }
 
-    bool clearOnSave = false;
+    private bool clearOnSave = false; //Boolean deciding if text fields are cleared after saving.
 
     #region GUILayout
     GUIContent save = new("Save", "Stores and formats currently written text into a file with the name given.");
     GUIContent clear = new("Clear", "Clears currently written text");
     #endregion GUILayout
 
+    /// <summary>
+    /// Behaviour to be called upon this window being opened. <para />
+    /// Also displays the window as openable under "Window" tab.
+    /// </summary>
     [MenuItem("Window/Dialogue and Text System/Text to JSON")]
-    public static void ShowWindow()
+    public static void WindowOpen()
     {
         System.Type[] desiredDock = { typeof(JSONView), typeof(DialogueEditor) };
         TextEditor window = GetWindow<TextEditor>("Text to JSON Editor", desiredDock);
 
         window.hasUnsavedChanges = true;
         window.minSize = new Vector2(400, 400);
+        window.SortChapters();
     }
 
-    void OnGUI()
+    private void OnEnable()
+    { 
+        AssemblyReloadEvents.afterAssemblyReload += onAfterReload;
+        SortChapters();
+    }
+    private void OnDisable()
+    { AssemblyReloadEvents.afterAssemblyReload -= onAfterReload; }
+
+    private void onAfterReload()
+    { 
+        Debug.LogWarning("Post-load");
+        SortChapters();
+    }
+
+    /// <summary>
+    /// Goes through all of the JSONChapterLibrary objects and sorts out their files.
+    /// </summary>
+    void SortChapters()
+    {
+        JSONChapterLibrary[] chapters = Resources.LoadAll<JSONChapterLibrary>("DiaTextSystem\\Chapters");
+        allChapters = new string[chapters.Length];
+        for (int i = 0; i < chapters.Length; i++)
+        { allChapters[i] = chapters[i].name; }
+        Debug.Log("Sorted Chapters");
+    }
+
+    private void OnGUI()
     {
         GUILayout.BeginHorizontal();
 
@@ -49,7 +84,7 @@ public class TextEditor : EditorWindow
     /// <summary>
     /// Draws the main text fields which a user can utilize for entry content creation, deletion, and alteration.
     /// </summary>
-    void DrawTextFields()
+    private void DrawTextFields()
     {
         GUILayout.BeginVertical(GUILook.vertFieldsLayout); //Input Fields Vertical container START
         GUILayout.BeginHorizontal();
@@ -73,7 +108,7 @@ public class TextEditor : EditorWindow
     /// <summary>
     /// Draws the toolbar with which a user can save or clear their work, as well as all fields with relevant information and options.
     /// </summary>
-    void DrawToolbar()
+    private void DrawToolbar()
     {
         GUILayout.BeginVertical(GUILook.toolbarLayout); //Toolbar Vertical container START
         saving = GUILayout.Button(save); //Save Button
@@ -83,7 +118,7 @@ public class TextEditor : EditorWindow
         clearOnSave = EditorGUILayout.Toggle(clearOnSave); //ClearOnSave Toggle
 
         GUILayout.Label("Chapter"); //Chapter Label
-        chapter = GUILayout.TextField(chapter); //Chapter Input Field
+        chapter = EditorGUILayout.Popup(chapter, allChapters, GUILook.thinTextBox); //Speaker selection dropdown field.
         GUILayout.EndVertical(); //Toolbar Vertical container END
     }
 
@@ -99,10 +134,12 @@ public class TextEditor : EditorWindow
         if (nextUpText == "") { nextUpText = titleText; }
         EntryText entry = new()
         {
+            entryType = EntryType.Text,
             entryTitle = titleText,
-            content = contentText,
             nextEntryTitle = nextUpText,
-            chapter = chapter
+            chapter = allChapters[chapter],
+
+            content = contentText
         };
 
         //Sending file to ToFromJSON for JSON conversion.
@@ -120,6 +157,6 @@ public class TextEditor : EditorWindow
         titleText = "";
         contentText = "";
         nextUpText = "";
-        chapter = "";
+        chapter = -1;
     }
 }
