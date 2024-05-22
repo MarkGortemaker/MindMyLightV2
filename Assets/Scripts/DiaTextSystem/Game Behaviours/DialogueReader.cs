@@ -34,7 +34,7 @@ public class DialogueReader : EntryReader
 
     public override void NextEntry()
     {
-        toRead = chapter.textJSONList.Find(x => x.name == nextEntry);
+        toRead = chapter.dialogueJSONList.Find(x => x.name == nextEntry);
         Debug.Log(toRead.name);
         Awake();
     }

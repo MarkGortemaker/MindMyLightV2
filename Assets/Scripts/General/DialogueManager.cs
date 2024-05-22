@@ -39,10 +39,6 @@ public class DialogueManager : MonoBehaviour
         {
             instance = this;
         }
-
-        lines = reader.lines;
-
-        StartCoroutine(StartDialogueWhileWaiting(dialogueAnimator, "DialogueEnter"));
     }
 
     private void Update()
@@ -55,6 +51,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue() 
     {
+        lines = reader.lines;
+
         IsDialogueActive = true;
 
         lineCount = 0;
@@ -64,7 +62,6 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextDialogueLine()
     {
-        Debug.Log("LineCount: " + lineCount + "\nLineLength: " + lines.Length);
         if (lineCount >= lines.Length)
         {
             EndDialogue();
@@ -131,13 +128,20 @@ public class DialogueManager : MonoBehaviour
 
         StartDialogue();
     }
-
+    public void StartDialogueWhileWaiting()
+    {
+        StartCoroutine(StartDialogueWhileWaiting(dialogueAnimator, "DialogueEnter"));
+    }
     public void EndDialogue()
     {
         IsDialogueActive = false;
 
         buttonAnimator.Play("Idle");
         dialogueAnimator.Play("DialogueExit");
+
+        //IF THERE *IS* A NEXT ENTRY AND/OR ANIMATION
+        reader.NextEntry();
+        //take static clips from CutsceneEvent and make it play the next anim, animations call the dialogue
     }
 
     public void ToggleAuto()

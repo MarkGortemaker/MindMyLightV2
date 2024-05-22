@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textJSONList: []
   dialogueJSONList:
-  - {fileID: 4900000, guid: aff6843c3a7986f4d9074bd1ec8c03c1, type: 3}
+  - {fileID: 4900000, guid: 4eaaf5c64c875294fad26ba017010c99, type: 3}
+  - {fileID: 4900000, guid: 363877c96a015d649b33d552ad047a3d, type: 3}

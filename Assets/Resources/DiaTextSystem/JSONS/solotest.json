@@ -1,0 +1,18 @@
+{
+    "entryType": 1,
+    "entryTitle": "solotest",
+    "nextEntryTitle": "solotest2",
+    "chapter": "1",
+    "characters": [
+        "Ivan",
+        "Zironko"
+    ],
+    "characterOrder": [
+        0,
+        0
+    ],
+    "dialogueLines": [
+        "Where am I? Is this the space?",
+        "Oh, it's so dark in here..."
+    ]
+}
