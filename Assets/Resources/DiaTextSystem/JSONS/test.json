@@ -1,0 +1,20 @@
+{
+    "entryType": 1,
+    "entryTitle": "test",
+    "nextEntryTitle": "test",
+    "chapter": "1",
+    "characters": [
+        "Ivan",
+        "Zironko"
+    ],
+    "characterOrder": [
+        0,
+        1,
+        0
+    ],
+    "dialogueLines": [
+        "Hello little star!",
+        "Hello Ivan! Do you see how pilled I am right now?",
+        "What the fuck are you talking about"
+    ]
+}

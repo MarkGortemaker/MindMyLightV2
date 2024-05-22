@@ -600,6 +600,7 @@ GameObject:
   - component: {fileID: 870487785}
   - component: {fileID: 870487787}
   - component: {fileID: 870487788}
+  - component: {fileID: 870487789}
   m_Layer: 5
   m_Name: Dialogue Box
   m_TagString: Untagged
@@ -649,23 +650,11 @@ MonoBehaviour:
   IsContinueButtonClicked: 0
   IsAuto: 0
   typeSpeed: 50
+  lineCount: 0
   dialogueAnimator: {fileID: 870487788}
   buttonAnimator: {fileID: 2016112601}
   autoButtonAnimator: {fileID: 1813911119}
-  dialogue:
-    dialogueLines:
-    - character:
-        name: Ivan
-      line: Yeah so I went to visit my friend and-
-    - character:
-        name: Star
-      line: STARRING out your DUST for the Yrgnazzler!!!!!
-    - character:
-        name: Ivan
-      line: I hate you so much
-    - character:
-        name: Star
-      line: muchpilled haterrrr
+  reader: {fileID: 870487789}
 --- !u!95 &870487788
 Animator:
   serializedVersion: 5
@@ -687,6 +676,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &870487789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870487784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 955f9569ff14fb64bb7c05c9159a2e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chapter: {fileID: 11400000, guid: 4491041edb32fab49a95c8166222b6a4, type: 2}
+  toRead: {fileID: 4900000, guid: aff6843c3a7986f4d9074bd1ec8c03c1, type: 3}
+  entryName: 
+  nextEntry: 
+  characters: []
+  characterOrder: 
+  lines: []
 --- !u!1 &961895324
 GameObject:
   m_ObjectHideFlags: 0

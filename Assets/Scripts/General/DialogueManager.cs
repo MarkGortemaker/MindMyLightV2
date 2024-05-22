@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(DialogueReader))]
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
@@ -10,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
 
-    private Queue<DialogueText> lines;
+    private string[] lines;
 
     public bool IsDialogueActive = false;
     public bool IsTypingFinished = false;
@@ -19,12 +20,18 @@ public class DialogueManager : MonoBehaviour
 
     public float typeSpeed = 50f;
 
+    public int lineCount = 0;
+
     public Animator dialogueAnimator;
     public Animator buttonAnimator;
     public Animator autoButtonAnimator;
 
-    public Dialogue dialogue;
+    public DialogueReader reader;
 
+    private void Awake()
+    {
+        reader = GetComponent<DialogueReader>();
+    }
 
     void Start()
     {
@@ -33,7 +40,7 @@ public class DialogueManager : MonoBehaviour
             instance = this;
         }
 
-        lines = new Queue<DialogueText>();
+        lines = reader.lines;
 
         StartCoroutine(StartDialogueWhileWaiting(dialogueAnimator, "DialogueEnter"));
     }
@@ -46,45 +53,41 @@ public class DialogueManager : MonoBehaviour
        }
     }
 
-    public void StartDialogue(Dialogue dialogue) 
+    public void StartDialogue() 
     {
         IsDialogueActive = true;
 
-        lines.Clear();
-
-        foreach (DialogueText line in dialogue.dialogueLines)
-        {
-            lines.Enqueue(line);
-        }
+        lineCount = 0;
 
         DisplayNextDialogueLine();
     }
 
     public void DisplayNextDialogueLine()
     {
-        if (lines.Count == 0)
+        Debug.Log("LineCount: " + lineCount + "\nLineLength: " + lines.Length);
+        if (lineCount >= lines.Length)
         {
             EndDialogue();
             return;
         }
 
-        DialogueText currentLine = lines.Dequeue();
-
-        characterName.text = currentLine.character.name;
+        characterName.text = reader.characters[reader.characterOrder[lineCount]];
 
         StopAllCoroutines();
 
-        StartCoroutine(TypeSentence(currentLine));
+        StartCoroutine(TypeSentence(reader.lines[lineCount]));
+
+        lineCount++;
     }
 
-    IEnumerator TypeSentence(DialogueText dialogue) 
+    IEnumerator TypeSentence(string dialogue) 
     {
         buttonAnimator.Play("Idle");
 
         IsTypingFinished = false;
 
         dialogueArea.text = "";
-        foreach (char letter in dialogue.line)
+        foreach (char letter in dialogue)
         {
             dialogueArea.text += letter;
 
@@ -97,7 +100,7 @@ public class DialogueManager : MonoBehaviour
         IsTypingFinished = true;
         IsContinueButtonClicked = false;
 
-        if (lines.Count != 0)
+        if (lines.Length != 0)
         {
             buttonAnimator.Play("ButtonBob");
         }
@@ -126,7 +129,7 @@ public class DialogueManager : MonoBehaviour
 
         yield return new WaitForSeconds(currentClip.length);
 
-        StartDialogue(dialogue);
+        StartDialogue();
     }
 
     public void EndDialogue()
