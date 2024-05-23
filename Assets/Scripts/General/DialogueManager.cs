@@ -17,17 +17,42 @@ public class DialogueManager : MonoBehaviour
     public bool IsTypingFinished = false;
     public bool IsContinueButtonClicked = false;
     public bool IsAuto = false;
+    public static bool IsHide = false;
+    
+    public enum Fade { None, FadeInBlack, FadeOutBlack, FadeInWhite, FadeOutWhite };
+    public static Fade fade = Fade.None;
 
     public float typeSpeed = 50f;
 
     public int lineCount = 0;
+    public int clipCount = 0;
 
     public Animator dialogueAnimator;
+    public Animator fadeAnimator;
     public Animator buttonAnimator;
     public Animator autoButtonAnimator;
 
     public DialogueReader reader;
 
+
+    /*
+    TODO:
+    - 1-4: Zironko moping, slide camera in
+    - 1-5: Ivan and Zironko talk abt wth is going on
+    - 1-6: "Dnah? you mean hand?" camera topsy turvy
+    - 1-7: Zironko explains the dnah thing
+    - 1-8: Zironko comments on Ivan's lantern, which replies that it can help collect the stardust back
+    - 1-9: Ivan is scared of the dark, but is willing to help, and the lantern says it will light the way with the stardust
+    - 1-10: Zironko warns them of Yrgna 
+    - 1-11: Zironko wishes them luck as they go on to collect the dust, cut to black gameplay start
+
+    Other cutscenes:
+    - Game end cutscene where Yrgna arrives and attacks Ivan, fade white and wake up in 2D cutscene
+    - Two 2D cutscenes for the real world, which are just stills so just shift them along slowly as the dialogue goes on
+
+    * Once the models come in, swap the placeholders /w the models (if you can do it on the same gameObject it'd save time)
+    * After the music system is done, music must be played during the cutscene
+    */
     private void Awake()
     {
         reader = GetComponent<DialogueReader>();
@@ -39,14 +64,8 @@ public class DialogueManager : MonoBehaviour
         {
             instance = this;
         }
-    }
 
-    private void Update()
-    {
-       if (IsAuto && IsTypingFinished)
-       {
-            StartCoroutine(DisplayNextAuto());
-       }
+        clipCount = 0;
     }
 
     public void StartDialogue() 
@@ -64,7 +83,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (lineCount >= lines.Length)
         {
-            EndDialogue();
+            EndDialogue(IsHide);
             return;
         }
 
@@ -101,16 +120,43 @@ public class DialogueManager : MonoBehaviour
         {
             buttonAnimator.Play("ButtonBob");
         }
+
+        if (IsAuto)
+        {
+            StartCoroutine(DisplayNextAuto());
+        }
     }
 
     IEnumerator DisplayNextAuto()
     {
-        yield return new WaitForSeconds(50f / typeSpeed);
+        yield return new WaitForSeconds(100f / typeSpeed);
         DisplayNextDialogueLine();
     }
 
     IEnumerator StartDialogueWhileWaiting(Animator animator, string animationName)
     {
+        switch (fade)
+        {
+            case Fade.None:
+                break;
+            case Fade.FadeInBlack:
+                fadeAnimator.Play("FadeInBlack");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[0].length);
+                break;
+            case Fade.FadeOutBlack:
+                fadeAnimator.Play("FadeOutBlack");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[1].length);
+                break;
+            case Fade.FadeInWhite:
+                fadeAnimator.Play("FadeInWhite");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[2].length);
+                break;
+            case Fade.FadeOutWhite:
+                fadeAnimator.Play("FadeOutWhite");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[3].length);
+                break;
+        }
+
         AnimationClip currentClip = null;
 
         foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
@@ -128,20 +174,100 @@ public class DialogueManager : MonoBehaviour
 
         StartDialogue();
     }
+
+    IEnumerator HideDialogueWindow(Animator animator, string animationName)
+    {
+        AnimationClip currentClip = null;
+
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+                currentClip = clip;
+                break;
+            }
+        }
+
+        animator.Play(animationName);
+
+        yield return new WaitForSeconds(currentClip.length);
+
+        characterName.text = "";
+
+        switch (fade)
+        {
+            case Fade.None:
+                break;
+            case Fade.FadeInBlack:
+                fadeAnimator.Play("FadeInBlack");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[0].length);
+                break;
+            case Fade.FadeOutBlack:
+                fadeAnimator.Play("FadeOutBlack");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[1].length);
+                break;
+            case Fade.FadeInWhite:
+                fadeAnimator.Play("FadeInWhite");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[2].length);
+                break;
+            case Fade.FadeOutWhite:
+                fadeAnimator.Play("FadeOutWhite");
+                yield return new WaitForSeconds(fadeAnimator.runtimeAnimatorController.animationClips[3].length);
+                break;
+        }
+
+        if (reader.nextEntry.ToLower() != "stop")
+        {
+            reader.NextEntry();
+        }
+
+        clipCount++;
+
+        if (clipCount < CutsceneEvent.clips.Length)
+        {
+            CutsceneEvent.animator.Play(CutsceneEvent.clips[clipCount].name);
+        }
+
+        //change to the gameplay level if there is no more cutscenes/dialogue
+    }
+
     public void StartDialogueWhileWaiting()
     {
         StartCoroutine(StartDialogueWhileWaiting(dialogueAnimator, "DialogueEnter"));
     }
-    public void EndDialogue()
+
+    public void HideDialogueWindow()
+    {
+        StartCoroutine(HideDialogueWindow(dialogueAnimator, "DialogueExit"));
+    }
+
+    public void EndDialogue(bool IsHide)
     {
         IsDialogueActive = false;
 
         buttonAnimator.Play("Idle");
-        dialogueAnimator.Play("DialogueExit");
 
-        //IF THERE *IS* A NEXT ENTRY AND/OR ANIMATION
-        reader.NextEntry();
-        //take static clips from CutsceneEvent and make it play the next anim, animations call the dialogue
+        dialogueArea.text = "";
+
+        if (IsHide)
+        {
+            HideDialogueWindow();
+        }
+
+        else
+        {
+            if (reader.nextEntry.ToLower() != "stop")
+            {
+                reader.NextEntry();
+            }
+
+            clipCount++;
+
+            if (clipCount < CutsceneEvent.clips.Length)
+            {
+                CutsceneEvent.animator.Play(CutsceneEvent.clips[clipCount].name);
+            }
+        }
     }
 
     public void ToggleAuto()
@@ -151,6 +277,10 @@ public class DialogueManager : MonoBehaviour
         if (IsAuto)
         {
             autoButtonAnimator.Play("ButtonBlink");
+            if (IsTypingFinished)
+            {
+                StartCoroutine(DisplayNextAuto());
+            }
         }
 
         else
@@ -158,6 +288,12 @@ public class DialogueManager : MonoBehaviour
             autoButtonAnimator.Play("Idle");
         }
     }
+
+    public void SetHide(bool value)
+    {
+        IsHide = value;
+    }
+
     public void OnContinueButtonClick()
     {
         if (!IsTypingFinished)

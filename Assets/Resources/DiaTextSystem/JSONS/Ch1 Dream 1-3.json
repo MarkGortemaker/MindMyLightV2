@@ -1,7 +1,7 @@
 {
     "entryType": 1,
-    "entryTitle": "solotest",
-    "nextEntryTitle": "solotest2",
+    "entryTitle": "Ch1 Dream 1-3",
+    "nextEntryTitle": "Ch1 Dream 1-4",
     "chapter": "1",
     "characters": [
         "Ivan",
@@ -12,7 +12,7 @@
         0
     ],
     "dialogueLines": [
-        "Where am I? Is this the space?",
-        "Oh, it's so dark in here..."
+        "Wow, sparkly! It's a trail of stardust!",
+        "I wonder where it leads?"
     ]
 }

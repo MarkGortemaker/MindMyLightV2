@@ -16,3 +16,7 @@ MonoBehaviour:
   dialogueJSONList:
   - {fileID: 4900000, guid: 4eaaf5c64c875294fad26ba017010c99, type: 3}
   - {fileID: 4900000, guid: 363877c96a015d649b33d552ad047a3d, type: 3}
+  - {fileID: 4900000, guid: b322d9a3c4e896c439c80cbf5c082032, type: 3}
+  - {fileID: 4900000, guid: 6a1f19adf8a526e4ea5d770714cde4de, type: 3}
+  - {fileID: 4900000, guid: 837f62bebed3598498cc3d39c1e57d21, type: 3}
+  - {fileID: 4900000, guid: 2a8f5db902f9bf549ba8ee55f15bc53c, type: 3}
