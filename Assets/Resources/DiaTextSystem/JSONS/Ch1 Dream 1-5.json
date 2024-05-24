@@ -11,11 +11,15 @@
     "characterOrder": [
         0,
         1,
-        0
+        0,
+	1,
+	1
     ],
     "dialogueLines": [
         "Hi Zironko!",
         "Yes, that is me, Zironko... Hello, little boy.",
-        "Why are you crying, dear Zironko?"
+        "Why are you crying, dear Zironko?",
+	"Comet Yrgna has just passed me and hit my dnah!",
+        "It broke into small glass pieces and went out forever... Wahh..."
     ]
 }

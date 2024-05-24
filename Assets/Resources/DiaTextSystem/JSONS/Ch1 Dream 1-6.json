@@ -4,16 +4,15 @@
     "nextEntryTitle": "Ch1 Dream 1-7",
     "chapter": "1",
     "characters": [
-        "Ivan",
         "Zironko",
-        "???"
+        "Ivan"
     ],
     "characterOrder": [
         1,
-        1
+        0
     ],
     "dialogueLines": [
-        "Comet Yrgna has just passed me and hit my dnah! ",
-        "It broke into small glass pieces and went out forever... Wahh..."
+        "\"Dnah\"? Uh, you mean... your hand?",
+        "Yes, boy! "
     ]
 }

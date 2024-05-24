@@ -1,0 +1,25 @@
+{
+    "entryType": 1,
+    "entryTitle": "Ch1 Dream 1-10",
+    "nextEntryTitle": "Ch1 Dream 1-11",
+    "chapter": "1",
+    "characters": [
+        "Zironko",
+        "Ivan",
+        "Flashlight"
+    ],
+    "characterOrder": [
+        0,
+        2,
+        2,
+        1,
+	0
+    ],
+    "dialogueLines": [
+        "No! You cannot! Comet Yrgna will get you if you stray too far into the dark!",
+        "It will be alright! All we have to do is to avoid Yrgna and the meteors, right, little Ivan?",
+        "And if we get chased by Yrgna, we can just get back near you.",
+        "Right! It's scary, but we will be fine!",
+        "Oh, thank you... thank you... Wahhh..."
+    ]
+}

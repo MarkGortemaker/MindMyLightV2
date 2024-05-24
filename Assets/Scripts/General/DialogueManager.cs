@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(DialogueReader))]
 public class DialogueManager : MonoBehaviour
@@ -37,15 +39,6 @@ public class DialogueManager : MonoBehaviour
 
     /*
     TODO:
-    - 1-4: Zironko moping, slide camera in
-    - 1-5: Ivan and Zironko talk abt wth is going on
-    - 1-6: "Dnah? you mean hand?" camera topsy turvy
-    - 1-7: Zironko explains the dnah thing
-    - 1-8: Zironko comments on Ivan's lantern, which replies that it can help collect the stardust back
-    - 1-9: Ivan is scared of the dark, but is willing to help, and the lantern says it will light the way with the stardust
-    - 1-10: Zironko warns them of Yrgna 
-    - 1-11: Zironko wishes them luck as they go on to collect the dust, cut to black gameplay start
-
     Other cutscenes:
     - Game end cutscene where Yrgna arrives and attacks Ivan, fade white and wake up in 2D cutscene
     - Two 2D cutscenes for the real world, which are just stills so just shift them along slowly as the dialogue goes on
@@ -219,9 +212,12 @@ public class DialogueManager : MonoBehaviour
         if (reader.nextEntry.ToLower() != "stop")
         {
             reader.NextEntry();
+            clipCount++;
         }
 
-        clipCount++;
+        else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
 
         if (clipCount < CutsceneEvent.clips.Length)
         {
