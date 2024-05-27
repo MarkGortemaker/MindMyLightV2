@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
 
+    public string entryName;
+
     private string[] lines;
 
     public bool IsDialogueActive = false;
@@ -21,13 +23,13 @@ public class DialogueManager : MonoBehaviour
     public bool IsAuto = false;
     public static bool IsHide = false;
     
-    public enum Fade { None, FadeInBlack, FadeOutBlack, FadeInWhite, FadeOutWhite };
+    public enum Fade { None, FadeInBlack, FadeOutBlack, FadeInWhite, FadeOutWhite }; //enum for fade out/fade in options
     public static Fade fade = Fade.None;
 
-    public float typeSpeed = 50f;
+    public float typeSpeed = 50f; //the speed at which the dialogue gets written on the text box
 
-    public int lineCount = 0;
-    public int clipCount = 0;
+    public int lineCount = 0; //index of dialogue lines
+    public int clipCount = 0; //index of animation clips
 
     public Animator dialogueAnimator;
     public Animator fadeAnimator;
@@ -39,21 +41,25 @@ public class DialogueManager : MonoBehaviour
 
     /*
     TODO:
-    Other cutscenes:
-    - Game end cutscene where Yrgna arrives and attacks Ivan, fade white and wake up in 2D cutscene
+
     - Two 2D cutscenes for the real world, which are just stills so just shift them along slowly as the dialogue goes on
 
     * Once the models come in, swap the placeholders /w the models (if you can do it on the same gameObject it'd save time)
     * After the music system is done, music must be played during the cutscene
     */
+
     private void Awake()
     {
         reader = GetComponent<DialogueReader>();
+
+        //take the current cutscene's lines from the editor
+        JSONChapterLibrary chapter = reader.GetComponent<EntryReader>().chapter;
+        reader.toRead = chapter.dialogueJSONList.Find(x => x.name == entryName);
     }
 
-    void Start()
+    void Start() 
     {
-        if (instance == null)
+        if (instance == null) //Singleton
         {
             instance = this;
         }
@@ -72,6 +78,9 @@ public class DialogueManager : MonoBehaviour
         DisplayNextDialogueLine();
     }
 
+    /// <summary>
+    /// Displays the next dialogue line if there is a line to be displayed, ends current dialogue if not.
+    /// </summary>
     public void DisplayNextDialogueLine()
     {
         if (lineCount >= lines.Length)
@@ -89,6 +98,12 @@ public class DialogueManager : MonoBehaviour
         lineCount++;
     }
 
+    /// <summary>
+    /// Types out sentence in the text box letter by letter. If the player interacts with the text box, displays the entire text instantly instead of letter by letter. 
+    /// If Auto button is on, calls DisplayNextAuto.
+    /// </summary>
+    /// <param name="dialogue">Dialogue to be typed in the textbox.</param>
+    /// <returns></returns>
     IEnumerator TypeSentence(string dialogue) 
     {
         buttonAnimator.Play("Idle");
@@ -120,12 +135,23 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Waits for 100 / typeSpeed seconds to display the next dialogue.
+    /// </summary>
+    /// <returns></returns>
     IEnumerator DisplayNextAuto()
     {
         yield return new WaitForSeconds(100f / typeSpeed);
         DisplayNextDialogueLine();
     }
 
+    /// <summary>
+    /// Plays the given animation, and plays the corresponding fade out/fade in animation if the fade enum is not 0.
+    /// Starts dialogue after waiting for the animations to finish. 
+    /// </summary>
+    /// <param name="animator">The animator to be used for the animation.</param>
+    /// <param name="animationName">The name of the animation to be played.</param>
+    /// <returns></returns>
     IEnumerator StartDialogueWhileWaiting(Animator animator, string animationName)
     {
         switch (fade)
@@ -168,6 +194,14 @@ public class DialogueManager : MonoBehaviour
         StartDialogue();
     }
 
+    /// <summary>
+    /// Hides the dialogue window after playing the given animation and waiting for it to finish.
+    /// Plays the corresponding fade out/fade in animation to the fade enum if it is not 0.
+    /// If there is a next entry, gets the reader to the next entry and plays the next animation in the cutscene. If there is not, loads the next scene.
+    /// </summary>
+    /// <param name="animator">The animator to be used for the animation.</param>
+    /// <param name="animationName">The name of the animation to be played.</param>
+    /// <returns></returns>
     IEnumerator HideDialogueWindow(Animator animator, string animationName)
     {
         AnimationClip currentClip = null;
@@ -237,6 +271,11 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(HideDialogueWindow(dialogueAnimator, "DialogueExit"));
     }
 
+    /// <summary>
+    /// Ends current dialogue. If IsHide is true, calls HideDialogueWindow. Otherwise, gets the reader to the next entry and plays the next animation.
+    /// If there is no next entry, loads the next scene.
+    /// </summary>
+    /// <param name="IsHide"></param>
     public void EndDialogue(bool IsHide)
     {
         IsDialogueActive = false;
@@ -255,6 +294,11 @@ public class DialogueManager : MonoBehaviour
             if (reader.nextEntry.ToLower() != "stop")
             {
                 reader.NextEntry();
+            }
+
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
 
             clipCount++;

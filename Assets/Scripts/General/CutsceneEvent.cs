@@ -6,6 +6,7 @@ public class CutsceneEvent : MonoBehaviour
 {
     public static AnimationClip[] clips;
     public static Animator animator;
+
     public void StartDialogueWhileWaiting()
     {
         DialogueManager.instance.StartDialogueWhileWaiting();
