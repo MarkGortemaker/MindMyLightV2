@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor.SearchService;
 using UnityEngine;
@@ -12,8 +13,6 @@ public class DialogueManager : MonoBehaviour
 
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI dialogueArea;
-
-    public string entryName;
 
     private string[] lines;
 
@@ -36,6 +35,8 @@ public class DialogueManager : MonoBehaviour
     public Animator buttonAnimator;
     public Animator autoButtonAnimator;
 
+    public GameObject winScreen;
+
     public DialogueReader reader;
 
 
@@ -51,10 +52,6 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         reader = GetComponent<DialogueReader>();
-
-        //take the current cutscene's lines from the editor
-        JSONChapterLibrary chapter = reader.GetComponent<EntryReader>().chapter;
-        reader.toRead = chapter.dialogueJSONList.Find(x => x.name == entryName);
     }
 
     void Start() 
@@ -250,15 +247,20 @@ public class DialogueManager : MonoBehaviour
         }
 
         else {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (SceneManager.GetActiveScene().name.Contains("End"))
+            {
+                winScreen.SetActive(true);
+            }
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
 
         if (clipCount < CutsceneEvent.clips.Length)
         {
             CutsceneEvent.animator.Play(CutsceneEvent.clips[clipCount].name);
         }
-
-        //change to the gameplay level if there is no more cutscenes/dialogue
     }
 
     public void StartDialogueWhileWaiting()
@@ -294,14 +296,20 @@ public class DialogueManager : MonoBehaviour
             if (reader.nextEntry.ToLower() != "stop")
             {
                 reader.NextEntry();
+                clipCount++;
             }
 
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                if (SceneManager.GetActiveScene().name.Contains("End"))
+                {
+                    winScreen.SetActive(true);
+                }
+                else
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                }
             }
-
-            clipCount++;
 
             if (clipCount < CutsceneEvent.clips.Length)
             {
@@ -341,7 +349,7 @@ public class DialogueManager : MonoBehaviour
             IsContinueButtonClicked = true;
         }
 
-        else
+        else if (IsDialogueActive)
         {
             DisplayNextDialogueLine();
         }
