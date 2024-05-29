@@ -31,6 +31,25 @@ public class CometBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
+        //code for the ugly placeholder model that decided "forward" is up, actually
+        if (IsRunningAway)
+        {
+            transform.LookAt(starTransform.position);
+            transform.Rotate(0f, Mathf.Lerp(0, -230f, 0.5f), 0f);
+            transform.Rotate(0f, 90f, 90f);
+            transform.Translate(Vector3.up * speed, Space.Self);
+        }
+
+        else
+        {
+            transform.LookAt(playerTransform.position);
+            transform.Rotate(0f, 90f, 90f);
+            transform.Translate(Vector3.up * speed, Space.Self);
+        }
+
+        IsRunningAway = Level1Controller.DespawnComet(gameObject);
+
+        /* Normal, well structured code for normal, well structured models
         if (IsRunningAway)
         {
             transform.LookAt(starTransform.position);
@@ -45,6 +64,7 @@ public class CometBehaviour : MonoBehaviour
         }
 
         IsRunningAway = Level1Controller.DespawnComet(gameObject);
+        */
     }
     
 }
