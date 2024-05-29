@@ -3,24 +3,26 @@ using UnityEngine;
 
 public class MeteorBehaviour : MonoBehaviour
 {
-    public List<Sprite> MeteorSprits;
+    public List<Sprite> MeteorSprites;
     public Transform playerTransform; // The object towards which gravity is applied
-    public float gravityStrength = 300f; // Strength of the gravitational force
+    public static float gravityStrength = 200f; // Strength of the gravitational force
     public float attractionRange = 15f; // Range within which objects are affected by gravity
 
     void Start()
     {
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
         // Check if the list is not empty
-        if (MeteorSprits != null && MeteorSprits.Count > 0)
+        if (MeteorSprites != null && MeteorSprites.Count > 0)
         {
             // Generate a random index
-            int randomIndex = Random.Range(0, MeteorSprits.Count);
+            int randomIndex = Random.Range(0, MeteorSprites.Count);
 
             // Get the SpriteRenderer component
             SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
             // Assign the random sprite to the SpriteRenderer
-            spriteRenderer.sprite = MeteorSprits[randomIndex];
+            spriteRenderer.sprite = MeteorSprites[randomIndex];
 
             playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         }

@@ -21,13 +21,13 @@ public class StardustBar : MonoBehaviour
 
         defaultColor = image.color;
 
-        slider.maxValue = Level1Controller.maxStardustMeter - 400;
+        slider.maxValue = Level1Controller.maxStardustMeter - 500;
         slider.value = 0;
     }
 
     private void Update()
     {
-        slider.value = Mathf.Lerp(slider.value, Level1Controller.stardustMeter - 400, 0.4f);
+        slider.value = Mathf.Lerp(slider.value, Level1Controller.stardustMeter - 450, 0.4f);
 
         if (Level1Controller.stardustMeter < 500)
         {

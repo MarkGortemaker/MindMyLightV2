@@ -1,0 +1,23 @@
+{
+    "entryType": 1,
+    "entryTitle": "Ch1 Dream 1-8.5",
+    "nextEntryTitle": "Ch1 Dream 1-9",
+    "chapter": "1",
+    "characters": [
+        "Zironko",
+        "Ivan",
+        "Flashlight"
+    ],
+    "characterOrder": [
+        2,
+        1,
+	2,
+	2
+    ],
+    "dialogueLines": [
+        "I can help with that!",
+        "Huh? My flashlight!",
+        "There is lots of stardust around! I can collect it with little Ivan.",
+        "That way, we can repair your hand!"
+    ]
+}

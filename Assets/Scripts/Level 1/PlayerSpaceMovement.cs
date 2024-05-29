@@ -13,7 +13,6 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     public GameObject lostStardustPatch;
 
-    public GameObject winScreen;
     public GameObject loseScreen;
 
     Material material;
@@ -40,9 +39,9 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Level1Controller.collectedStardust >= 7500)
+        if (Level1Controller.collectedStardust >= Level1Controller.stardustWinGoal)
         {
-            Level1Controller.EndGame(winScreen);
+            Level1Controller.WinGame();
         }
     }
     private void OnTriggerEnter(Collider col)
@@ -83,7 +82,7 @@ public class PlayerSpaceMovement : MonoBehaviour
             {
                 if (Level1Controller.stardustMeter <= 0)
                 {
-                    Level1Controller.EndGame(loseScreen);
+                    Level1Controller.ShowGameOver(loseScreen);
                 } 
 
                 else
@@ -126,7 +125,7 @@ public class PlayerSpaceMovement : MonoBehaviour
         while (lostStardustCount > 0)
         {
             Vector3 offset = new Vector3(Random.Range(3f, 5f), 0, Random.Range(3f, 5f));
-            GameObject bigStardustPatch = Instantiate(lostStardustPatch, transform.position + offset, Quaternion.Euler(-90, 0, 0));
+            GameObject bigStardustPatch = Instantiate(lostStardustPatch, transform.position + offset, Quaternion.Euler(-90, 0, 0), GameObject.Find("Spawned Entities").transform);
             var bigMain = bigStardustPatch.GetComponent<ParticleSystem>().main;
             bigMain.maxParticles = Mathf.Clamp(lostStardustCount, 0, 50);
             lostStardustCount -= bigMain.maxParticles;

@@ -1,0 +1,29 @@
+{
+    "entryType": 1,
+    "entryTitle": "Ch1 Dream 2-2",
+    "nextEntryTitle": "Ch1 Dream 2-3",
+    "chapter": "1",
+    "characters": [
+        "Ivan",
+        "Zironko",
+        "Flashlight"
+    ],
+    "characterOrder": [
+        1,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0
+    ],
+    "dialogueLines": [
+        "It's all thanks to you, brave child!",
+        "I'm so happy I could help, Zironko!",
+        "The darkness is still scary, but I feel a little more used to it.",
+        "Maybe eventually you won't need me at all, Ivan! Hahahaha.",
+        "No, never!",
+        "Wait... Boy, you should leave! Now!",
+        "Huh? Why?"
+    ]
+}
