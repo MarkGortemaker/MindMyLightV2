@@ -11,6 +11,8 @@ public class PlayerSpaceMovement : MonoBehaviour
 
     public Transform starTransform;
 
+    public Animator animator;
+
     public GameObject lostStardustPatch;
 
     public GameObject loseScreen;
@@ -29,10 +31,12 @@ public class PlayerSpaceMovement : MonoBehaviour
 
         ps = GetComponentInChildren<ParticleSystem>();
 
+        animator = GetComponent<Animator>();
+
         material = GetComponent<Renderer>().material;
         initialColor = material.color;
 
-        starTransform = Level1Controller.starTransform;
+        starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
         IsInvincible = false;
     }
@@ -80,6 +84,8 @@ public class PlayerSpaceMovement : MonoBehaviour
 
             if (!IsInvincible)
             {
+                animator.SetBool("IsHurt", true);
+
                 if (Level1Controller.stardustMeter <= 0)
                 {
                     Level1Controller.ShowGameOver(loseScreen);
@@ -138,18 +144,22 @@ public class PlayerSpaceMovement : MonoBehaviour
         material.color = initialColor;
 
         IsInvincible = false;
+
+        animator.SetBool("IsHurt", false);
     }
 
     void Move()
     {
+        animator.SetBool("IsIdle", true);
+
         Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         rb.AddForce(direction * speed, ForceMode.Force);
 
         if (direction.magnitude != 0)
         {
+            animator.SetBool("IsIdle", false);
             transform.LookAt(transform.position + direction * speed); //adjust this when player model is ready
         }
-
     }
 
     void EnforceBorder()
