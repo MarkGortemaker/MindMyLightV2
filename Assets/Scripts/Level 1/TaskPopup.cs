@@ -20,7 +20,7 @@ public class Level1UpdateHUD : MonoBehaviour
         if (tmp != null)
         {
             stardustNumber = Mathf.Lerp(stardustNumber, Level1Controller.collectedStardust + 1, 0.1f);
-            tmp.text = Mathf.FloorToInt(stardustNumber) + "/7500";
+            tmp.text = Mathf.FloorToInt(stardustNumber) + "/" + Level1Controller.stardustWinGoal;
         }
     }
 }

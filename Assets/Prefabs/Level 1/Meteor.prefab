@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -2.5
+      scalar: -6
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3137255, g: 0.19607843, b: 0.19607843, a: 1}
+      maxColor: {r: 0.42574587, g: 0.17519075, b: 0.54088044, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -748,10 +748,10 @@ ParticleSystem:
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
     randomDirectionAmount: 0
-    sphericalDirectionAmount: 0
+    sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
-      value: 20
+      value: 15
       mode: 0
       spread: 0
       speed:
@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5003,15 +5003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ba6205330d61e44ba5a67c2e929f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeteorSprits:
-  - {fileID: 21300000, guid: ca9007519669c8b49b69626506573369, type: 3}
-  - {fileID: 21300000, guid: ea762fa1eba33b049b56a04cf23868f8, type: 3}
-  - {fileID: 21300000, guid: 13f8b07ebc776c14ba8dc1430374b412, type: 3}
-  - {fileID: 21300000, guid: f70f614d8bfaefd4f941e87521d14eb1, type: 3}
-  - {fileID: 21300000, guid: 4c7edcc13c4f7a749ab503aa028d3ddb, type: 3}
-  - {fileID: 21300000, guid: 280b13c7f82878a449f3b8d9eaa4ca65, type: 3}
+  MeteorSprites: []
   playerTransform: {fileID: 0}
-  gravityStrength: 300
   attractionRange: 15
 --- !u!114 &4047412546288048872
 MonoBehaviour:

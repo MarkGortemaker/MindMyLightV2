@@ -10,8 +10,9 @@ public class Level1Controller : MonoBehaviour
     public static float dangerZoneDistance = 150f;
 
     public static float stardustMeter;
-    public static float maxStardustMeter = 2000f;
-    public static float collectedStardust = 0f;  //win condition: get this to 7500 (a star in the hud fills up by 1/5 for each 1500 collected)  
+    public static float maxStardustMeter = 1500f;
+    public static float collectedStardust = 0f;
+    public static float stardustWinGoal = 5000f;
     public static float stardustRatio;
 
     public static float h, s, v = 0f;
@@ -38,6 +39,10 @@ public class Level1Controller : MonoBehaviour
 
     void Start()
     {
+        borderDistance = 200f;
+        safeZoneDistance = 25f;
+        dangerZoneDistance = 100f;
+
         lanternLight = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Light>();
         skyboxMaterial = RenderSettings.skybox;
 
@@ -60,7 +65,7 @@ public class Level1Controller : MonoBehaviour
         SpawnStardust();
         SpawnMeteor();
 
-        InvokeRepeating("SpawnComet", 0f, 60f);
+        InvokeRepeating("SpawnComet", 0f, 15f);
 
         SetSkyboxLightness(stardustRatio);
         SetLightRange(20 * stardustRatio);
@@ -70,7 +75,7 @@ public class Level1Controller : MonoBehaviour
     {
         SpawnComet();
 
-        int progress = Mathf.FloorToInt(collectedStardust / 1500); 
+        int progress = Mathf.FloorToInt(collectedStardust / (stardustWinGoal / 5)); 
 
         if (progress >= difficulty) //every full stardust meter sent to the star
         {
@@ -78,7 +83,7 @@ public class Level1Controller : MonoBehaviour
 
             difficulty++;
 
-            if (difficulty % 2 == 0)
+            if (difficulty == 4 || difficulty == 5)
             {
                 cometSpawnCount++;
             }
@@ -118,12 +123,12 @@ public class Level1Controller : MonoBehaviour
         {
             for (int i = 0; i < stardustSpawnCount / 3; i++)
             {
-                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(0, 2)], safeZoneDistance, dangerZoneDistance / 2, 20f, starTransform.position));
+                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(0, 2)], safeZoneDistance, dangerZoneDistance, 20f, starTransform.position));
             }
 
             for (int i = 0; i < stardustSpawnCount / 3; i++)
             {
-                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(1, 4)], dangerZoneDistance / 2, dangerZoneDistance, 30f, starTransform.position));
+                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(1, 4)], dangerZoneDistance / 2, 0.9f * borderDistance, 30f, starTransform.position));
             }
 
             for (int i = 0; i < stardustSpawnCount / 3; i++)
@@ -140,7 +145,7 @@ public class Level1Controller : MonoBehaviour
         {
             for (int i = 0; i < meteorSpawnCount / 3; i++)
             {
-                meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, dangerZoneDistance, 20f, starTransform.position));
+                meteors.Add(RadiusSpawn.SpawnInCircleArea(meteor, 1.1f * safeZoneDistance, 0.9f * borderDistance, 20f, starTransform.position));
             }
 
             for (int i = 0; i < 2 * meteorSpawnCount / 3; i++)
@@ -238,10 +243,17 @@ public class Level1Controller : MonoBehaviour
         color = Color.HSVToRGB(h, s, v);
         skyboxMaterial.SetColor(Shader.PropertyToID("_Tint"), color);
     }
-    public static void EndGame(GameObject screen)
+    public static void WinGame()
+    {
+        GeneralControls.canPause = false;
+        LevelLoader.LoadLevel("Level1End");
+    }
+
+    public static void ShowGameOver(GameObject screen)
     {
         GeneralControls.PauseGame();
         GeneralControls.canPause = false;
         screen.SetActive(true);
     }
+
 }

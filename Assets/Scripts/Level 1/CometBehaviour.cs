@@ -5,6 +5,7 @@ using UnityEngine;
 public class CometBehaviour : MonoBehaviour
 {
     Transform playerTransform;
+    Transform starTransform;
 
     float speed = 0.1f;
     float bumpSpeed = 2.5f;
@@ -15,6 +16,7 @@ public class CometBehaviour : MonoBehaviour
     void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        starTransform = GameObject.FindGameObjectWithTag("Star").transform;
         rb = GetComponent<Rigidbody>(); 
     }
 
@@ -31,8 +33,8 @@ public class CometBehaviour : MonoBehaviour
     {
         if (IsRunningAway)
         {
-            transform.LookAt(playerTransform.position);
-            transform.Rotate(0f, Mathf.Lerp(0, -180f, 0.5f), 0f);
+            transform.LookAt(starTransform.position);
+            transform.Rotate(0f, Mathf.Lerp(0, -230f, 0.5f), 0f);
             transform.Translate(Vector3.forward * speed, Space.Self);
         }
 
