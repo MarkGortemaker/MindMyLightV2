@@ -1,3 +1,5 @@
+using AudioManager.Core;
+using AudioManager.Locator;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,10 +34,14 @@ public class Level1Controller : MonoBehaviour
     public static List<GameObject> comets;
 
     public static Transform playerTransform;
+    public static Transform CameraTransform;
+
     public static Transform starTransform;
 
     public static Material skyboxMaterial;
     public static Light lanternLight;
+
+    private IAudioManager am;
 
     void Start()
     {
@@ -47,6 +53,7 @@ public class Level1Controller : MonoBehaviour
         skyboxMaterial = RenderSettings.skybox;
 
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        CameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
         starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
         stardustLines = new List<GameObject>();
@@ -69,15 +76,21 @@ public class Level1Controller : MonoBehaviour
 
         SetSkyboxLightness(stardustRatio);
         SetLightRange(20 * stardustRatio);
+
+        am = ServiceLocator.GetService();
+
+        // Calling method in AudioManager
+
+        am.Play("StarMusic");
     }
 
     private void FixedUpdate()
     {
-        starTransform.LookAt(playerTransform.position);
+        starTransform.LookAt(CameraTransform.position);
 
         SpawnComet();
 
-        int progress = Mathf.FloorToInt(collectedStardust / (stardustWinGoal / 5)); 
+        int progress = Mathf.FloorToInt(collectedStardust / (stardustWinGoal / 5));
 
         if (progress >= difficulty) //every full stardust meter sent to the star
         {
@@ -135,7 +148,7 @@ public class Level1Controller : MonoBehaviour
 
             for (int i = 0; i < stardustSpawnCount / 3; i++)
             {
-                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(3, spawnableStardustLines.Length)], dangerZoneDistance, 
+                stardustLines.Add(RadiusSpawn.SpawnInCircleArea(spawnableStardustLines[Random.Range(3, spawnableStardustLines.Length)], dangerZoneDistance,
                     0.9f * borderDistance, 50f, starTransform.position));
             }
         }
@@ -181,7 +194,7 @@ public class Level1Controller : MonoBehaviour
         }
     }
 
-    public static IEnumerator IncreaseLightRange(float targetValue, float changeValue) 
+    public static IEnumerator IncreaseLightRange(float targetValue, float changeValue)
     {
         float range = lanternLight.range;
         for (float i = range; range <= targetValue; i += Time.deltaTime)
@@ -256,6 +269,10 @@ public class Level1Controller : MonoBehaviour
         GeneralControls.PauseGame();
         GeneralControls.canPause = false;
         screen.SetActive(true);
+    }
+    void OnDisable()
+    {
+        am.Stop("StarMusic");
     }
 
 }

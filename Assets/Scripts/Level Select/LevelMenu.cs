@@ -1,11 +1,15 @@
+using AudioManager.Core;
+using AudioManager.Locator;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LevelMenu : MonoBehaviour
 {
+    private IAudioManager am;
     public Button[] buttons = new Button[7];
     private void Awake()
     {
+        am = ServiceLocator.GetService();
         int currentLevel = PlayerPrefs.GetInt("levelProgress", 0); //levelProgress is increased after completing each level
 
         buttons = gameObject.GetComponentsInChildren<Button>();
@@ -19,5 +23,10 @@ public class LevelMenu : MonoBehaviour
         {
             buttons[i].interactable = true;
         }
+    }
+
+    void OnDisable()
+    {
+        am.Stop("MainMenuMusic");
     }
 }

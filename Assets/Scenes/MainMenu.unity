@@ -3767,6 +3767,8 @@ MonoBehaviour:
   loggingLevel: 3
   settings:
   - {fileID: 11400000, guid: f05ed46166eaf754c8e51085251bce2d, type: 2}
+  - {fileID: 11400000, guid: 62bf50056ed67c84599f67570e089085, type: 2}
+  - {fileID: 11400000, guid: 3b70693a97a4f8b4c8fd7502a974359f, type: 2}
 --- !u!4 &667234071
 Transform:
   m_ObjectHideFlags: 0

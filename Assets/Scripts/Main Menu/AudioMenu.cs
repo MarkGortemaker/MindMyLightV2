@@ -41,7 +41,6 @@ public class AudioMenu : MonoBehaviour
         am = ServiceLocator.GetService();
 
         // Calling method in AudioManager
-        Debug.Log("first part");
         am.Play("MainMenuMusic");
     }
 }
