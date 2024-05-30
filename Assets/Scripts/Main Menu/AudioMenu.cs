@@ -1,20 +1,18 @@
+using AudioManager.Core;
+using AudioManager.Locator;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class AudioMenu : MonoBehaviour
 {
+    private IAudioManager am;
 
     void Awake()
     {
         MasterSlider.value = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
         MusicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
         SfxSlider.value = PlayerPrefs.GetFloat("SfxVolume", 0.75f);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     public AudioMixer Mixer;
@@ -38,4 +36,12 @@ public class AudioMenu : MonoBehaviour
         PlayerPrefs.SetFloat("SfxVolume", volume);
     }
 
+    void Start()
+    {
+        am = ServiceLocator.GetService();
+
+        // Calling method in AudioManager
+        Debug.Log("first part");
+        am.Play("MainMenuMusic");
+    }
 }
