@@ -73,6 +73,8 @@ public class Level1Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
+        starTransform.LookAt(playerTransform.position);
+
         SpawnComet();
 
         int progress = Mathf.FloorToInt(collectedStardust / (stardustWinGoal / 5)); 
