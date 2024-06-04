@@ -1,0 +1,37 @@
+{
+    "entryType": 1,
+    "entryTitle": "Ch1 Dream 0-1",
+    "nextEntryTitle": "Ch1 Dream 1-1",
+    "chapter": "1",
+    "characters": [
+        "Mom",
+        "Ivan",
+        "Narrator"
+    ],
+    "characterOrder": [
+        0,
+        1,
+        0,
+        0,
+        2,
+        1,
+        0,
+        2,
+        1,
+        2,
+        2
+    ],
+    "dialogueLines": [
+        "Alright, dear, it is bedtime!",
+        "Okay, mom... Will you tell me a fairytale tonight?",
+        "Of course, dear! Of course I will.",
+        "Let's see... Today, I will tell you the story of the little star Zironko and the fearsome comet Yrgna...",
+        "And then, his Mom told Ivan of the story of a star lost in the emptiness of space, looking for its home...",
+        "Zzzz...",
+        "Aww, asleep already. Good night, son.",
+        "His mom kissed his brow, moving her arm to turn off the lights.",
+        "Mmmm... The lights...",
+        "Seeing Ivan shudder, the Mom turned on the flashlight on the counter next to the bed, knowing how scared his son gets at night without it.",
+        "Soon enough, Ivan goes into a deep slumber..."
+    ]
+}

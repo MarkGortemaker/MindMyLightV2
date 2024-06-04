@@ -23,7 +23,7 @@ public abstract class EntryReader : MonoBehaviour
     /// </summary>
     void DigestBaseEntry()
     {
-        entry = JSONToEntry(AssetDatabase.GetAssetPath(toRead));
+        entry = JSONToEntry(PlayerPrefs.GetString("JSONDir") + toRead);
         entryName = entry.entryTitle;
         nextEntry = entry.nextEntryTitle;
     }
