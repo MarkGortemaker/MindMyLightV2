@@ -23,6 +23,9 @@ public abstract class EntryReader : MonoBehaviour
     /// </summary>
     void DigestBaseEntry()
     {
+        System.IO.FileInfo fileInfo = new System.IO.FileInfo(toRead.name);
+        Debug.Log(fileInfo.FullName);
+
         entry = JSONToEntry(AssetDatabase.GetAssetPath(toRead));
         entryName = entry.entryTitle;
         nextEntry = entry.nextEntryTitle;

@@ -89,8 +89,9 @@ public static class ToFromJSON
                     target.dialogueJSONList.Add(JSONFile);
                     break;
             }
-
+#if UNITY_EDITOR
             EditorUtility.SetDirty(target);
+#endif
         }
     }
 
@@ -106,7 +107,9 @@ public static class ToFromJSON
             file.Write(JSON);
             file.Close();
         }
+#if  UNITY_EDITOR
         AssetDatabase.Refresh();
+#endif
     }
 
     /// <summary>
