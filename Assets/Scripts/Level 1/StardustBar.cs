@@ -35,13 +35,13 @@ public class StardustBar : MonoBehaviour
 
             if (IsReversed)
             {
-                dangerColor = InterpolateAlpha(dangerColor, 0.5f, 0.1f);
-                IsReversed = dangerColor.a <= 0.45f;
+                dangerColor = InterpolateAlpha(dangerColor, 0.8f, 0.1f);
+                IsReversed = dangerColor.a <= 0.75f;
             }
             else
             {
-                dangerColor = InterpolateAlpha(dangerColor, 0.1f, 0.1f);
-                IsReversed = dangerColor.a <= 0.15f;
+                dangerColor = InterpolateAlpha(dangerColor, 0.2f, 0.1f);
+                IsReversed = dangerColor.a <= 0.25f;
             }
 
             dangerTint.color = InterpolateAlpha(dangerTint.color, 0.08f, 0.2f);

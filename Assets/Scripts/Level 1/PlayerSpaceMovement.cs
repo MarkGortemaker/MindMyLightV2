@@ -18,8 +18,10 @@ public class PlayerSpaceMovement : MonoBehaviour
     public GameObject loseScreen;
 
     Material material;
+    Material hairMaterial;
     public Color hurtColor;
     public Color initialColor;
+    public Color initialHairColor;
 
     Rigidbody rb;
 
@@ -33,8 +35,13 @@ public class PlayerSpaceMovement : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-        material = GetComponent<Renderer>().material;
+        material = GetComponentsInChildren<SkinnedMeshRenderer>()[0].material;
+
+        hairMaterial = GetComponentsInChildren<SkinnedMeshRenderer>()[1].material;
+
         initialColor = material.color;
+
+        initialHairColor = hairMaterial.color;
 
         starTransform = GameObject.FindGameObjectWithTag("Star").GetComponent<Transform>();
 
@@ -79,8 +86,10 @@ public class PlayerSpaceMovement : MonoBehaviour
         if (col.CompareTag("Obstacle"))
         {
             material.color = hurtColor;
-            col.attachedRigidbody.AddForce((col.transform.position - transform.position) * speed / 3, ForceMode.Impulse);
-            rb.AddForce((transform.position - col.transform.position) * speed / 2, ForceMode.Impulse);
+            hairMaterial.color = hurtColor;
+
+            col.attachedRigidbody.AddForce((col.transform.position - transform.position) * speed / 4, ForceMode.Impulse);
+            rb.AddForce((transform.position - col.transform.position) * speed / 3, ForceMode.Impulse);
 
             if (!IsInvincible)
             {
@@ -96,9 +105,9 @@ public class PlayerSpaceMovement : MonoBehaviour
                     float tempStardust = Level1Controller.stardustMeter;
                     ps.Play();
 
-                    if (Level1Controller.stardustMeter > 500)
+                    if (Level1Controller.stardustMeter > 250)
                     {
-                        Level1Controller.stardustMeter = 500;
+                        Level1Controller.stardustMeter = (Level1Controller.stardustMeter) / 2;
                         Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
                         StartCoroutine(Level1Controller.DecreaseLightRange(20 * Level1Controller.stardustRatio, Level1Controller.stardustRatio));
                         StartCoroutine(Level1Controller.DecreaseSkyboxLightness(Level1Controller.stardustRatio, Level1Controller.stardustRatio / 20));
@@ -139,9 +148,10 @@ public class PlayerSpaceMovement : MonoBehaviour
     }
     IEnumerator EndInvincibility()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         material.color = initialColor;
+        hairMaterial.color = initialHairColor;
 
         IsInvincible = false;
 
