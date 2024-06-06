@@ -7,7 +7,7 @@ public class CometBehaviour : MonoBehaviour
     Transform playerTransform;
     Transform starTransform;
 
-    float speed = 0.1f;
+    float speed = 0.08f;
     float bumpSpeed = 2.5f;
 
     static bool IsRunningAway = false;
@@ -24,8 +24,13 @@ public class CometBehaviour : MonoBehaviour
     {
         if (col.tag == "Obstacle")
         {
-            col.attachedRigidbody.AddForce((col.transform.position - transform.position) * bumpSpeed / 2, ForceMode.Impulse);
-            rb.AddForce((transform.position - col.transform.position) * bumpSpeed / 2, ForceMode.Impulse);
+            col.attachedRigidbody.AddForce((col.transform.position - transform.position) * bumpSpeed / 3, ForceMode.Impulse);
+            rb.AddForce((transform.position - col.transform.position) * bumpSpeed / 3, ForceMode.Impulse);
+        }
+
+        else if (col.tag == "Safe Zone")
+        {
+            rb.AddForce((transform.position - col.transform.position) * bumpSpeed / 4, ForceMode.Impulse);
         }
     }
 
