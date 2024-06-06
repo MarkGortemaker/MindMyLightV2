@@ -7,23 +7,12 @@ using UnityEditor;
 /// </summary>
 public static class ToFromJSON
 {
-    /// <summary>
-    /// Transforms any entry into a JSON string, which is then published into a file.
-    /// </summary>
-    /// <param name="entry">The entry which to transform</param>
-    public static void EntryToJSON(BaseEntry entry)
-    {
-        string json = JsonUtility.ToJson(entry, true);
-        Debug.Log(json);
-        FindFileDestination(json, entry);
-    }
-
     public static string ReadJSON(string path) 
     {
-        string json = "";
+        string result = "";
         using (StreamReader file = File.OpenText(path))
-        { json = file.ReadToEnd(); }
-        return json;
+        { result = file.ReadToEnd(); }
+        return result;
     }
 
     /// <summary>
@@ -33,7 +22,12 @@ public static class ToFromJSON
     /// <returns>BaseEntry class</returns>
     public static BaseEntry JSONToEntry(string path) 
     {
-        BaseEntry entry = JsonUtility.FromJson<EntryDialogue>(ReadJSON(path));
+        BaseEntry entry = JsonUtility.FromJson<BaseEntry>(ReadJSON(path));
+        return entry;
+    }
+    public static BaseEntry JSONToEntry(TextAsset JSON)
+    {
+        BaseEntry entry = JsonUtility.FromJson<BaseEntry>(JSON.text);
         return entry;
     }
 
@@ -48,6 +42,11 @@ public static class ToFromJSON
         EntryDialogue entry = JsonUtility.FromJson<EntryDialogue>(ReadJSON(path));
         return entry;
     }
+    public static EntryDialogue JSONToDialogue(TextAsset JSON)
+    {
+        EntryDialogue entry = JsonUtility.FromJson<EntryDialogue>(JSON.text);
+        return entry;
+    }
 
     /// <summary>
     /// Transforms any text JSON file into a usable entry class.
@@ -58,6 +57,23 @@ public static class ToFromJSON
     {
         EntryText entry = JsonUtility.FromJson<EntryText>(ReadJSON(path));
         return entry;
+    }
+    public static EntryText JSONToText(TextAsset JSON)
+    {
+        EntryText entry = JsonUtility.FromJson<EntryText>(JSON.text);
+        return entry;
+    }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Transforms any entry into a JSON string, which is then published into a file.
+    /// </summary>
+    /// <param name="entry">The entry which to transform</param>
+    public static void EntryToJSON(BaseEntry entry)
+    {
+        string json = JsonUtility.ToJson(entry, true);
+        Debug.Log(json);
+        FindFileDestination(json, entry);
     }
 
 #region File Management
@@ -70,14 +86,14 @@ public static class ToFromJSON
     private static void FindFileDestination(string JSON, BaseEntry origEntry)
     {
         //Sorts out where the file will be stored and adjusts directory "dir" accordingly.
-        string mainDir = Directory.GetCurrentDirectory() + "\\Assets\\Resources\\DiaTextSystem\\";
+        string mainDir = Directory.GetCurrentDirectory() + "\\Assets\\Resources\\" + PlayerPrefs.GetString("JSONDir");
 
-        PublishToFile(JSON, mainDir + "JSONS\\" + origEntry.entryTitle + ".json");
+        PublishToFile(JSON, mainDir + "\\JSONS\\" + origEntry.entryTitle + ".json");
 
-        if (CheckFile(mainDir + "Chapters\\" + origEntry.chapter + ".asset"))
+        if (CheckFile(mainDir + "\\Chapters\\" + origEntry.chapter + ".asset"))
         {
-            JSONChapterLibrary target = Resources.Load<JSONChapterLibrary>("DiaTextSystem\\Chapters\\" + origEntry.chapter);
-            Object JSONFile = Resources.Load("DiaTextSystem\\JSONS\\" + origEntry.entryTitle);
+            JSONChapterLibrary target = Resources.Load<JSONChapterLibrary>(PlayerPrefs.GetString("JSONDir") + "\\Chapters\\" + origEntry.chapter);
+            Object JSONFile = Resources.Load(PlayerPrefs.GetString("JSONDir") + "\\JSONS\\" + origEntry.entryTitle);
             switch (origEntry.entryType)
             {
                 case EntryType.Text:
@@ -89,7 +105,6 @@ public static class ToFromJSON
                     target.dialogueJSONList.Add(JSONFile);
                     break;
             }
-
             EditorUtility.SetDirty(target);
         }
     }
@@ -125,5 +140,6 @@ public static class ToFromJSON
             return false; 
         }
     }
-#endregion File Management
+    #endregion File Management
+#endif
 }

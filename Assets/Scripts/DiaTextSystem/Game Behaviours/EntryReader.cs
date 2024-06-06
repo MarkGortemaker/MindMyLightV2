@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using static ToFromJSON;
 
 public abstract class EntryReader : MonoBehaviour
@@ -23,7 +22,7 @@ public abstract class EntryReader : MonoBehaviour
     /// </summary>
     void DigestBaseEntry()
     {
-        entry = JSONToEntry(AssetDatabase.GetAssetPath(toRead));
+        entry = JSONToEntry(Resources.Load<TextAsset>(PlayerPrefs.GetString("JSONDir") + "\\JSONS\\" + toRead.name));
         entryName = entry.entryTitle;
         nextEntry = entry.nextEntryTitle;
     }

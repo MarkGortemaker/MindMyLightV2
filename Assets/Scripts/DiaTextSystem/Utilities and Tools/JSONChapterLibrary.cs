@@ -16,15 +16,15 @@ public class JSONChapterLibrary : ScriptableObject
     public List<Object> dialogueJSONList;
 
 
-    public void onListChanged(List<Object> list)
-    {
-        if (list.Contains(null))
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i] == null)
-                { list.RemoveAt(i); }
-            }
-        }
-    }
+    //public void onListChanged(List<Object> list)
+    //{
+    //    if (list.Contains(null))
+    //    {
+    //        for (int i = 0; i < list.Count; i++)
+    //        {
+    //            if (list[i] == null)
+    //            { list.RemoveAt(i); }
+    //        }
+    //    }
+    //}
 }

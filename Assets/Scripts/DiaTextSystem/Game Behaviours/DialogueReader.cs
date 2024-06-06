@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using static ToFromJSON;
 
 public class DialogueReader : EntryReader
@@ -23,7 +22,7 @@ public class DialogueReader : EntryReader
     /// </summary>
     public void DigestDialogue()
     {
-        EntryDialogue entry = JSONToDialogue(AssetDatabase.GetAssetPath(toRead));
+        EntryDialogue entry = JSONToDialogue(Resources.Load<TextAsset>(PlayerPrefs.GetString("JSONDir") + "\\JSONS\\" + toRead.name));
         characters = entry.characters;
         characterOrder = entry.characterOrder;
         lines = entry.dialogueLines;
