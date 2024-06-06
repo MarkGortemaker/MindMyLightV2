@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+
+
     }
 
     public void SetLocalization(int localization)
@@ -20,7 +22,7 @@ public class MainMenu : MonoBehaviour
                 break;
             case 2: PlayerPrefs.SetString("JSONDir", "DiaTextSystem\\UKR");
                 break;
-            default:
+            default: Debug.LogWarning("Unknown localization.");
                 break;
         }
         Debug.Log(PlayerPrefs.GetString("JSONDir"));

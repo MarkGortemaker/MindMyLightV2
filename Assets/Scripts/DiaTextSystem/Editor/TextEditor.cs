@@ -9,7 +9,7 @@ public class TextEditor : EditorWindow
     public string titleText; //The title of the entry being written or edited.
     public string contentText; //The content of the entry being written or edited.
     public string nextUpText; //The entry which will follow the entry being written or edited.
-    public string[] allChapters; //All existing Chapters.
+    public static string[] allChapters; //All existing Chapters.
     public int chapter; // The selected chapter (JSONChapterLibrary Object) to which the entry being written or edited belongs.
 
     private bool saving //Button boolean, when true it calls Save();
@@ -42,7 +42,7 @@ public class TextEditor : EditorWindow
 
         window.hasUnsavedChanges = true;
         window.minSize = new Vector2(400, 400);
-        window.SortChapters();
+        TextEditor.SortChapters();
     }
 
     private void OnEnable()
@@ -62,9 +62,9 @@ public class TextEditor : EditorWindow
     /// <summary>
     /// Goes through all of the JSONChapterLibrary objects and sorts out their files.
     /// </summary>
-    void SortChapters()
+    public static void SortChapters()
     {
-        JSONChapterLibrary[] chapters = Resources.LoadAll<JSONChapterLibrary>("DiaTextSystem\\Chapters");
+        JSONChapterLibrary[] chapters = Resources.LoadAll<JSONChapterLibrary>(PlayerPrefs.GetString("JSONDir") + "Chapters");
         allChapters = new string[chapters.Length];
         for (int i = 0; i < chapters.Length; i++)
         { allChapters[i] = chapters[i].name; }

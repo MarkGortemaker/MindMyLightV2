@@ -39,7 +39,7 @@ public class DialogueReaderEditor : Editor
 
     private void OnEnable()
     {
-        chapters = Resources.LoadAll<JSONChapterLibrary>("DiaTextSystem\\Chapters"); //Finds all JSONChapterLibrary objects in the given path.
+        chapters = Resources.LoadAll<JSONChapterLibrary>(PlayerPrefs.GetString("JSONDir") + "\\Chapters"); //Finds all JSONChapterLibrary objects in the given path.
         chaptersString = new string[chapters.Length]; 
         for (int i = 0; i < chapters.Length; i++) { chaptersString[i] = "Chapter " + chapters[i].name; } //Creates strings for displaying names for the dropdown field.
 

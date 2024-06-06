@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using static ToFromJSON;
 
 public class TextReader : EntryReader
@@ -21,7 +20,7 @@ public class TextReader : EntryReader
     /// </summary>
     void DigestText()
     {
-        EntryText entry = JSONToText(AssetDatabase.GetAssetPath(toRead));
+        EntryText entry = JSONToText(Resources.Load<TextAsset>(PlayerPrefs.GetString("JSONDir") + "\\JSONS\\" + toRead.name));
         text = entry.content;
         Debug.Log(text);
     }

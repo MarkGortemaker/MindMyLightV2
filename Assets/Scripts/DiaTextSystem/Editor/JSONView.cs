@@ -15,7 +15,9 @@ public class JSONView : EditorWindow
 
     private Vector2 textScrollPos; //GUI scroll position.
     private Vector2 diaScrollPos; //GUI scroll position.
-    
+
+    GUIContent local = new("Localization", "Choose which localization to work in.");
+
     /// <summary>
     /// Behaviour to be called upon this window being opened. <para /> 
     /// Also displays the window as openable under "Window" tab.
@@ -44,18 +46,27 @@ public class JSONView : EditorWindow
     /// <summary>
     /// Goes through all of the JSONChapterLibrary objects and sorts out their files.
     /// </summary>
-    static void SortChapters()
+    public static void SortChapters()
     {
-        chapters = Resources.LoadAll<JSONChapterLibrary>("DiaTextSystem\\Chapters");
+        chapters = Resources.LoadAll<JSONChapterLibrary>(PlayerPrefs.GetString("JSONDir") + "\\Chapters");
         chaptersStrings = new string[chapters.Length];
         for (int i = 0; i < chapters.Length; i++)
         { chaptersStrings[i] = "Chapter " + chapters[i].name; }
+        TextEditor.SortChapters();
+        DialogueEditor.SortChapters();
         Debug.Log("Sorted Chapters");
     }
 
     private void OnGUI()
     {
+        GUILayout.BeginHorizontal();
         chapterSelect = EditorGUILayout.Popup(chapterSelect, chaptersStrings, GUILook.thinTextBox);
+        if (GUILayout.Button(local, GUILook.labelLayout)) 
+        { 
+            CreateWindow<LocalizationMenu>();
+            LocalizationMenu.ShowWindow();
+        }
+        GUILayout.EndHorizontal();
 
         if (chapterSelect >= 0) //If a chapter is selected, draws the environment.
         { DrawChapter(chapterSelect); }
@@ -201,7 +212,7 @@ public class FileMenu : EditorWindow
         TextEditor target = GetWindow<TextEditor>();
         target.titleText = entry.entryTitle;
         target.nextUpText = entry.nextEntryTitle;
-        target.chapter = System.Array.IndexOf(target.allChapters, entry.chapter);
+        target.chapter = System.Array.IndexOf(TextEditor.allChapters, entry.chapter);
 
         target.contentText = entry.content;
     }
@@ -216,7 +227,7 @@ public class FileMenu : EditorWindow
         DialogueEditor target = GetWindow<DialogueEditor>();
         target.titleText = entry.entryTitle;
         target.nextUpDialogue = entry.nextEntryTitle;
-        target.chapter = System.Array.IndexOf(target.allChapters, entry.chapter);
+        target.chapter = System.Array.IndexOf(DialogueEditor.allChapters, entry.chapter);
 
         target.characters = new(entry.characters);
         target.speakers = new(entry.characterOrder);
