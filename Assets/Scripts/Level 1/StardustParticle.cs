@@ -27,7 +27,7 @@ public class StardustParticle : MonoBehaviour
                 p.remainingLifetime = 0;
 
                 if (CompareTag("Big Stardust")) { Level1Controller.stardustMeter += 10; }
-                else { Level1Controller.stardustMeter++; }
+                else { Level1Controller.stardustMeter += 2; } //stardust gain doubled for demo build only
 
                 Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
 

@@ -60,12 +60,12 @@ public class Level1Controller : MonoBehaviour
         meteors = new List<GameObject>();
         comets = new List<GameObject>();
 
-        difficulty = 1;
+        difficulty = 1; 
         cometSpawnCount = 1;
         //meteorSpawnCount = 30;
         //stardustSpawnCount = 90;
 
-        collectedStardust = 0f;
+        collectedStardust = 3000f; //initial is 0, set to 3000 for demo build only
         stardustMeter = 500f;
         stardustRatio = stardustMeter / maxStardustMeter;
 
@@ -98,10 +98,12 @@ public class Level1Controller : MonoBehaviour
 
             difficulty++;
 
+            /* Number of comets stays the same in demo build
             if (difficulty == 4 || difficulty == 5)
             {
                 cometSpawnCount++;
             }
+            */
 
             foreach (GameObject stardust in stardustLines)
             {

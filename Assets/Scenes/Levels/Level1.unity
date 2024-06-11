@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.008034204, g: 0.041458152, b: 0.1276026, a: 1}
+  m_IndirectSpecularColor: {r: 0.006191474, g: 0.030197252, b: 0.09988981, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5207,7 +5207,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next Level
+  m_text: Restart
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
   m_sharedMaterial: {fileID: -261028251290399019, guid: 4346a678ca55bac40879da1e8cf16e4a, type: 2}
@@ -11539,7 +11539,7 @@ GameObject:
   - component: {fileID: 697566957}
   - component: {fileID: 697566956}
   m_Layer: 5
-  m_Name: Next Level
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11630,7 +11630,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level2
+          m_StringArgument: Level1
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2495832265929062030, guid: 23428a29c6f23c0478e71c00a292c321, type: 3}
