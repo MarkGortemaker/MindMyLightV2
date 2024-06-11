@@ -39,14 +39,6 @@ public class DialogueManager : MonoBehaviour
     public DialogueReader reader;
 
 
-    /*
-    TODO:
-
-    - Two 2D cutscenes for the real world, which are just stills so just shift them along slowly as the dialogue goes on
-
-    * Once the models come in, swap the placeholders /w the models (if you can do it on the same gameObject it'd save time)
-    * After the music system is done, music must be played during the cutscene
-    */
 
     private void Awake()
     {
