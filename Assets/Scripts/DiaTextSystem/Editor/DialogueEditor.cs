@@ -183,6 +183,10 @@ public class DialogueEditor : EditorWindow
         }
 
         GUILayout.EndScrollView();
+
+        GUILayout.Label("Following Entry", GUILook.labelLayout);
+        nextUpDialogue = EditorGUILayout.TextField(nextUpDialogue, GUILook.thinTextBox);
+
         GUILayout.EndVertical();
     }
 
