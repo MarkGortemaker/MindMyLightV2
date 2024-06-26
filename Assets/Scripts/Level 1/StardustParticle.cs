@@ -1,12 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StardustParticle : MonoBehaviour
 {
     ParticleSystem ps;
+    private float difficulty;
     private void Start()
     {
+        difficulty = PlayerPrefs.GetFloat("difficulty", 2);
         ps = GetComponent<ParticleSystem>();
         Collider playerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>();
 
@@ -27,7 +28,7 @@ public class StardustParticle : MonoBehaviour
                 p.remainingLifetime = 0;
 
                 if (CompareTag("Big Stardust")) { Level1Controller.stardustMeter += 10; }
-                else { Level1Controller.stardustMeter++; }
+                else { Level1Controller.stardustMeter += difficulty; }
 
                 Level1Controller.stardustRatio = Level1Controller.stardustMeter / Level1Controller.maxStardustMeter;
 
